@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+    
+    <link rel="stylesheet" href="css/new-login.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="signup-header">
+        <a href="#" class="back-link">&lt;&nbsp;&nbsp;もどる</a>
+        <h1><i class="fas fa-user-plus"></i> 新規登録</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="signup-form">
+                <!-- アカウントID -->
+                <div class="form-group">
+                    <label for="account-id">アカウントID <span style="color: #FF4564">(*あとから変更できません)</span></label>
+                    <input type="text">
+                </div>
+                <!-- ニックネーム -->
+                <div class="form-group">
+                    <label for="nickname">ニックネーム</label>
+                    <input type="text">
+                </div>
+                <!-- 居住地 -->
+                <div class="form-group">
+                    <label for="postal-code">居住地</label>
+                    <div class="postal-code-wrapper">
+                        <span>〒</span>
+                        <input type="number" placeholder="" id="postal-code">
+                    </div>
+                    <p class="note">郵便番号を入力すると、住所の一部が自動的に表示されます。なお、郵便番号は登録されません。</p>
+                    <div class="address-display">
+                        <span id="prefecture"></span>
+                        <span id="city"></span>
+                    </div>
+                </div>
+                <!-- 生年 -->
+                <div class="form-group">
+                    <label for="birth-year">生年</label>
+                    <!-- idを -->
+                    <select id="birth-year">
+                        <option value="" selected hidden>選択してください</opt>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>性別</label>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="gender" value="male" checked>
+                        <label for="male" class="radio-label">男性</label>
+                        
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female" class="radio-label">女性</label>
+                        
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other" class="radio-label">その他</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <div class="password-wrapper">
+                        <input type="password">
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password-confirm">パスワード確認</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password-confirm" name="password-confirm">
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+
+                <div class="form-group bio-wrapper">
+                    <label for="bio">自己紹介 <span class="optional-tag">任意</span></label>
+                    <textarea id="bio" name="bio" rows="6"></textarea>
+                <!-- 文字数表示 -->
+                    <div class="char-count"><span id="current-count">0</span>/300文字</div>
+                </div>
+            </form>
+            <hr class="form-divider">
+            <p class="terms-notice">
+                本サービスをご利用いただく前に、以下の利用規
+                <br>約をよくお読みください。
+            </p>
+
+            <a href="#" class="btn btn-terms">利用規約へ</a>
+            
+            <a href="#" class="btn-confirmation btn-submit">確認へ</a>
+                </div>
+            </main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 生年セレクトボックス
+    const yearSelect = document.getElementById('birth-year');
+    const currentYear = new Date().getFullYear();
+    const startYear = 1930;
+    const endYear = currentYear;
+
+    const emptyOption = document.createElement('option');
+    emptyOption.value = "選択してください";
+    emptyOption.textContent = "選択してください"; 
+    yearSelect.appendChild(emptyOption);
+
+    for (let year = endYear; year >= startYear; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    }
+    // 選択状態によって色を切り替える
+yearSelect.addEventListener('change', function() {
+    if (this.value === "" || this.value === "選択してください") {
+        this.classList.remove('has-value');
+    } else {
+        this.classList.add('has-value');
+    }
+});
+// 郵便番号 → 都道府県・市区町村 自動表示
+const postalInput = document.getElementById('postal-code');
+const prefDisplay = document.getElementById('prefecture');
+const cityDisplay = document.getElementById('city');
+
+postalInput.addEventListener('input', function() {
+    const postal = postalInput.value.replace(/[^0-9]/g, ''); // 数字だけ抜き出す
+
+    // 7桁揃ったら検索開始
+    if (postal.length === 7) {
+        // ★ API呼び出し
+        fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postal}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.results) {
+                    const result = data.results[0];
+                    prefDisplay.textContent = result.address1; // 都道府県
+                    cityDisplay.textContent = result.address2; // 市区町村
+                } else {
+                    prefDisplay.textContent = "";
+                    cityDisplay.textContent = "住所が見つかりません";
+                }
+            })
+            .catch(() => {
+                prefDisplay.textContent = "";
+                cityDisplay.textContent = "住所検索エラー";
+            });
+    } else {
+        prefDisplay.textContent = "";
+        cityDisplay.textContent = "";
+    }
+});
+
+
+
+    // 自己紹介文字数カウント
+    const bio = document.getElementById('bio');
+    const currentCount = document.getElementById('current-count');
+    const maxLength = 300;
+
+    bio.addEventListener('input', function() {
+        const length = bio.value.length;
+        currentCount.textContent = length;
+        if (length > maxLength) {
+            currentCount.style.color = 'red';
+        } else {
+            currentCount.style.color = '#888';
+        }
+    });
+    // パスワードの表示切替
+document.querySelectorAll('.toggle-password').forEach(function(icon) {
+    icon.addEventListener('click', function() {
+        // 目アイコンの隣の input を取得
+        const input = this.previousElementSibling;
+        if (input.type === 'password') {
+            input.type = 'text';
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        } else {
+            input.type = 'password';
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        }
+    });
+});
+
+
+});
+</script>
+
+    
+</body>
+</html>
