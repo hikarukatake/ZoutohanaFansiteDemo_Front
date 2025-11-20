@@ -31,6 +31,7 @@ textarea,
 .btn-terms {
     color: #fff !important;
 }
+
 .btn-submit {
     color: #9F9F9F !important;
 }
@@ -38,7 +39,8 @@ textarea,
 /* === 基本設定 === */
 body {
     margin: 0;
-    background-color: #FF4463; /* 全体の薄い背景色 */
+    background-color: #FF4463;
+    /* 全体の薄い背景色 */
     color: #333;
 }
 
@@ -46,16 +48,17 @@ body {
 .signup-header {
     color: white;
     padding: 20px;
-    padding-top: 40px; /* 上部の余白 */
+    padding-top: 40px;
+    /* 上部の余白 */
     text-align: center;
 }
 
 .signup-header h1 {
-    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* アイコンと文字の間 */
+    gap: 10px;
+    /* アイコンと文字の間 */
     margin-top: 3rem;
 }
 
@@ -71,7 +74,7 @@ body {
 /* === フォームコンテナ === */
 .form-container {
     background-color: #FFFCF9;
-    border-radius: 30px 30px 0px 0px ;
+    border-radius: 30px 30px 0px 0px;
     padding: 40px 25px;
     margin-top: 2rem;
 }
@@ -86,13 +89,14 @@ body {
     font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 8px;
-    color: #444;
+    color: #464646;
 }
 
 /* アカウントIDの注意書き */
 .form-group label span {
     font-size: 0.6rem;
-    color: #726D6D; /* 赤色 */
+    color: #726D6D;
+    /* 赤色 */
     font-weight: normal;
 }
 
@@ -104,8 +108,9 @@ select {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-sizing: border-box; /* paddingを含めて幅100%にする */
-    font-size: 1rem;
+    box-sizing: border-box;
+    /* paddingを含めて幅100%にする */
+    font-size: 1.3rem;
     background-color: white;
 }
 
@@ -114,7 +119,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 select:focus {
     outline: none;
-    border-color: #f06292;
+    border-color: #FF6C84;
     box-shadow: 0 0 0 2px rgba(240, 98, 146, 0.2);
 }
 
@@ -146,11 +151,13 @@ select:focus {
     color: #535353;
     align-items: center;
     margin-top: 5px;
-    
+
 }
+
 .postal-code-wrapper input:focus {
     outline: none;
-    box-shadow: none; /* 親ラッパーで処理するため不要 */
+    box-shadow: none;
+    /* 親ラッパーで処理するため不要 */
 }
 
 /* 郵便番号の注釈 */
@@ -173,17 +180,19 @@ select:focus {
 .address-display span {
     margin-right: 15px;
     font-weight: bold;
-    color: #333;
+    color: #464646;
 }
 
 /* 生年 (セレクトボックス) */
 select {
-    appearance: none; /* OSのデフォルトスタイルを解除 */
+    appearance: none;
+    /* OSのデフォルトスタイルを解除 */
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%23666%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px 8px;
-    padding-right: 30px; /* 矢印のスペース */
+    padding-right: 30px;
+    /* 矢印のスペース */
 }
 
 /* 性別 (ラジオボタン) */
@@ -191,7 +200,8 @@ select {
     display: flex;
     align-items: center;
     margin-left: 1rem;
-    gap: 20px; /* ラベル間のスペース */
+    gap: 20px;
+    /* ラベル間のスペース */
 }
 
 /* デフォルトのラジオボタンを非表示に */
@@ -203,7 +213,8 @@ select {
     font-size: 1rem;
     font-weight: normal;
     position: relative;
-    padding-left: 35px; /* 円を大きくしたので少し余裕を増やす */
+    padding-left: 35px;
+    /* 円を大きくしたので少し余裕を増やす */
     cursor: pointer;
     margin-bottom: 0;
     color: #333;
@@ -216,7 +227,8 @@ select {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;      /* ←外側を大きく */
+    width: 18px;
+    /* ←外側を大きく */
     height: 18px;
     border: 2px solid #ccc;
     border-radius: 50%;
@@ -225,25 +237,28 @@ select {
 }
 
 /* 選択時の外枠 */
-.radio-group input[type="radio"]:checked + .radio-label::before {
-    border-color: #f06292;
+.radio-group input[type="radio"]:checked+.radio-label::before {
+    border-color: #FF6C84;
 }
 
 /* 選択時の内側（●部分） */
 .radio-group .radio-label::after {
     content: '';
     position: absolute;
-    left: 4px; /* 中央に合わせて微調整 */
+    left: 4px;
+    /* 中央に合わせて微調整 */
     top: 50%;
     transform: translateY(-50%) scale(0);
-    width: 14px;      /* ←中の●を大きく */
+    width: 14px;
+    /* ←中の●を大きく */
     height: 14px;
     border-radius: 50%;
-    background-color: #f06292; /* ピンク色 */
+    background-color: #FF6C84;
+    /* ピンク色 */
     transition: transform 0.2s ease-out;
 }
 
-.radio-group input[type="radio"]:checked + .radio-label::after {
+.radio-group input[type="radio"]:checked+.radio-label::after {
     transform: translateY(-50%) scale(1);
 }
 
@@ -254,7 +269,8 @@ select {
 }
 
 .password-wrapper input {
-    padding-right: 40px; /* アイコンのスペース */
+    padding-right: 40px;
+    /* アイコンのスペース */
 }
 
 .toggle-password {
@@ -274,7 +290,8 @@ select {
 .optional-tag {
     font-size: 0.75rem;
     font-weight: normal;
-    background-color: #e0e0e0; /* 画像のグレーに合わせる */
+    background-color: #e0e0e0;
+    /* 画像のグレーに合わせる */
     color: #555;
     padding: 3px 9px;
     border-radius: 10px;
@@ -290,20 +307,24 @@ textarea {
     box-sizing: border-box;
     font-size: 1rem;
     background-color: white;
-    font-family: inherit; /* フォントを統一 */
-    resize: vertical; /* 縦方向のリサイズを許可 */
-    min-height: 120px; /* 画像の比率に合わせて高さを設定 */
+    font-family: inherit;
+    /* フォントを統一 */
+    resize: vertical;
+    /* 縦方向のリサイズを許可 */
+    min-height: 120px;
+    /* 画像の比率に合わせて高さを設定 */
 }
 
 textarea:focus {
     outline: none;
-    border-color: #f06292;
+    border-color: #FF6C84;
     box-shadow: 0 0 0 2px rgba(240, 98, 146, 0.2);
 }
 
 /* 自己紹介 */
 .bio-wrapper {
-    position: relative; /* 子要素の絶対位置の基準 */
+    position: relative;
+    /* 子要素の絶対位置の基準 */
 }
 
 .bio-wrapper textarea {
@@ -313,17 +334,20 @@ textarea:focus {
 
 .bio-wrapper .char-count {
     position: absolute;
-    bottom: -20px;   /* テキストエリアの外に出す */
+    bottom: -20px;
+    /* テキストエリアの外に出す */
     right: 0;
     font-size: 0.85em;
     color: #888;
 }
+
 /* 区切り線 */
 .form-divider {
     border: 0;
     height: 1px;
     background-color: #9c9a9a;
-    margin: 40px 0 30px 0; /* 自己紹介欄との余白を確保 */
+    margin: 40px 0 30px 0;
+    /* 自己紹介欄との余白を確保 */
 }
 
 /* 利用規約のテキスト */
@@ -340,7 +364,8 @@ textarea:focus {
     display: block;
     width: 100%;
     padding: 10px;
-    border-radius: 30px; /* 画像のような強い丸み */
+    border-radius: 30px;
+    /* 画像のような強い丸み */
     text-align: center;
     text-decoration: none;
     font-size: 1rem;
@@ -349,7 +374,8 @@ textarea:focus {
     cursor: pointer;
     border: none;
 }
-.btn-confirmation{
+
+.btn-confirmation {
     margin-top: 4rem;
     display: block;
     width: 100%;
@@ -365,26 +391,224 @@ textarea:focus {
 
 /* 利用規約へボタン (画像準拠) */
 .btn-terms {
-    background-color: #FF8A9B; /* 画像のピンク色 */
+    background-color: #FF6C84;
+    /* 画像のピンク色 */
     color: white;
-    margin-bottom: 15px; /* 次のボタンとの間隔 */
+    margin-bottom: 15px;
+    /* 次のボタンとの間隔 */
 }
 
 /* 確認へボタン (画像準拠) */
 .btn-submit {
-    background-color: #D9D9D9; /* 画像では同じピンク色 */
+    background-color: #D9D9D9;
+    /* 画像では同じピンク色 */
     color: #9F9F9F;
-    margin-bottom: 10px; /* 下部の余白 */
+    margin-bottom: 10px;
+    /* 下部の余白 */
 }
 
 /* ▼ セレクトボックスの基本スタイル */
 #birth-year {
-  color: #535353;           /* 初期表示は薄く */
-  font-size: 0.9em;      /* 小さめに */
+    color: #535353;
+    /* 初期表示は薄く */
+    font-size: 0.9em;
+    /* 小さめに */
 }
 
 /* ▼ 値が選ばれたら（＝空文字じゃなくなったら）濃く戻す */
 #birth-year.has-value {
-  color: #535353;
-  font-size: 1em;
+    color: #535353;
+    font-size: 1em;
+}
+
+/* モーダル背景 (オーバーレイ) */
+.modal-overlay {
+    display: none;
+    /* JSで flex に変更して表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 背景を暗くする */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* モーダル本体 */
+.modal-content {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 95vh;
+    /* 高さを制限 */
+    display: flex;
+    flex-direction: column;
+    /* ヘッダー, ボディ, フッターを縦積み */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* 閉じるボタンの基準 */
+}
+
+/* 閉じるボタン (×) */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+/* モーダルヘッダー */
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.modal-header .last-updated {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* モーダルボディ (スクロールエリア) */
+.modal-body {
+    padding: 0 1.2rem  1.2rem 1.2rem;
+    overflow-y: auto;
+    /* 内容が多ければスクロール */
+    flex-grow: 1;
+    /* ヘッダーとフッター以外の高さを埋める */
+    
+}
+
+/* カスタムスクロールバー (画像準拠) */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #FF6C84;
+    /* 画像のピンク色 */
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #FF6C84;
+}
+
+.modal-body section {
+    margin-bottom: 20px;
+}
+
+.modal-body h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.modal-body p,
+.modal-body ol {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.modal-body ol {
+    padding-left: 20px;
+}
+
+.modal-body li {
+    margin-bottom: 10px;
+}
+
+/* モーダルフッター */
+.modal-footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+
+.btn-agree:hover {
+    background-color: #c9c9c9;
+}
+
+/* ▲▲▲ ここまでモーダル用CSS ▲▲▲ */
+
+/* 確認へボタン (初期状態は無効) */
+.btn-submit {
+    background-color: #D9D9D9;
+    color: #9F9F9F !important;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* aタグを無効化するためのスタイル */
+.btn-submit[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    /* クリックイベントを無効化 */
+    /* 色は .btn-submit のデフォルト（グレー）のまま */
+}
+
+/* 有効になった時のスタイル (disabled属性が外れた時) */
+.btn-submit:not([disabled]) {
+    background-color: #FF6C84;
+    /* ピンク色 */
+    color: white !important;
+    /* !important で上書き */
+    cursor: pointer;
+}
+
+/* ... (既存の .modal-footer の定義の前) ... */
+
+/* 同意するボタン */
+.btn-agree {
+    background-color: #FF6C84;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 0;
+    width: 100%;
+    max-width: 250px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    /* ▼ color も transition に追加 ▼ */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* ▼▼▼ 以下2つを追加 ▼▼▼ */
+
+/* 同意するボタン (無効状態) */
+.btn-agree[disabled] {
+    background-color: #eaeaea;
+    /* 少し薄いグレー */
+    color: #b5b5b5;
+    /* 薄い文字色 */
+    cursor: not-allowed;
+}
+
+/* 有効になった時のホバー (元の :hover を :not([disabled]) に変更) */
+.btn-agree:not([disabled]):hover {
+    background-color: #c9c9c9;
 }

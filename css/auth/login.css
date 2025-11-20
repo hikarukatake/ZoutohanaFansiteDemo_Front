@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+    background-color: #fdf6f6; 
+    color: #333;
+    overflow-x: hidden;
+}
+
+.login-header {
+    background-color: #FF4463;
+    color: white;
+    padding: 40px;
+    padding-top: 3.5rem;
+    min-height: 5px;
+    z-index: 2;
+    width:50%;
+    overflow: hidden;
+    /* (例: 水平半径 10rem, 垂直半径 5rem) */
+    /* この2つの値を調整してお好みの楕円にしてください */
+    border-bottom-left-radius: 55rem 6rem;
+    border-bottom-right-radius: 50rem 15rem;
+}
+
+.login-header-sub{
+    background-color: #FFE1E1;
+    padding: 40px;
+    padding-top: 5rem;
+    position: absolute; /* ▼ 変更: absolute にして自由に配置 */
+    top: -30px;
+    left: 35%;
+    min-height: 5px;
+    overflow: hidden;
+    z-index: 10;
+    width: 90%;
+    /* ▼ 楕円にするための修正 ▼ */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    
+    /* (例: 水平半径 10rem, 垂直半径 5rem) */
+    /* この2つの値を調整してお好みの楕円にしてください */
+    border-bottom-left-radius: 50rem 32rem;
+    border-bottom-right-radius: 50rem 15rem;
+}
+
+/* 「もどる」ボタン */
+.back-link {
+    position: absolute;
+    top: 2.5rem;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    z-index: 20; /* ▼ 変更: 一番手前に */
+}
+
+/* === メインコンテンツ (ロゴとフォーム) === */
+.login-main {
+    background-color: #fdf6f6;
+    /* ▼ 変更: フォームがロゴの下に来るよう、余白を増やす */
+    padding-top: 80px; 
+    position: relative; /* ▼ 追加: ロゴ(absolute)の基準点 */
+    z-index: 5; /* ▼ 追加: 重なり順 */
+}
+
+
+/* === ロゴエリア === */
+.logo-area {
+    text-align: center;
+    /* ▼▼▼ 以下をすべて追加 ▼▼▼ */
+    position: absolute;
+    top: -50px;   /* mainの上端から-100pxの位置へ (ヘッダーに重なる) */
+    left: 0;
+    right: 0;
+    z-index: 10;   /* S字カーブより手前、戻るボタンより奥 */
+}
+
+/* ロゴ画像（推奨） */
+.logo-image-placeholder {
+    width: 20rem; /* ユーザー指定のサイズ */
+    height: auto;
+}
+
+/* テキストロゴ (画像がない場合の仮) */
+.logo-text-placeholder {
+    font-size: 2.5rem;
+    font-family: 'cursive', 'Yu Mincho', serif;
+    color: #444;
+}
+
+
+/* === フォームコンテナ === */
+.form-container {
+    /* (変更なし) */
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 30px 25px 3rem 30px;
+    margin-top: 9rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* === フォームグループ === */
+.form-group {
+    /* (変更なし) */
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    /* (変更なし) */
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #464646;
+}
+
+/* === 入力フィールド === */
+input[type="text"],
+input[type="password"] {
+    /* (変更なし) */
+    color:#535353 ;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+/* === ボタン共通スタイル === */
+.btn {
+    /* (変更なし) */
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    margin-top: 3rem;
+}
+
+/* ログインボタン (塗り) */
+.btn-login {
+    /* (変更なし) */
+    background-color: #FF6C84;
+    color: white;
+}
+
+/* 新規登録ボタン (線のみ) */
+.btn-register {
+    /* (変更なし) */
+    background-color: #fff;
+    color: #FF6C84;
+    border: 2px solid #FF6C84;
+}
+
+/* === リンク・区切り === */
+.forgot-password {
+    /* (変更なし) */
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 3rem;
+}
+
+.divider {
+    /* (変更なし) */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #535353;
+    margin: 3rem 0;
+}
+
+.divider::before,
+.divider::after {
+    /* (変更なし) */
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #535353;
+}
+
+.divider span {
+    /* (変更なし) */
+    padding: 0 15px;
+}
+
+.login-btn{
+    text-decoration: none;
+    color: white;
+}

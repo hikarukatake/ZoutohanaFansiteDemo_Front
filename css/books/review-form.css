@@ -1,0 +1,201 @@
+
+body {
+    margin: 0;
+    background-color: #FF4463;
+    color: #535353;
+}
+
+/* === ヘッダー === */
+.signup-header {
+    color: white;
+    padding: 20px;
+    padding-top: 40px;
+    text-align: center;
+}
+
+.back-link {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* === ステップインジケーター === */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    margin-top: 3rem;
+}
+
+.step {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.step.active {
+    opacity: 1.0;
+}
+
+.step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: bold;
+    margin: 0 auto;
+    font-size: 1.4rem;
+}
+
+.step.active .step-number {
+    background-color: white;
+    color: #f06292;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: white;
+}
+
+
+
+/* === フォームコンテナ === */
+.form-container {
+    background-color: #FFFCF9;
+    border-radius: 30px 30px 0px 0px;
+    padding: 40px 10px;
+    margin-top: 2rem;
+}
+
+/* === 現在のステップタイトル === */
+.current-step-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-left: 1cqw;
+    padding-left: 15px;
+}
+
+.current-step-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 45%;
+    transform: translateY(-50%);
+    height: 90%;
+    /* タイトルの高さに合わせて調整 */
+    width: 5px;
+    /* 棒の太さ */
+    background-color: #FF6C84;
+    /* ユーザー指定のピンク色 */
+    border-radius: 3px;
+}
+
+.current-step-title span {
+    background-color: transparent;
+    color: #FF6C84;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.current-step-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #535353;
+}
+
+/* === ISBN説明ボックス === */
+.step-line-box {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+}
+
+.step-line {
+    width: 3rem;
+    height: 1px;
+    background-color: white;
+}
+
+.book-review {
+    margin-bottom: 2rem;
+}
+
+.info-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1.5px #F4F4F4 solid;
+}
+
+.info-box-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-box-title i {
+    color: #535353;
+    font-size: 1.7em;
+    margin-top: 3px;
+}
+
+.text-bold {
+    font-weight: 900;
+}
+
+.info-box-title h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #535353;
+}
+
+.info-box p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 禁止事項説明 */
+
+.forbidden-box {
+    background-color: #FFE9E9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.forbidden-review {
+    display: flex;
+    margin-top: 1.5rem;
+}
+
+.forbidden-review img {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 2rem;
+    height: 1.5rem;
+}
+
+.forbidden-review h4 {
+    margin: 0;
+}
+
+.forbidden-review p {
+    font-size: small;
+    color: #535353;
+}

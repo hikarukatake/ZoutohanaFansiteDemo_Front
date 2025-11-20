@@ -1,0 +1,429 @@
+
+body {
+    margin: 0;
+    background-color: #FF4463;
+    color: #535353;
+}
+
+/* === ヘッダー === */
+.signup-header {
+    padding: 20px;
+    padding-top: 40px;
+}
+
+.back-link {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* === ステップインジケーター === */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    margin-top: 3rem;
+}
+
+.step {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.step.active {
+    opacity: 1.0;
+}
+
+.step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: bold;
+    margin: 0 auto;
+    font-size: 1.4rem;
+}
+
+.step.active .step-number {
+    background-color: white;
+    color: #f06292;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: white;
+}
+
+
+
+/* === フォームコンテナ === */
+.form-container {
+    background-color: #FFFCF9;
+    border-radius: 30px 30px 0px 0px;
+    padding: 40px 25px;
+    margin-top: 2rem;
+}
+
+/* === 現在のステップタイトル (画像のデザインに変更) === */
+.current-step-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+.current-step-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 45%;
+    transform: translateY(-50%);
+    height: 90%;
+    width: 5px;
+    background-color: #FF6C84;
+    border-radius: 3px;
+}
+
+.current-step-title span {
+    color: #FF6C84;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.current-step-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #535353;
+}
+
+/* === ISBN説明ボックス === */
+
+.step-line-box {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+}
+
+.step-line {
+    width: 3rem;
+    height: 1px;
+    background-color: white;
+}
+
+.text-bold {
+    font-weight: 900;
+}
+
+.info-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1.5px #F4F4F4 solid;
+}
+
+.info-box-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-box-title i {
+    color: #FF6C84;
+    font-size: 1.5em;
+    margin-top: 3px;
+}
+
+.info-box-title h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #535353;
+}
+
+.info-box p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 10px 0 0 0;
+}
+
+/* === 検索セクション === */
+.search-section {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 20px;
+}
+
+.search-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 1rem;
+    color: #535353;
+}
+
+/* バーコードエリア */
+.barcode-scanner-area {
+    width: 100%;
+    max-width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.barcode-icon {
+    font-size: 4rem;
+    color: #FF6C84;
+}
+
+.scanner-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: #aaa;
+    border-style: solid;
+}
+
+.scanner-corner.top-left {
+    top: -10px;
+    left: -10px;
+    border-width: 3px 0 0 3px;
+}
+
+.scanner-corner.top-right {
+    top: -10px;
+    right: -10px;
+    border-width: 3px 3px 0 0;
+}
+
+.scanner-corner.bottom-left {
+    bottom: -10px;
+    left: -10px;
+    border-width: 0 0 3px 3px;
+}
+
+.scanner-corner.bottom-right {
+    bottom: -10px;
+    right: -10px;
+    border-width: 0 3px 3px 0;
+}
+
+.scan-note {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* === 区切り線 === */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #aaa;
+    margin: 30px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.divider span {
+    padding: 0 15px;
+}
+
+/* === 入力フォーム === */
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* === 検索ボタン === */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-search {
+    background-color: #fff;
+    color: #FF6C84;
+    border: 2px solid #FF6C84;
+    margin-top: 15px;
+}
+
+/* === 書籍結果表示エリア === */
+.book-result-area {
+    background-color: #FFFCF9;
+    padding: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+.book-info-wrapper {
+    display: flex;
+    gap: 3rem;
+    padding: 0 1rem 0 2rem;
+}
+
+.book-cover {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+    background-color: #eee;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-details {
+    flex-grow: 1;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #535353;
+    margin: 0 0 15px 0;
+    padding: 1rem 0 1rem 0.7rem;
+}
+
+.book-details .detail-item {
+    margin-bottom: 10px;
+}
+
+.book-details .detail-item label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.book-details .detail-item p {
+    font-size: 1rem;
+    color: #535353;
+    margin: 5px 0 0 0;
+}
+
+.btn-next-step {
+    background-color: #FF6C84;
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 3rem;
+}
+
+/* === バーコードスキャナ用モーダル === */
+.scanner-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.scanner-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#scanner-viewport {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+#scanner-viewport video,
+#scanner-viewport canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#scanner-viewport canvas.drawingBuffer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#scanner-close-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #f06292;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.not-found {
+    padding: 1rem;
+    background-color: #F1EFEC;
+    border-radius: 1rem;
+}
+
+.not-found-area {
+    background-color: #FFFCF9;
+    padding: 25px;
+    text-align: left;
+}
+
+.not-found-area h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.not-found-area p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 0;
+}
+
+.not-found-area ul {
+    font-size: 0.9rem;
+    color: #555;
+    padding-left: 20px;
+    line-height: 1.7;
+    margin-top: 10px;
+}

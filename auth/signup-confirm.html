@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内容確認</title>
+    <link rel="stylesheet" href="../css/auth/signup-confirm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="signup-header">
+        <a href="signup.html" class="back-link" id="back-link-with-data">&lt;&nbsp;&nbsp;もどる</a>
+        <h1><i class="fas fa-user-check"></i> 内容確認</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <p class="intro-text">内容に誤りがないか、よくご確認ください</p>
+
+            <div class="details-list">
+                <div class="detail-item">
+                    <label>アカウントID</label>
+                    <div class="value-display" id="display-account-id">
+                        </div>
+                </div>
+
+                <div class="detail-item">
+                    <label>ニックネーム</label>
+                    <div class="value-display" id="display-nickname">
+                        </div>
+                </div>
+
+                <div class="detail-item">
+                    <label>居住地</label>
+                    <div class="value-display inline-values">
+                        <span id="display-prefecture"></span>
+                        <span id="display-city"></span>
+                    </div>
+                </div>
+
+                <div class="inline-group">
+                    <div class="detail-item half-width">
+                        <label>生年</label>
+                        <div class="value-display" id="display-year">
+                            </div>
+                    </div>
+                    <div class="detail-item half-width">
+                        <label>性別</label>
+                        <div class="value-display" id="display-gender">
+                            </div>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <label>自己紹介</label>
+                    <div class="value-display-bio" id="display-bio">
+                        </div>
+                </div>
+            </div>
+
+            <a href="login.html" class="btn-create-account">アカウントを作成する</a>
+
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">@Copyright</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // (1) sessionStorageから保存したデータを取得
+        const dataString = sessionStorage.getItem('regData');
+        
+        // データがなければ処理を中断
+        if (!dataString) {
+            document.querySelector('.intro-text').textContent = '登録データがありません。前のページからやり直してください。';
+            return;
+        }
+
+        // (2) データをJSONオブジェクトに戻す
+        const data = JSON.parse(dataString);
+
+        // (3) 各要素に値をセットする（未入力の場合の処理も含む）
+        
+        // ヘルパー関数: IDを指定してテキストを安全に設定
+        function setText(id, value, fallback = '未入力') {
+            const el = document.getElementById(id);
+            if (el) {
+                el.textContent = value || fallback;
+            }
+        }
+
+        setText('display-account-id', data.accountId);
+        setText('display-nickname', data.nickname);
+        setText('display-prefecture', data.prefecture, '---');
+        setText('display-city', data.city, '---');
+        
+        // 生年は「 年」を付ける
+        const yearText = data.birthYear ? data.birthYear + ' 年' : '未入力';
+        setText('display-year', yearText);
+        
+        setText('display-gender', data.genderDisplay);
+        
+        // 自己紹介は改行を <br> に変換して表示
+        const bioEl = document.getElementById('display-bio');
+        if (bioEl) {
+            if (data.bio) {
+                bioEl.innerHTML = data.bio.replace(/\n/g, '<br>');
+            } else {
+                bioEl.textContent = '未入力';
+            }
+        }
+
+        // (4) 「もどる」ボタンの制御（任意）
+        // この処理により、「もどる」で戻ったときにフォームに入力内容が復元されます
+        const backLink = document.getElementById('back-link-with-data');
+        if (backLink) {
+            backLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                // データを保持したまま、前のページに戻る
+                // （sessionStorageは消していないので、new-account.html側で復元処理を書けば実現可能）
+                window.history.back();
+            });
+        }
+    });
+    </script>
+
+</body>
+
+</html>

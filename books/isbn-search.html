@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍の登録</title>
+    <link rel="stylesheet" href="../css/books/isbn-search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header class="signup-header">
+        <a href="../auth/login.html" class="back-link">&lt;&nbsp;&nbsp;もどる</a>
+        <div class="step-indicator">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-label">書籍の登録</div>
+            </div>
+            <div class="step-line-box">
+                <div class="step-line"></div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-label">書評の入力</div>
+            </div>
+            <div class="step-line-box">
+                <div class="step-line"></div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">内容の確認</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <div class="current-step-title">
+                <span>01</span>
+                <h2>書籍の登録</h2>
+            </div>
+            <div class="info-box">
+                <div class="info-box-title">
+                    <i class="fas fa-book-open"></i>
+                    <h3>ISBNコードとは？</h3>
+                </div>
+                <p><span class="text-bold">ISBNコード</span>とは、本を特定するための13ケタの番号です。また、本の裏表紙には、通常二つのバーコードが印字されています。</p>
+                <p>そのうち、上のバーコードが「ISBNコード」でスマートフォンのカメラを使ってバーコードを読み取ると、自動で本の情報を取得することができます。</p>
+                <p>もし、バーコードがうまく読み取れない場合は、本の裏表紙にある「ISBN」から始まる13ケタの数字を直接入力してください。</p>
+
+                <div class="search-section">
+                    <h4>バーコードから検索</h4>
+                    <div class="barcode-scanner-area">
+                        <div class="scanner-corner top-left"></div>
+                        <div class="scanner-corner top-right"></div>
+                        <i class="fas fa-barcode barcode-icon"></i>
+                        <div class="scanner-corner bottom-left"></div>
+                        <div class="scanner-corner bottom-right"></div>
+                    </div>
+                    <p class="scan-note">タップしてカメラ起動</p>
+                </div>
+                <div class="divider">
+                    <span>または</span>
+                </div>
+                <div class="search-section">
+                    <h4>入力して検索</h4>
+                    <div class="form-group">
+                        <input type="text" id="isbn-input" name="isbn-input" placeholder="例）000-00-00000-000">
+                    </div>
+                    <button type="button" class="btn btn-search" id="searchBtn">入力内容で検索</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="book-result-area" id="search-result-section" style="display: none;">
+        <h2 class="book-title" id="result-title">（タイトル）</h2>
+        <div class="book-info-wrapper">
+            <img src="" alt="書影" class="book-cover" id="result-cover">
+            <div class="book-details">
+                <div class="detail-item">
+                    <label>著者</label>
+                    <p id="result-author">（著者）</p>
+                </div>
+                <div class="detail-item">
+                    <label>出版社</label>
+                    <p id="result-publisher">（出版社）</p>
+                </div>
+            </div>
+        </div>
+        <a href="review-form.html" class="btn btn-next-step" id="btn-next-step">
+            この本の書評を書く
+        </a>
+        <footer style="background-color: #FFFCF9; text-align: center; margin-top: 2rem;">@copylite</footer>
+    </div>
+    <div class="not-found-area" id="not-found-area" style="display: none;">
+        <div class="not-found">
+            <h2>本が見つかりませんでした</h2>
+            <p>入力したISBNコードに該当する本の情報が見つかりません</p>
+            <ul>
+                <li>番号が正しいかもう一度ご確認ください。</li>
+                <li>古い本や海外の本は登録されていない場合があります。</li>
+        </div>
+        </ul>
+        <footer style="background-color: #FFFCF9; text-align: center; margin-top: 2rem;">@copylite</footer>
+    </div>
+    <div class="scanner-modal" id="scanner-modal">
+        <div class="scanner-content">
+            <div id="scanner-viewport"></div>
+            <button id="scanner-close-btn">キャンセル</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script>
+        // 書影取得
+        function setCoverImage(isbn) {
+            // ハイフンが含まれて検索された場合にハイフンを消す処理
+            const cleanIsbn = isbn.replace(/-/g, "");
+            // 書影のAPIから画像の取得
+            const url = `https://ndlsearch.ndl.go.jp/thumbnail/${cleanIsbn}.jpg`;
+            // imgタグを取得
+            const img = document.getElementById("result-cover");
+
+            // 画像読み込み失敗時の処理 (NDLに書影がない場合)
+            img.onerror = function () {
+                this.src = "https://via.placeholder.com/100x150?text=No+Image";
+                this.onerror = null; // エラーのループを防ぐ
+            };
+            // 書影のURLをimgにセット
+            img.src = url;
+        }
+
+        const notFoundArea = document.getElementById('not-found-area');
+        const scanArea = document.querySelector('.barcode-scanner-area');
+        const scanCloseBtn = document.getElementById('scanner-close-btn');
+
+
+        // --- 書誌情報の検索 ---
+        // searchBtnがクリックされたときの処理
+        document.getElementById("searchBtn").addEventListener("click", async () => {
+
+            // <input id="isbn-input">で入力されたISBNを取得
+            const isbn = document.getElementById("isbn-input").value.trim();
+
+            // 空の場合のアラート
+            if (!isbn) {
+                alert("ISBN を入力してください");
+                return;
+            }
+
+            // (1) 検索開始時に「見つかりません」エリアを非表示にする
+            notFoundArea.style.display = "none";
+
+            // 書影をまず先に表示
+            setCoverImage(isbn);
+
+            // 検索結果セクションを表示状態にする
+            document.getElementById("search-result-section").style.display = "block";
+
+            // 結果表示を「検索中」にリセット
+            document.getElementById("result-title").textContent = "検索中...";
+            document.getElementById("result-author").textContent = "検索中...";
+            document.getElementById("result-publisher").textContent = "検索中...";
+
+            //国立国会図書館APIにアクセス
+            const url = `https://ndlsearch.ndl.go.jp/api/opensearch?isbn=${isbn}`;
+
+            try {
+                // 国立国会図書館APIに対してhttpリクエストして情報取得
+                const response = await fetch(url);
+
+                if (!response.ok) throw new Error("通信エラー");
+                // APIのレスポンスはXML形式なので、文字列として取得
+                const xmlText = await response.text();
+                // 文字列のXMLをDOMとして扱えるように変換
+                const xml = new DOMParser().parseFromString(xmlText, "text/xml");
+                // <item>要素を取得
+                const item = xml.querySelector("item");
+
+                if (!item) {
+                    notFoundArea.style.display = "block";
+                    // (見つからない場合、結果エリアも非表示にする)
+                    document.getElementById("search-result-section").style.display = "none";
+                    document.getElementById("result-title").textContent = "見つかりません";
+                    document.getElementById("result-author").textContent = "---";
+                    document.getElementById("result-publisher").textContent = "---";
+                    return;
+                }
+
+                // 存在する最初のテキストを返す関数
+                const find = (selectors) => {
+                    for (const sel of selectors) {
+                        const node = item.querySelector(sel);
+                        if (node && node.textContent) return node.textContent;
+                    }
+                    return "";
+                };
+
+                // --- 著者取得（名前空間付きタグに対応）---
+                const authorNode = item.getElementsByTagName("dc:creator")[0] || item.getElementsByTagName("dcndl:creator")[0];
+                let author = authorNode ? authorNode.textContent : "";
+
+                // 生年を除いて「姓, 名」だけにする
+                if (author) {
+                    const parts = author.split(",");
+                    if (parts.length >= 2) {
+                        // 最後の部分（生年 "1974-"など）を除く
+                        author = parts.slice(0, parts.length - 1).join("").trim();
+                    } else {
+                        author = author.trim();
+                    }
+                }
+
+                // --- 出版社取得（XPath）---
+                const publisher = xml.evaluate(
+                    "string(//item/dc:publisher | //item/dcndl:publisher)",
+                    xml,
+                    (prefix) => { // 名前空間リゾルバ
+                        if (prefix === "dc") return "http://purl.org/dc/elements/1.1/";
+                        if (prefix === "dcndl") return "http://ndl.go.jp/dcndl/terms/";
+                        return null;
+                    },
+                    XPathResult.STRING_TYPE,
+                    null
+                ).stringValue;
+
+                // --- タイトル取得 ---
+                const title = find(["title"]);
+
+                // --- HTMLにセット ---
+                document.getElementById("result-title").textContent = title || "情報なし";
+                document.getElementById("result-author").textContent = author || "情報なし";
+                document.getElementById("result-publisher").textContent = publisher || "情報なし";
+
+            } catch (error) {
+                notFoundArea.style.display = "block";
+                // (エラーの場合、結果エリアも非表示にする)
+                document.getElementById("search-result-section").style.display = "none";
+                console.error(error);
+                document.getElementById("result-title").textContent = "エラー";
+                document.getElementById("result-author").textContent = "---";
+                document.getElementById("result-publisher").textContent = "---";
+            }
+        });
+
+        // ここからがカメラ起動
+
+        async function fetchBookInfo(isbn) {
+            // もしISBNが空ならアラートをだして処理を中断
+            // returnで関数を終了
+            if (!isbn) return;
+
+            // まず「見つかりませんでしたを非表示」
+            notFoundArea.style.display = "none";
+            // 書影取得を呼ぶ isbnを入れて
+            setCoverImage(isbn);
+            // 成功を表示
+            document.getElementById("search-result-section").style.display = "block";
+
+            // APIから結果が帰ってくるのを待っている
+            document.getElementById("result-title").textContent = "検索中...";
+            document.getElementById("result-author").textContent = "検索中...";
+            document.getElementById("result-publisher").textContent = "検索中...";
+
+            // NDL(国立国会図書館) APIにISBNコードを使って接続
+            const url = `https://ndlsearch.ndl.go.jp/api/opensearch?isbn=${isbn}`;
+            // try catchでエラー処理
+            try {
+                // Apiにリクエストを送信し、await(応答を待つ)
+                const response = await fetch(url);
+                // 応答がOKでなければ、通信エラー
+                if (!response.ok) throw new Error("通信エラー");
+
+                // 応答データXMLをテキストで取得( await )
+                const xmlText = await response.text();
+                // XMLテキストを変換DOMオブジェクトに変換
+                const xml = new DOMParser().parseFromString(xmlText, "text/xml");
+                // XMLの中から<item> タグ（書籍情報のまとまり）を探す
+                const item = xml.querySelector("item");
+                // 見つかる場合見つからない場合
+                if (!item) {
+                    // 書籍情報がない場合
+                    // 見つからないを表示
+                    notFoundArea.style.display = "block";
+                    // 成功エリアは非表示に戻す
+                    document.getElementById("search-result-section").style.display = "none";
+                    // 見つかりません
+                    document.getElementById("result-title").textContent = "見つかりません";
+                    document.getElementById("result-author").textContent = "---";
+                    document.getElementById("result-publisher").textContent = "---";
+                    return;
+                }
+                // XMLから特定のタグのテキストを取得する補助関数
+                const find = (selectors) => {
+                    for (const sel of selectors) {
+                        const node = item.querySelector(sel);
+                        if (node && node.textContent) return node.textContent;
+                    }
+                    return "";
+                };
+                // 著者取得dc:creator または dcndl:creator タグを探す
+                const authorNode = item.getElementsByTagName("dc:creator")[0] || item.getElementsByTagName("dcndl:creator")[0];
+
+                let author = authorNode ? authorNode.textContent : "";
+                // 著者が "姓, 名, 生年" 形式の場合、生年を取り除く
+                // join("")このダブルコーテーションの中から,を入れると著者の苗字と名前のあいだに,これが入る
+                if (author) {
+                    const parts = author.split(",");
+                    if (parts.length >= 2) {
+                        author = parts.slice(0, parts.length - 1).join("").trim();
+                    } else {
+                        author = author.trim();
+                    }
+                }
+                // 出版社取得 (XPathという複雑な方法で、名前空間付きのタグを探す)
+                const publisher = xml.evaluate(
+                    "string(//item/dc:publisher | //item/dcndl:publisher)",
+                    xml,
+                    (prefix) => {
+                        if (prefix === "dc") return "http://purl.org/dc/elements/1.1/";
+                        if (prefix === "dcndl") return "http://ndl.go.jp/dcndl/terms/";
+                        return null;
+                    },
+                    XPathResult.STRING_TYPE,
+                    null
+                ).stringValue;
+                // タイトルの取得
+                const title = find(["title"]);
+                // 取得した情報をHTMLにセットする
+                document.getElementById("result-title").textContent = title || "情報なし";
+                document.getElementById("result-author").textContent = author || "情報なし";
+                document.getElementById("result-publisher").textContent = publisher || "情報なし";
+            } catch (error) {
+                // ネットワークエラーで通信に失敗した場合
+                console.error(error);
+                notFoundArea.style.display = "block";
+                document.getElementById("search-result-section").style.display = "none";
+                document.getElementById("result-title").textContent = "エラー";
+                document.getElementById("result-author").textContent = "---";
+                document.getElementById("result-publisher").textContent = "---";
+            }
+        }
+
+        // (スキャナ起動関数)
+        function startScanner() {
+            // モーダルを表示
+            const scannerModal = document.getElementById('scanner-modal');
+            scannerModal.style.display = 'flex';
+            // ライブラリに読み込まれているかチェック
+            if (typeof Quagga === 'undefined') {
+                alert('スキャナライブラリの読み込みに失敗しました。');
+                return;
+            }
+            // カメラの準備
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#scanner-viewport'),
+                    // width と heightは大きくするほど画像の解像度の大きさを指定する設定
+                    constraints: { width: 640, height: 480, facingMode: "environment" },
+                },
+                // 一秒間に10回スキャンする あげるほど早くバーコードをスキャンする
+                frequency: 10,
+                decoder: { readers: ["ean_reader"] },
+            }, function (err) {
+                if (err) {
+                    console.error(err);
+                    alert("カメラの起動に失敗しました。カメラのアクセス許可を確認してください。");
+                    stopScanner();
+                    return;
+                }
+                console.log("QuaggaJS 起動成功");
+                Quagga.start();
+            });
+        }
+
+        // (スキャナ停止関数)
+        function stopScanner() {
+            const scannerModal = document.getElementById('scanner-modal'); // 再取得
+            if (typeof Quagga !== 'undefined') { Quagga.stop(); }
+            scannerModal.style.display = 'none';
+        }
+
+        // (スキャナ起動ボタンのイベントリスナー)
+        if (scanArea) {
+            scanArea.addEventListener('click', function () {
+                const isSecureContext = window.location.protocol === 'https:' ||
+                    window.location.hostname === 'localhost' ||
+                    window.location.hostname === '127.0.0.1';
+                if (!isSecureContext) {
+                    alert('カメラ機能は HTTPS 接続時のみ利用可能です。');
+                    return;
+                }
+                startScanner();
+            });
+        }
+
+        // (スキャナキャンセルボタンのイベントリスナー)
+        if (scanCloseBtn) {
+            scanCloseBtn.addEventListener('click', stopScanner);
+        }
+
+        // (スキャナ検出時のイベントリスナー)
+        Quagga.onDetected(function (result) {
+            const code = result.codeResult.code;
+            if (code.length === 13 && (code.startsWith('978') || code.startsWith('979'))) {
+                console.log("ISBNコード検出:", code);
+                document.getElementById("isbn-input").value = code; // IDを修正
+                stopScanner();
+
+                // ★ 検出後、NDL APIを呼び出す
+                fetchBookInfo(code);
+            }
+        });
+    </script>
+</body>
+
+</html>
