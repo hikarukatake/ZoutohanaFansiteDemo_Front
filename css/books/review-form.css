@@ -1,7 +1,7 @@
 
 body {
     margin: 0;
-    background-color: #FF4463;
+    background-color: var(--main-color);
     color: #535353;
 }
 
@@ -53,7 +53,7 @@ body {
 
 .step.active .step-number {
     background-color: white;
-    color: #f06292;
+    color: var(--main-color);
 }
 
 .step-label {
@@ -94,14 +94,14 @@ body {
     /* タイトルの高さに合わせて調整 */
     width: 5px;
     /* 棒の太さ */
-    background-color: #FF6C84;
+    background-color: var(--main-color);
     /* ユーザー指定のピンク色 */
     border-radius: 3px;
 }
 
 .current-step-title span {
     background-color: transparent;
-    color: #FF6C84;
+    color: var(--main-color);
     font-size: 1.8rem;
     font-weight: bold;
     line-height: 1;

@@ -1,3 +1,8 @@
+:root {
+  --main-color: #2DB584;
+}
+
+
 body {
     margin: 0;
     background-color: #fdf6f6; 
@@ -6,7 +11,7 @@ body {
 }
 
 .login-header {
-    background-color: #FF4463;
+    background-color: var(--main-color);
     color: white;
     padding: 40px;
     padding-top: 3.5rem;
@@ -21,7 +26,7 @@ body {
 }
 
 .login-header-sub{
-    background-color: #FFE1E1;
+    background-color: #F1F0E8;
     padding: 40px;
     padding-top: 5rem;
     position: absolute; /* ▼ 変更: absolute にして自由に配置 */
@@ -46,15 +51,15 @@ body {
     position: absolute;
     top: 2.5rem;
     left: 20px;
-    color: white;
+    color: var(--text-white-color);
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     z-index: 20; /* ▼ 変更: 一番手前に */
 }
 
 /* === メインコンテンツ (ロゴとフォーム) === */
 .login-main {
-    background-color: #fdf6f6;
+    background-color: var(--back-color);
     /* ▼ 変更: フォームがロゴの下に来るよう、余白を増やす */
     padding-top: 80px; 
     position: relative; /* ▼ 追加: ロゴ(absolute)の基準点 */
@@ -109,7 +114,7 @@ body {
     font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 8px;
-    color: #464646;
+    color: var(--font-normal);
 }
 
 /* === 入力フィールド === */
@@ -145,17 +150,15 @@ input[type="password"] {
 
 /* ログインボタン (塗り) */
 .btn-login {
-    /* (変更なし) */
-    background-color: #FF6C84;
-    color: white;
+    background-color: var(--main-color);
+    color: #F8F8F8;
 }
 
 /* 新規登録ボタン (線のみ) */
 .btn-register {
-    /* (変更なし) */
     background-color: #fff;
-    color: #FF6C84;
-    border: 2px solid #FF6C84;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
 }
 
 /* === リンク・区切り === */
@@ -164,7 +167,7 @@ input[type="password"] {
     display: block;
     text-align: center;
     font-size: 0.9rem;
-    color: #666;
+    color: #676767;
     margin-top: 3rem;
 }
 
@@ -173,7 +176,7 @@ input[type="password"] {
     display: flex;
     align-items: center;
     text-align: center;
-    color: #535353;
+    color: var(--font-normal);
     margin: 3rem 0;
 }
 
@@ -190,7 +193,3 @@ input[type="password"] {
     padding: 0 15px;
 }
 
-.login-btn{
-    text-decoration: none;
-    color: white;
-}

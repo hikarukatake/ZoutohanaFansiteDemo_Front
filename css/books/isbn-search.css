@@ -1,7 +1,7 @@
 
 body {
     margin: 0;
-    background-color: #FF4463;
+    background-color: var(--main-color);
     color: #535353;
 }
 
@@ -51,7 +51,7 @@ body {
 
 .step.active .step-number {
     background-color: white;
-    color: #f06292;
+    color: var(--main-color);
 }
 
 .step-label {
@@ -89,12 +89,12 @@ body {
     transform: translateY(-50%);
     height: 90%;
     width: 5px;
-    background-color: #FF6C84;
+    background-color: var(--main-color);
     border-radius: 3px;
 }
 
 .current-step-title span {
-    color: #FF6C84;
+    color: var(--main-color);
     font-size: 1.8rem;
     font-weight: bold;
     line-height: 1;
@@ -142,7 +142,7 @@ body {
 }
 
 .info-box-title i {
-    color: #FF6C84;
+    color: var(--main-color);
     font-size: 1.5em;
     margin-top: 3px;
 }
@@ -188,7 +188,7 @@ body {
 
 .barcode-icon {
     font-size: 4rem;
-    color: #FF6C84;
+    color: var(--main-color);
 }
 
 .scanner-corner {
@@ -279,8 +279,8 @@ body {
 
 .btn-search {
     background-color: #fff;
-    color: #FF6C84;
-    border: 2px solid #FF6C84;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
     margin-top: 15px;
 }
 
@@ -336,7 +336,7 @@ body {
 }
 
 .btn-next-step {
-    background-color: #FF6C84;
+    background-color: var(--main-color);
     color: white;
     font-size: 1.1rem;
     margin-top: 3rem;
@@ -386,7 +386,7 @@ body {
 #scanner-close-btn {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: #f06292;
+    background-color:var(--main-color);
     color: white;
     border: none;
     border-radius: 5px;

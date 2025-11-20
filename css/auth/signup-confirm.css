@@ -1,11 +1,6 @@
-/* * account-details.css
- * 内容確認画面用スタイル
- */
-
-/* === 基本設定 === */
 body {
     margin: 0;
-    background-color: #FF4463;
+    background-color: var(--main-color);
     /* 全体の背景色 */
     color: #535353;
     /* 基本文字色 (画像準拠) */
@@ -14,7 +9,7 @@ body {
 
 /* === ヘッダー (前画面と共通) === */
 .signup-header {
-    color: white;
+    color: var(--text-white-color);;
     padding: 20px;
     padding-top: 40px;
     text-align: center;
@@ -32,14 +27,14 @@ body {
     position: absolute;
     top: 25px;
     left: 20px;
-    color: white;
+    color: var(--text-white-color);;
     text-decoration: none;
     font-size: 0.9rem;
 }
 
 /* === フォームコンテナ (前画面と共通) === */
 .form-container {
-    background-color: #FFFCF9;
+    background-color: var(--back-color);
     border-radius: 30px 30px 0px 0px;
     padding: 4rem 25px;
     margin-top: 2rem;
@@ -52,7 +47,7 @@ body {
     /* ▼ positionやwidthを削除し、中央揃えに ▼ */
     font-size: 1.1rem;
     /* 画像に合わせて調整 */
-    color: #464646;
+    color: var(--font-normal);
     text-align: center;
     margin-top: 0;
     margin-bottom: 35px;
@@ -80,21 +75,14 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #464646;
+    color: var(--font-normal);
 }
 
-.detail-item label .note-red {
-    font-size: 0.8rem;
-    color: #FF4564;
-    /* 画像の赤色 */
-    font-weight: normal;
-    margin-left: 5px;
-}
 
 /* 値の表示 (下線付き) */
 .value-display {
     font-size: 1.4rem;
-    color: #333;
+    color: var(--font-normal);
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 1px solid #535353;
@@ -124,10 +112,10 @@ body {
 .value-display-bio {
     font-size: 1.2rem;
     line-height: 1.7;
-    color: #333;
+    color: var(--font-normal);
     padding-top: 5px;
     padding-left: 1rem;
-    /* white-space: pre-wrap; (HTMLの<br>で改行) */
+    /* var(--text-white-color);-space: pre-wrap; (HTMLの<br>で改行) */
 }
 
 
@@ -144,9 +132,9 @@ body {
     box-sizing: border-box;
     cursor: pointer;
     border: none;
-    background-color: #FF6C84;
+    background-color: var(--main-color);
     /* 画像のピンク色 */
-    color: white;
+    color: var(--text-white-color);;
     margin-top: 40px;
     /* リストとの間隔 */
 }
