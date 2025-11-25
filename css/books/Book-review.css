@@ -1,0 +1,353 @@
+body {
+    margin: 0;
+    background-color: var(--main-color);
+    color: var(--font-normal);
+}
+
+/* === ヘッダー === */
+.signup-header {
+    padding: 20px;
+    padding-top: 40px;
+}
+
+.back-link {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    color: var(--text-white-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* === ステップインジケーター === */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    margin-top: 3rem;
+}
+
+.step {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.step.active {
+    opacity: 1.0;
+}
+
+.step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--text-white-color);
+    font-weight: bold;
+    margin: 0 auto;
+    font-size: 1.4rem;
+}
+
+.step.active .step-number {
+    background-color: var(--text-white-color);
+    color: var(--main-color);
+}
+
+.step-label {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: var(--text-white-color);
+}
+
+
+
+/* === 現在のステップタイトル (画像のデザインに変更) === */
+.current-step-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+.current-step-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 45%;
+    transform: translateY(-50%);
+    height: 90%;
+    width: 5px;
+    background-color: var(--main-color);
+    border-radius: 3px;
+}
+
+.current-step-title span {
+    color: var(--main-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.current-step-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--font-normal);
+}
+
+/* === ISBN説明ボックス === */
+
+.step-line-box {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+}
+
+.step-line {
+    width: 3rem;
+    height: 1px;
+    background-color: var(--text-white-color);
+}
+
+.text-bold {
+    font-weight: 900;
+}
+
+.info-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1.5px #F4F4F4 solid;
+}
+
+.info-box-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-box-title i {
+    color: var(--main-color);
+    font-size: 1.5em;
+    margin-top: 3px;
+}
+
+.info-box-title h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--font-normal);
+}
+
+.info-box p {
+    font-size: 0.9rem;
+    color: var(--font-normal);
+    line-height: 1.6;
+    margin: 10px 0 0 0;
+}
+
+/* === フォームコンテナ (前画面と共通) === */
+.form-container {
+    background-color: var(--back-color);
+    border-radius: 30px 30px 0px 0px;
+    padding: 4rem 15px;
+    margin-top: 2rem;
+}
+
+
+
+/* === 書籍結果表示エリア === */
+.book-result-area {
+    background-color: #FFFCF9;
+    padding: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+.book-info-wrapper {
+    display: flex;
+    gap: 3rem;
+    padding: 0 1rem 0 2rem;
+}
+
+.book-cover {
+    width: 7rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+    background-color: #eee;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-details {
+    flex-grow: 1;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--font-normal);
+    margin: 0 0 15px 0;
+}
+
+.book-details .detail-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.book-details .detail-item label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--font-normal);
+}
+
+.book-details .detail-item p {
+    font-size: 1rem;
+    color: var(--font-normal);
+    margin: 5px 0 15px 0;
+
+}
+
+.btn-next-step {
+    background-color: var(--main-color);
+    color: var(--text-white-color);
+    font-size: 1.1rem;
+    margin-top: 3rem;
+}
+
+
+
+/* === ▼▼▼ ここから確認画面専用スタイル ▼▼▼ === */
+
+.detail-top {
+    margin-top: 3rem;
+}
+
+.intro-text {
+    font-size: 1rem;
+    color: var(--font-normal);
+    text-align: center;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* 各項目の間隔 */
+    /* ▼ ▼ ▼ 左右にマージンを追加して狭くする ▼ ▼ ▼ */
+    margin-top: 1rem;
+}
+
+.detail-item {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.detail-item label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--font-normal);
+}
+
+.label-border {
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+/* 値の表示 (下線付き) */
+.value-display {
+    font-size: 1.4rem;
+    color: var(--font-normal);
+    padding-bottom: 10px;
+    padding-left: 1rem;
+}
+
+/* 居住地用 (インライン表示) */
+.value-display.inline-values span {
+    margin-right: 15px;
+    /* 岩手県と盛岡市の間隔 */
+}
+
+/* 生年・性別の横並び用 */
+.inline-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /* 項目間のマージン */
+}
+
+.detail-item.half-width {
+    width: 50%;
+    /* 2つの項目を均等に配置 */
+    flex-grow: 1;
+}
+
+/* 自己紹介 (下線なし) */
+.value-display-bio {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--font-normal);
+    padding-top: 5px;
+    padding-left: 1rem;
+    /* var(--text-white-color);-space: pre-wrap; (HTMLの<br>で改行) */
+}
+
+
+/* 二つのボタン */
+.btn-review-box {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-review {
+    display: flex;
+    justify-content: center; /* テキストを水平方向の中央に配置 */
+    align-items: center;   /* テキストを垂直方向の中央に配置 */
+    width: 11rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1.5px solid var(--main-color);
+}
+
+/* 右ボタン：背景色あり */
+.btn-color-right {
+    color: var(--text-white-color);
+    background-color: var(--main-color);
+}
+
+/* 左ボタン：白背景 */
+.btn-color-left {
+    color: var(--main-color);
+    background-color: var(--back-color);
+}
+
+
+/* フッター */
+footer {
+    background-color: #FFFCF9;
+    /* コンテナと同じ色 */
+    padding: 20px 0;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin: 0;
+}

@@ -1,13 +1,12 @@
-
 body {
     margin: 0;
     background-color: var(--main-color);
-    color: #535353;
+    color: var(--font-normal);
 }
 
 /* === ヘッダー === */
 .signup-header {
-    color: white;
+    color: var(--text-white-color);
     padding: 20px;
     padding-top: 40px;
     text-align: center;
@@ -17,7 +16,7 @@ body {
     position: absolute;
     top: 25px;
     left: 20px;
-    color: white;
+    color: var(--text-white-color);
     text-decoration: none;
     font-size: 0.9rem;
 }
@@ -45,21 +44,21 @@ body {
     line-height: 38px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.3);
-    color: white;
+    color: var(--text-white-color);
     font-weight: bold;
     margin: 0 auto;
     font-size: 1.4rem;
 }
 
 .step.active .step-number {
-    background-color: white;
+    background-color: var(--text-white-color);
     color: var(--main-color);
 }
 
 .step-label {
     font-size: 0.8rem;
     margin-top: 5px;
-    color: white;
+    color: var(--text-white-color);
 }
 
 
@@ -110,7 +109,7 @@ body {
 .current-step-title h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #535353;
+    color: var(--font-normal);
 }
 
 /* === ISBN説明ボックス === */
@@ -124,7 +123,7 @@ body {
 .step-line {
     width: 3rem;
     height: 1px;
-    background-color: white;
+    background-color: var(--text-white-color);
 }
 
 .book-review {
@@ -149,7 +148,7 @@ body {
 }
 
 .info-box-title i {
-    color: #535353;
+    color: var(--font-normal);
     font-size: 1.7em;
     margin-top: 3px;
 }
@@ -161,12 +160,12 @@ body {
 .info-box-title h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: #535353;
+    color: var(--font-normal);
 }
 
-.info-box p {
+.info-box .book-review {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--font-normal);
     line-height: 1.6;
 }
 
@@ -175,7 +174,7 @@ body {
 .forbidden-box {
     background-color: #FFE9E9;
     border-radius: 10px;
-    padding: 15px;
+    padding: 11px;
     margin-bottom: 25px;
 }
 
@@ -185,8 +184,8 @@ body {
 }
 
 .forbidden-review img {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
     width: 2rem;
     height: 1.5rem;
 }
@@ -197,5 +196,188 @@ body {
 
 .forbidden-review p {
     font-size: small;
-    color: #535353;
+    color: var(--font-normal);
+}
+
+/* form-css */
+
+.form-container {
+    background-color: var(--back-color);
+    border-radius: 30px 30px 0px 0px;
+    margin-top: 2rem;
+}
+
+
+/* === フォームグループ === */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--font-normal);
+}
+
+.form-group span{
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #888;
+}
+
+/* === 入力フィールド全般 === */
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    /* paddingを含めて幅100%にする */
+    font-size: 1.3rem;
+    background-color: var(--text-white-color);
+}
+
+/* フィールドにフォーカスしたときのスタイル */
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 2px rgba(240, 98, 146, 0.2);
+}
+
+
+/* テキストエリアのスタイル */
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: var(--text-white-color);
+    font-family: inherit;
+    /* フォントを統一 */
+    resize: vertical;
+    /* 縦方向のリサイズを許可 */
+    min-height: 120px;
+    /* 画像の比率に合わせて高さを設定 */
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 2px rgba(240, 98, 146, 0.2);
+}
+
+/* 自己紹介 */
+.bio-wrapper {
+    position: relative;
+    /* 子要素の絶対位置の基準 */
+}
+
+.bio-wrapper textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bio-wrapper .char-count {
+    position: absolute;
+    bottom: -20px;
+    /* テキストエリアの外に出す */
+    right: 0;
+    font-size: 0.85em;
+    color: #888;
+}
+
+
+/* === ボタン共通スタイル === */
+.btn {
+    display: block;
+    width: 75%;
+    padding: 8px;
+    border-radius: 30px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    margin-top: 1rem;
+}
+
+/*  一時保存ボタン  */
+.btn-login {
+    background-color: var(--main-color);
+    color: #F8F8F8;
+}
+
+/* 新規登録ボタン (線のみ) */
+.btn-register {
+    background-color: #fff;
+    color: var(--font-normal);
+    border: 2px solid var(--main-color);
+}
+
+.btn-shadow {
+    display: flex;
+    /* aタグの幅に合わせて影をつけたい場合に推奨 */
+    justify-content: center;
+}
+
+.btn-shadow .btn {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* 外側影 */
+}
+
+.text-keep-box {
+    margin-top: 1rem;
+}
+
+.text-keep {
+    margin: 0;
+    padding: 0;
+    font-size: 0.7rem;
+    color: var(--font-normal);
+    text-align: center;
+}
+
+/* 二つのボタン */
+.btn-review-box {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-review {
+    display: flex;
+    justify-content: center; /* テキストを水平方向の中央に配置 */
+    align-items: center;   /* テキストを垂直方向の中央に配置 */
+    width: 11rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1.5px solid var(--main-color);
+}
+
+/* 右ボタン：背景色あり */
+.btn-color-right {
+    color: var(--text-white-color);
+    background-color: var(--main-color);
+}
+
+/* 左ボタン：白背景 */
+.btn-color-left {
+    color: var(--main-color);
+    background-color: var(--back-color);
 }

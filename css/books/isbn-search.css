@@ -2,7 +2,7 @@
 body {
     margin: 0;
     background-color: var(--main-color);
-    color: #535353;
+    color: var(--font-normal);
 }
 
 /* === ヘッダー === */
@@ -15,7 +15,7 @@ body {
     position: absolute;
     top: 25px;
     left: 20px;
-    color: white;
+    color: var(--text-white-color);
     text-decoration: none;
     font-size: 0.9rem;
 }
@@ -43,21 +43,21 @@ body {
     line-height: 38px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.3);
-    color: white;
+    color: var(--text-white-color);
     font-weight: bold;
     margin: 0 auto;
     font-size: 1.4rem;
 }
 
 .step.active .step-number {
-    background-color: white;
+    background-color: var(--text-white-color);
     color: var(--main-color);
 }
 
 .step-label {
     font-size: 0.8rem;
     margin-top: 5px;
-    color: white;
+    color: var(--text-white-color);
 }
 
 
@@ -103,7 +103,7 @@ body {
 .current-step-title h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #535353;
+    color: var(--font-normal);
 }
 
 /* === ISBN説明ボックス === */
@@ -118,7 +118,7 @@ body {
 .step-line {
     width: 3rem;
     height: 1px;
-    background-color: white;
+    background-color: var(--text-white-color);
 }
 
 .text-bold {
@@ -126,7 +126,7 @@ body {
 }
 
 .info-box {
-    background-color: white;
+    background-color:white;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 25px;
@@ -150,12 +150,12 @@ body {
 .info-box-title h3 {
     margin: 0;
     font-size: 1.5rem;
-    color: #535353;
+    color: var(--font-normal);
 }
 
 .info-box p {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--font-normal);
     line-height: 1.6;
     margin: 10px 0 0 0;
 }
@@ -170,7 +170,7 @@ body {
 .search-section h4 {
     margin: 0 0 15px 0;
     font-size: 1rem;
-    color: #535353;
+    color: var(--font-normal);
 }
 
 /* バーコードエリア */
@@ -298,7 +298,7 @@ body {
 }
 
 .book-cover {
-    width: 100px;
+    width: 7rem;
     height: auto;
     object-fit: cover;
     border-radius: 5px;
@@ -314,7 +314,7 @@ body {
 .book-title {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #535353;
+    color: var(--font-normal);
     margin: 0 0 15px 0;
     padding: 1rem 0 1rem 0.7rem;
 }
@@ -326,18 +326,18 @@ body {
 .book-details .detail-item label {
     font-size: 0.9rem;
     font-weight: bold;
-    color: #555;
+    color: var(--font-normal);
 }
 
 .book-details .detail-item p {
     font-size: 1rem;
-    color: #535353;
+    color: var(--font-normal);
     margin: 5px 0 0 0;
 }
 
 .btn-next-step {
     background-color: var(--main-color);
-    color: white;
+    color: var(--text-white-color);
     font-size: 1.1rem;
     margin-top: 3rem;
 }
@@ -357,7 +357,7 @@ body {
 }
 
 .scanner-content {
-    background-color: white;
+    background-color: var(--text-white-color);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -387,7 +387,7 @@ body {
     margin-top: 15px;
     padding: 10px 20px;
     background-color:var(--main-color);
-    color: white;
+    color: var(--text-white-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -415,14 +415,14 @@ body {
 
 .not-found-area p {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--font-normal);
     line-height: 1.6;
     margin-top: 0;
 }
 
 .not-found-area ul {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--font-normal);
     padding-left: 20px;
     line-height: 1.7;
     margin-top: 10px;

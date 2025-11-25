@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書評登録 - 内容の確認</title>
+    <link rel="stylesheet" href="../css/books/Book-review.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="signup-header">
+        <a href="review-form.html" class="back-link">&lt;&nbsp;&nbsp;もどる</a>
+        <div class="step-indicator">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-label">書籍の登録</div>
+            </div>
+            <div class="step-line-box">
+                <div class="step-line"></div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-label">書評の入力</div>
+            </div>
+            <div class="step-line-box">
+                <div class="step-line"></div>
+            </div>
+            <div class="step active">
+                <div class="step-number">3</div>
+                <div class="step-label">内容の確認</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <p class="intro-text">登録内容に誤りがないか、よくご確認ください</p>
+            <div class="info-box">
+                <div class="details-list">
+                    <h2 class="book-title" id="result-title">（タイトル）</h2>
+                    <div class="book-info-wrapper">
+                        <img src="" alt="書影" class="book-cover" id="result-cover">
+                        <div class="book-details">
+                            <div class="detail-item">
+                                <label>著者</label>
+                                <p id="result-author">（著者）</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>出版社</label>
+                                <p id="result-publisher">（出版社）</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-top">
+                        <div class="detail-item">
+                            <label class="label-border">書評タイトル</label>
+                            <div class="value-display" id="result-review-title">
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <label class="label-border">書評内容</label>
+                            <div class="value-display-bio" id="result-review-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-review-box">
+                <div class="btn-shadow">
+                    <a href="isbn-search.html" class="btn-review btn-register  btn-color-left">書評入力へ戻る</a>
+                </div>
+                <div class="btn-shadow">
+                    <a href="Book-reivew.html" class="btn-review btn-register btn-color-right">投稿する</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- 書籍情報 (localStorage) ---
+            const bookTitle = localStorage.getItem("book_title");
+            const bookAuthor = localStorage.getItem("book_author");
+            const bookPublisher = localStorage.getItem("book_publisher");
+            const bookCover = localStorage.getItem("book_cover");
+            const bookIsbn = localStorage.getItem("book_isbn"); // 必要なら使用
+
+            // --- 書評情報 (sessionStorage) ---
+            const reviewDataJson = sessionStorage.getItem('reviewData');
+
+            if (reviewDataJson) {
+
+                const reviewData = JSON.parse(reviewDataJson);
+
+                // --- 書籍情報 表示 ---
+                document.getElementById('result-cover').src = bookCover || "https://via.placeholder.com/100x150?text=No+Image";
+                document.getElementById('result-title').textContent = bookTitle || '情報なし';
+                document.getElementById('result-author').textContent = bookAuthor || '情報なし';
+                document.getElementById('result-publisher').textContent = bookPublisher || '情報なし';
+
+                // --- 書評情報 表示 ---
+                document.getElementById('result-review-title').textContent = reviewData.reviewTitle || '入力なし';
+                document.getElementById('result-review-content').innerHTML = reviewData.reviewContent ?
+                    reviewData.reviewContent.replace(/\n/g, '<br>') : '入力なし';
+
+            } else {
+                // データがない場合のエラー処理
+                document.querySelector('.intro-text').textContent = '表示するデータがありません。書籍登録からやり直してください。';
+                document.querySelector('.details-list').innerHTML = '<p style="text-align: center; color: red;">データ取得エラー</p>';
+                document.querySelector('.btn-create-account').textContent = '書籍登録に戻る';
+                document.querySelector('.btn-create-account').href = 'isbn-search.html';
+            }
+        });
+
+    </script>
+</body>
+
+</html>

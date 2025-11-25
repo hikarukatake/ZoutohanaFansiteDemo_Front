@@ -201,6 +201,7 @@
                     return "";
                 };
 
+
                 // --- 著者取得（名前空間付きタグに対応）---
                 const authorNode = item.getElementsByTagName("dc:creator")[0] || item.getElementsByTagName("dcndl:creator")[0];
                 let author = authorNode ? authorNode.textContent : "";
@@ -236,6 +237,8 @@
                 document.getElementById("result-title").textContent = title || "情報なし";
                 document.getElementById("result-author").textContent = author || "情報なし";
                 document.getElementById("result-publisher").textContent = publisher || "情報なし";
+
+
 
             } catch (error) {
                 notFoundArea.style.display = "block";
@@ -418,6 +421,21 @@
                 fetchBookInfo(code);
             }
         });
+        // ★ 次へ進むボタンが押されたら localStorage に保存
+        document.getElementById("btn-next-step").addEventListener("click", () => {
+            const title = document.getElementById("result-title").textContent;
+            const author = document.getElementById("result-author").textContent;
+            const publisher = document.getElementById("result-publisher").textContent;
+            const cover = document.getElementById("result-cover").src;
+            const isbn = document.getElementById("isbn-input").value.trim();
+
+            localStorage.setItem("book_title", title);
+            localStorage.setItem("book_author", author);
+            localStorage.setItem("book_publisher", publisher);
+            localStorage.setItem("book_cover", cover);
+            localStorage.setItem("book_isbn", isbn);
+        });
+
     </script>
 </body>
 

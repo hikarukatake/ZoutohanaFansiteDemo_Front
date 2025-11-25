@@ -42,7 +42,7 @@
         <div class="form-container">
             <div class="current-step-title">
                 <span>02</span>
-                <h2>書評の入力</h2>
+                <h2>書評の登録</h2>
             </div>
             <div class="info-box">
                 <p class="book-review">ここでは、読んでみて感じたことを、あなたの
@@ -66,14 +66,14 @@
                     </div>
                     <div style="display: block;">
                         <div class="forbidden-review">
-                            <img src="../img/book.png" alt="" >
+                            <img src="../img/book.png" alt="">
                             <div class="forbidden-text">
                                 <h4>本のタイトルや著者名を書く</h4>
                                 <p>書名や著者名は書評に記入しないでください。</p>
                             </div>
                         </div>
                         <div class="forbidden-review">
-                            <img src="../img/not_people.png" >
+                            <img src="../img/not_people.png">
                             <div class="forbidden-text">
                                 <h4>他の人を傷つける言葉を書く</h4>
                                 <p>誹謗中傷や攻撃的な言葉遣いは避け、敬意をもって
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="forbidden-review">
-                            <img src="../img/face.png" >
+                            <img src="../img/face.png">
                             <div class="forbidden-text">
                                 <h4>不適切・過激な表現を使う</h4>
                                 <p>公序良俗に反する言葉や、暴力的・性的な内容は
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="forbidden-review">
-                            <img src="../img/people.png" >
+                            <img src="../img/people.png">
                             <div class="forbidden-text">
                                 <h4>個人情報（名前・連絡先など）を書く</h4>
                                 <p>プライバシー保護のため、ご自身や他者の個人
@@ -98,6 +98,125 @@
                         </div>
                     </div>
                 </div>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="account-id">書評タイトル<span>（タイトルは20文字以内）</span></label>
+                        <input type="text" id="account-id" name="account-id">
+                    </div>
+                    <div class="form-group bio-wrapper">
+                        <label for="bio">書評内容<span>（内容は300文字～500文字内）</span></label>
+                        <textarea id="bio" name="bio" rows="6"></textarea>
+                        <div class="char-count"><span id="current-count">0</span>/500文字</div>
+                    </div>
+                    <div class="btn-shadow">
+                        <a href="signup.html" class="btn btn-register">一時保存</a>
+                    </div>
+                </form>
+                <div class="text-keep-box">
+                    <p class="text-keep">一時保存されました</p>
+                    <p class="text-keep">マイページから内容の確認や編集を続けることができます</p>
+                </div>
+            </div>
+            <div class="btn-review-box">
+                <div class="btn-shadow">
+                    <a href="isbn-search.html" class="btn-review btn-register  btn-color-left">書籍登録へ戻る</a>
+                </div>
+                <div class="btn-shadow">
+                    <a href="Book-reivew.html" class="btn-review btn-register btn-color-right">確認へ</a>
+                </div>
             </div>
         </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. 自己紹介（書評内容）文字数カウント
+            const bio = document.getElementById('bio');
+            const currentCount = document.getElementById('current-count');
+            const maxLength = 500;
+            const minLength = 300;
+
+            if (bio && currentCount) {
+                bio.addEventListener('input', function () {
+                    const length = bio.value.length;
+                    currentCount.textContent = length;
+                    if (length > maxLength || length < minLength) {
+                        currentCount.style.color = 'red'; // 範囲外
+                    } else {
+                        currentCount.style.color = '#888'; // 範囲内
+                    }
+                });
+            }
+
+            // 2. 「確認へ」ボタンの取得とクリックイベントの設定
+            // 修正ポイント: ボタンのクラスや属性から正しく要素を取得します
+            // HTMLを見ると <a href="Book-reivew.html" class="btn-review ...">確認へ</a> となっています
+            // 特定のIDがないため、querySelectorでクラス指定するか、HTMLにIDを追加するのが確実です。
+            // ここでは、HTMLを変更せずに済むよう、href属性で特定します。
+            const confirmBtn = document.querySelector('a[href="Book-reivew.html"]');
+
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', function (e) {
+                    e.preventDefault(); // 画面遷移を一旦停止
+
+                    // (A) 書籍情報（前のページ isbn-search.html で保存されたデータ）を取得
+                    const bookDataJson = sessionStorage.getItem('bookData');
+                    const bookData = bookDataJson ? JSON.parse(bookDataJson) : null;
+
+                    // (B) 書評フォームの各値を取得
+                    const reviewTitle = document.getElementById('account-id').value; // タイトル入力欄
+                    const reviewContent = document.getElementById('bio').value;      // 書評内容
+
+                    // (C) バリデーション（入力チェック）
+                    if (!reviewTitle.trim()) {
+                        alert('書評タイトルを入力してください。');
+                        return;
+                    }
+
+                    const length = reviewContent.length;
+                    if (length < 300 || length > 500) {
+                        alert(`書評内容は300文字以上500文字以内で入力してください。（現在: ${length}文字）`);
+                        return;
+                    }
+
+                    // (D) 保存するデータをまとめる
+                    const confirmationData = {
+                        // 書籍情報 (bookDataがない場合はデフォルト値)
+                        bookTitle: bookData ? bookData.title : '情報なし',
+                        bookAuthor: bookData ? bookData.author : '情報なし',
+                        bookPublisher: bookData ? bookData.publisher : '情報なし',
+                        bookCover: bookData ? bookData.coverUrl : 'https://via.placeholder.com/100x150?text=No+Image',
+
+                        // 書評情報
+                        reviewTitle: reviewTitle,
+                        reviewContent: reviewContent
+                    };
+
+                    // (E) sessionStorageに保存
+                    sessionStorage.setItem('reviewData', JSON.stringify(confirmationData));
+
+                    // (F) 確認画面へ遷移
+                    window.location.href = this.href;
+                });
+            } else {
+                console.error("「確認へ」ボタンが見つかりません。HTMLのリンク先やクラスを確認してください。");
+            }
+        });
+    </script>
+    <script>
+        const title = localStorage.getItem("book_title");
+        const author = localStorage.getItem("book_author");
+        const publisher = localStorage.getItem("book_publisher");
+        const cover = localStorage.getItem("book_cover");
+
+        // もし値が取得できたら反映
+        if (title && author && publisher) {
+            document.getElementById("disp-title").textContent = title;
+            document.getElementById("disp-author").textContent = author;
+            document.getElementById("disp-publisher").textContent = publisher;
+            document.getElementById("disp-cover").src = cover;
+        }
+    </script>
+
+</body>

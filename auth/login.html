@@ -45,13 +45,37 @@
                 <div class="divider">
                     <span>または</span>
                 </div>
-
                 <a href="signup.html" class="btn btn-register">新規登録</a>
-
             </form>
         </div>
     </main>
+    <script>
+        // 管理者画面で決めた色をバックから送ってきて、フロントで CSS 変数に反映させるやり方
+        // バックからJSONで返すようにしてそれを反映
+        async function loadTheme() {
+            try {
+                const response = await fetch('/api/theme'); // バックのURL
+                const theme = await response.json();
 
+                // CSS変数にセット
+                setThemeVariable('--main-color', theme.mainColor);
+                setThemeVariable('--back-color', theme.backColor);
+                setThemeVariable('--font-normal', theme.fontNormal);
+                setThemeVariable('--text-white-color', theme.textWhiteColor);
+
+            } catch (err) {
+                console.error("テーマ読み込み失敗:", err);
+            }
+        }
+
+        // ページ読み込み時に適用
+        window.addEventListener("DOMContentLoaded", loadTheme);
+    </script>
+    <!-- jsでセットテーマを変えてcssの色を一括で変更するやり方
+        window.addEventListener("DOMContentLoaded", () => {
+            setLightTheme();
+        }); -->
+    <script src="../js/theme.js"></script>
 </body>
 
 </html>
