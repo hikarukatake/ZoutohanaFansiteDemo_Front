@@ -271,6 +271,7 @@ body {
     color: var(--font-normal);
     padding-bottom: 10px;
     padding-left: 1rem;
+    word-break: break-word;
 }
 
 /* 居住地用 (インライン表示) */
@@ -300,6 +301,7 @@ body {
     color: var(--font-normal);
     padding-top: 5px;
     padding-left: 1rem;
+    word-break: break-word;
     /* var(--text-white-color);-space: pre-wrap; (HTMLの<br>で改行) */
 }
 
@@ -314,8 +316,10 @@ body {
 
 .btn-review {
     display: flex;
-    justify-content: center; /* テキストを水平方向の中央に配置 */
-    align-items: center;   /* テキストを垂直方向の中央に配置 */
+    justify-content: center;
+    /* テキストを水平方向の中央に配置 */
+    align-items: center;
+    /* テキストを垂直方向の中央に配置 */
     width: 11rem;
     height: 60px;
     border-radius: 5px;
