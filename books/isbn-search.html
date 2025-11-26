@@ -238,6 +238,11 @@
                 document.getElementById("result-author").textContent = author || "情報なし";
                 document.getElementById("result-publisher").textContent = publisher || "情報なし";
 
+                document.getElementById("search-result-section").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
 
 
             } catch (error) {
@@ -296,6 +301,11 @@
                     document.getElementById("result-title").textContent = "見つかりません";
                     document.getElementById("result-author").textContent = "---";
                     document.getElementById("result-publisher").textContent = "---";
+                    notFoundArea.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
                     return;
                 }
                 // XMLから特定のタグのテキストを取得する補助関数

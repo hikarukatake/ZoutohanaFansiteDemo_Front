@@ -120,6 +120,7 @@ body {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
+    margin-top: 1.5rem;
     margin-bottom: 25px;
     border: 1.5px #F4F4F4 solid;
 }
@@ -234,6 +235,7 @@ body {
     text-align: center;
     margin-top: 0;
     font-weight: 500;
+    margin-bottom: 3rem;
 }
 
 .details-list {
@@ -304,6 +306,7 @@ body {
 
 /* 二つのボタン */
 .btn-review-box {
+    margin-top: 5rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -314,12 +317,12 @@ body {
     justify-content: center; /* テキストを水平方向の中央に配置 */
     align-items: center;   /* テキストを垂直方向の中央に配置 */
     width: 11rem;
-    height: 2.5rem;
+    height: 60px;
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     box-sizing: border-box;
     cursor: pointer;
     border: 1.5px solid var(--main-color);

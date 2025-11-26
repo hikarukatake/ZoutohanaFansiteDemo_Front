@@ -297,9 +297,11 @@ textarea:focus {
 
 /* === ボタン共通スタイル === */
 .btn {
-    display: block;
-    width: 75%;
-    padding: 8px;
+    display: flex;
+    justify-content: center; /* テキストを水平方向の中央に配置 */
+    align-items: center;   /* テキストを垂直方向の中央に配置 */
+    width: 11rem;
+    height: 50px;
     border-radius: 30px;
     text-align: center;
     text-decoration: none;
@@ -307,8 +309,7 @@ textarea:focus {
     font-size: 1.1rem;
     box-sizing: border-box;
     cursor: pointer;
-    border: none;
-    margin-top: 1rem;
+    border: 1.5px solid var(--main-color);
 }
 
 /*  一時保存ボタン  */
@@ -352,6 +353,7 @@ textarea:focus {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-top: 5rem;
 }
 
 .btn-review {
@@ -359,12 +361,12 @@ textarea:focus {
     justify-content: center; /* テキストを水平方向の中央に配置 */
     align-items: center;   /* テキストを垂直方向の中央に配置 */
     width: 11rem;
-    height: 2.5rem;
+    height: 50px;
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     box-sizing: border-box;
     cursor: pointer;
     border: 1.5px solid var(--main-color);
