@@ -263,18 +263,19 @@ body {
 
 /* === 検索ボタン === */
 .btn {
-    display: block;
+    display: flex;
+    justify-content: center; /* テキストを水平方向の中央に配置 */
+    align-items: center;   /* テキストを垂直方向の中央に配置 */
     width: 100%;
-    padding: 14px;
-    border-radius: 10px;
+    height: 50px;
+    border-radius: 5px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
     box-sizing: border-box;
     cursor: pointer;
-    border: none;
-    margin-top: 10px;
+    border: 1.5px solid var(--main-color);
 }
 
 .btn-search {
@@ -295,6 +296,8 @@ body {
     display: flex;
     gap: 3rem;
     padding: 0 1rem 0 2rem;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .book-cover {
