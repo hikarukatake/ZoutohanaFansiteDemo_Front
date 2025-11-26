@@ -446,6 +446,43 @@
             localStorage.setItem("book_isbn", isbn);
         });
 
+        //ページ読み込み時に保存されたデータを復元して表示 ▼▼▼
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. localStorageから保存された書籍情報を取得
+            const savedTitle = localStorage.getItem("book_title");
+            const savedAuthor = localStorage.getItem("book_author");
+            const savedPublisher = localStorage.getItem("book_publisher");
+            const savedCover = localStorage.getItem("book_cover");
+            const savedIsbn = localStorage.getItem("book_isbn");
+
+            // 2. もしデータ（タイトルなど）が残っていれば、画面に表示する
+            if (savedTitle) {
+                // ISBN入力欄を復元
+                if (savedIsbn) {
+                    document.getElementById("isbn-input").value = savedIsbn;
+                }
+
+                // 書籍情報を画面にセット
+                document.getElementById("result-title").textContent = savedTitle;
+                document.getElementById("result-author").textContent = savedAuthor;
+                document.getElementById("result-publisher").textContent = savedPublisher;
+
+                // 書影画像をセット
+                const img = document.getElementById("result-cover");
+                if (savedCover) {
+                    img.src = savedCover;
+                } else {
+                    img.src = "https://via.placeholder.com/100x150?text=No+Image";
+                }
+
+                // 3. 隠れている検索結果エリア（#search-result-section）を表示状態にする
+                document.getElementById("search-result-section").style.display = "block";
+
+                // ※念のため「見つかりません」エリアは隠す
+                document.getElementById("not-found-area").style.display = "none";
+            }
+        });
+
     </script>
 </body>
 

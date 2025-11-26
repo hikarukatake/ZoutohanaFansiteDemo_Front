@@ -151,100 +151,125 @@
                     }
                 });
             }
-                    // ------------------------
-                    // ② 書評タイトル（1〜20文字）カウント
-                    // ------------------------
-                    const titleInput = document.getElementById('account-id');
-                    const titleCountSpan = document.querySelector('.form-group .char-count span'); // 最初のchar-count
+            // ------------------------
+            // ② 書評タイトル（1〜20文字）カウント
+            // ------------------------
+            const titleInput = document.getElementById('account-id');
+            const titleCountSpan = document.querySelector('.form-group .char-count span'); // 最初のchar-count
 
-                    if (titleInput && titleCountSpan) {
-                        titleInput.addEventListener('input', function () {
-                            const len = titleInput.value.length;
+            if (titleInput && titleCountSpan) {
+                titleInput.addEventListener('input', function () {
+                    const len = titleInput.value.length;
 
-                            titleCountSpan.textContent = len; // カウント更新
+                    titleCountSpan.textContent = len; // カウント更新
 
-                            // 1〜20文字範囲内なら灰色、範囲外なら赤
-                            if (len > 20 || len < 1) {
-                                titleCountSpan.style.color = 'red';
-                            } else {
-                                titleCountSpan.style.color = '#888';
-                            }
-                        });
-                    }
-
-
-                    // 3. 「確認へ」ボタンの取得とクリックイベントの設定
-                    // 修正ポイント: ボタンのクラスや属性から正しく要素を取得します
-                    // HTMLを見ると <a href="Book-reivew.html" class="btn-review ...">確認へ</a> となっています
-                    // 特定のIDがないため、querySelectorでクラス指定するか、HTMLにIDを追加するのが確実です。
-                    // ここでは、HTMLを変更せずに済むよう、href属性で特定します。
-                    const confirmBtn = document.querySelector('a[href="Book-reivew.html"]');
-
-                    if (confirmBtn) {
-                        confirmBtn.addEventListener('click', function (e) {
-                            e.preventDefault(); // 画面遷移を一旦停止
-
-                            // (A) 書籍情報（前のページ isbn-search.html で保存されたデータ）を取得
-                            const bookDataJson = sessionStorage.getItem('bookData');
-                            const bookData = bookDataJson ? JSON.parse(bookDataJson) : null;
-
-                            // (B) 書評フォームの各値を取得
-                            const reviewTitle = document.getElementById('account-id').value; // タイトル入力欄
-                            const reviewContent = document.getElementById('bio').value;      // 書評内容
-
-                            // (C) バリデーション（入力チェック）
-                            if (!reviewTitle.trim()) {
-                                alert('書評タイトルを入力してください。');
-                                return;
-                            }
-                            if (reviewTitle.length < 1 || reviewTitle.length > 20) {
-                                alert(`書評タイトルは1〜20文字で入力してください。（現在: ${reviewTitle.length}文字）`);
-                                return;
-                            }
-
-                            const length = reviewContent.length;
-                            if (length < 300 || length > 500) {
-                                alert(`書評内容は300文字以上500文字以内で入力してください。（現在: ${length}文字）`);
-                                return;
-                            }
-
-                            // (D) 保存するデータをまとめる
-                            const confirmationData = {
-                                // 書籍情報 (bookDataがない場合はデフォルト値)
-                                bookTitle: bookData ? bookData.title : '情報なし',
-                                bookAuthor: bookData ? bookData.author : '情報なし',
-                                bookPublisher: bookData ? bookData.publisher : '情報なし',
-                                bookCover: bookData ? bookData.coverUrl : 'https://via.placeholder.com/100x150?text=No+Image',
-
-                                // 書評情報
-                                reviewTitle: reviewTitle,
-                                reviewContent: reviewContent
-                            };
-
-                            // (E) sessionStorageに保存
-                            sessionStorage.setItem('reviewData', JSON.stringify(confirmationData));
-
-                            // (F) 確認画面へ遷移
-                            window.location.href = this.href;
-                        });
+                    // 1〜20文字範囲内なら灰色、範囲外なら赤
+                    if (len > 20 || len < 1) {
+                        titleCountSpan.style.color = 'red';
                     } else {
-                        console.error("「確認へ」ボタンが見つかりません。HTMLのリンク先やクラスを確認してください。");
+                        titleCountSpan.style.color = '#888';
                     }
                 });
+            }
+
+
+            // 3. 「確認へ」ボタンの取得とクリックイベントの設定
+            // 修正ポイント: ボタンのクラスや属性から正しく要素を取得します
+            // HTMLを見ると <a href="Book-reivew.html" class="btn-review ...">確認へ</a> となっています
+            // 特定のIDがないため、querySelectorでクラス指定するか、HTMLにIDを追加するのが確実です。
+            // ここでは、HTMLを変更せずに済むよう、href属性で特定します。
+            const confirmBtn = document.querySelector('a[href="Book-reivew.html"]');
+
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', function (e) {
+                    e.preventDefault(); // 画面遷移を一旦停止
+
+                    // (A) 書籍情報（前のページ isbn-search.html で保存されたデータ）を取得
+                    const bookDataJson = sessionStorage.getItem('bookData');
+                    const bookData = bookDataJson ? JSON.parse(bookDataJson) : null;
+
+                    // (B) 書評フォームの各値を取得
+                    const reviewTitle = document.getElementById('account-id').value; // タイトル入力欄
+                    const reviewContent = document.getElementById('bio').value;      // 書評内容
+
+                    // (C) バリデーション（入力チェック）
+                    if (!reviewTitle.trim()) {
+                        alert('書評タイトルを入力してください。');
+                        return;
+                    }
+                    if (reviewTitle.length < 1 || reviewTitle.length > 20) {
+                        alert(`書評タイトルは1〜20文字で入力してください。（現在: ${reviewTitle.length}文字）`);
+                        return;
+                    }
+
+                    const length = reviewContent.length;
+                    if (length < 300 || length > 500) {
+                        alert(`書評内容は300文字以上500文字以内で入力してください。（現在: ${length}文字）`);
+                        return;
+                    }
+
+                    // (D) 保存するデータをまとめる
+                    const confirmationData = {
+                        // 書籍情報 (bookDataがない場合はデフォルト値)
+                        bookTitle: bookData ? bookData.title : '情報なし',
+                        bookAuthor: bookData ? bookData.author : '情報なし',
+                        bookPublisher: bookData ? bookData.publisher : '情報なし',
+                        bookCover: bookData ? bookData.coverUrl : 'https://via.placeholder.com/100x150?text=No+Image',
+
+                        // 書評情報
+                        reviewTitle: reviewTitle,
+                        reviewContent: reviewContent
+                    };
+
+                    // (E) sessionStorageに保存
+                    sessionStorage.setItem('reviewData', JSON.stringify(confirmationData));
+
+                    // (F) 確認画面へ遷移
+                    window.location.href = this.href;
+                });
+            } else {
+                console.error("「確認へ」ボタンが見つかりません。HTMLのリンク先やクラスを確認してください。");
+            }
+            // 1. sessionStorageから保存された書評データを取得
+            const reviewDataJson = sessionStorage.getItem('reviewData');
+
+            if (reviewDataJson) {
+                // データがある場合
+                const reviewData = JSON.parse(reviewDataJson);
+
+                // 【修正点】HTMLのIDに合わせて取得先を変更しました
+                const titleInput = document.getElementById('account-id'); // review-title ではなく account-id
+                const contentInput = document.getElementById('bio');      // review-content ではなく bio
+
+                if (titleInput) {
+                    titleInput.value = reviewData.reviewTitle || '';
+                    // 値を入れた後に「入力イベント」を強制的に起こして、文字数カウントを更新させる
+                    titleInput.dispatchEvent(new Event('input'));
+                }
+
+                if (contentInput) {
+                    contentInput.value = reviewData.reviewContent || '';
+                    // 値を入れた後に「入力イベント」を強制的に起こして、文字数カウントを更新させる
+                    contentInput.dispatchEvent(new Event('input'));
+                }
+            }
+        });
+
     </script>
     <script>
-            const title = localStorage.getItem("book_title");
-            const author = localStorage.getItem("book_author");
-            const publisher = localStorage.getItem("book_publisher");
-            const cover = localStorage.getItem("book_cover");
+        const title = localStorage.getItem("book_title");
+        const author = localStorage.getItem("book_author");
+        const publisher = localStorage.getItem("book_publisher");
+        const cover = localStorage.getItem("book_cover");
 
-            // もし値が取得できたら反映
-            if (title && author && publisher) {
-                document.getElementById("disp-title").textContent = title;
-                document.getElementById("disp-author").textContent = author;
-                document.getElementById("disp-publisher").textContent = publisher;
-                document.getElementById("disp-cover").src = cover;
-            }
+        // もし値が取得できたら反映
+        if (title && author && publisher) {
+            document.getElementById("disp-title").textContent = title;
+            document.getElementById("disp-author").textContent = author;
+            document.getElementById("disp-publisher").textContent = publisher;
+            document.getElementById("disp-cover").src = cover;
+        }
+
     </script>
 
 </body>
