@@ -347,14 +347,15 @@ body {
 
 /* フッター */
 footer {
-    background-color: #FFFCF9;
-    /* コンテナと同じ色 */
+    background-color: --var(back-color);
     padding: 20px 0;
+    text-align: center;
+    margin-top: 2rem;
 }
 
 .copyright {
     text-align: center;
     font-size: 0.8rem;
-    color: #aaa;
+    color: --var(font-normal);
     margin: 0;
 }

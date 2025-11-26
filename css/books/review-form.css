@@ -132,6 +132,7 @@ body {
 
 .book-review {
     margin-bottom: 2rem;
+    padding: 0 0.8rem;
 }
 
 .info-box {
@@ -212,14 +213,15 @@ body {
 }
 
 
+
 /* === フォームグループ === */
 .form-group {
-    margin-bottom: 100px;
+    margin-bottom: 30px;
 }
 
 .form-group label {
     display: block;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 8px;
     color: var(--font-normal);
@@ -241,7 +243,8 @@ select {
     border-radius: 8px;
     box-sizing: border-box;
     /* paddingを含めて幅100%にする */
-    font-size: 1.3rem;
+    font-size: 1rem;
+    color: --var(--font-normal);
     background-color: var(--text-white-color);
 }
 
@@ -283,10 +286,15 @@ textarea:focus {
     position: relative;
     /* 子要素の絶対位置の基準 */
 }
+.bio-bottom{
+    margin-bottom: 100px;
+}
 
 .bio-wrapper textarea {
     width: 100%;
+    height: 450px;
     box-sizing: border-box;
+    color: --var(font-normal);
 }
 
 .bio-wrapper .char-count {
@@ -304,7 +312,7 @@ textarea:focus {
     display: flex;
     justify-content: center; /* テキストを水平方向の中央に配置 */
     align-items: center;   /* テキストを垂直方向の中央に配置 */
-    width: 100%;
+    width: 80%;
     height: 50px;
     border-radius: 30px;
     text-align: center;
@@ -333,6 +341,7 @@ textarea:focus {
     display: flex;
     /* aタグの幅に合わせて影をつけたい場合に推奨 */
     justify-content: center;
+    width: 100%;
 }
 
 .btn-shadow .btn {
@@ -365,7 +374,7 @@ textarea:focus {
     display: flex;
     justify-content: center; /* テキストを水平方向の中央に配置 */
     align-items: center;   /* テキストを垂直方向の中央に配置 */
-    width: 11rem;
+    width:  100%;
     height: 50px;
     border-radius: 5px;
     text-align: center;
@@ -387,4 +396,20 @@ textarea:focus {
 .btn-color-left {
     color: var(--main-color);
     background-color: var(--back-color);
+}
+
+
+/* フッター */
+footer {
+    background-color: --var(back-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: --var(font-normal);
+    margin: 0;
 }
