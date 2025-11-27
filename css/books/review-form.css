@@ -380,7 +380,6 @@ textarea:focus {
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem;
     box-sizing: border-box;
     cursor: pointer;
     border: 1.5px solid var(--main-color);
@@ -390,12 +389,14 @@ textarea:focus {
 .btn-color-right {
     color: var(--text-white-color);
     background-color: var(--main-color);
+    font-size: 1.1rem;
 }
 
 /* 左ボタン：白背景 */
 .btn-color-left {
     color: var(--main-color);
     background-color: var(--back-color);
+    font-size: 1rem;
 }
 
 
