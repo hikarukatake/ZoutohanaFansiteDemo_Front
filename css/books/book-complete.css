@@ -65,6 +65,7 @@ body {
 
 /* 登録完了しました全体 */
 .complete-text {
+    margin-bottom: 100px;
     text-align: center;
     font-size: 1.1rem;
     color: var(--font-normal);
@@ -99,6 +100,7 @@ h3 {
     height: 3px;
     background-color: var(--main-color);
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 
@@ -110,6 +112,7 @@ h3 {
 
 /* 各ステップのブロック */
 .timeline-step {
+    height: 140px;
     display: flex;
     margin-bottom: 0;
 }
@@ -123,7 +126,7 @@ h3 {
     /* 左カラムの幅固定 */
     flex-shrink: 0;
     /* 幅を縮めさせない */
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 /* 丸のデザイン */
