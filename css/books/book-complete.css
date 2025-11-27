@@ -1,17 +1,13 @@
 body {
     margin: 0;
     background-color: var(--main-color);
-    /* 全体の背景色 */
-    color: #535353;
-    /* 基本文字色 (画像準拠) */
-    font-family: sans-serif;
+    color: var(--font-normal);
 }
 
-/* === ヘッダー (前画面と共通) === */
+/*  ヘッダー*/
 .signup-header {
-    color: var(--text-white-color);;
-    padding: 20px;
-    padding-top: 40px;
+    color: var(--text-white-color);
+    ;
     text-align: center;
 }
 
@@ -23,53 +19,31 @@ body {
     margin-top: 3rem;
 }
 
-.back-link {
-    position: absolute;
-    top: 25px;
-    left: 20px;
-    color: var(--text-white-color);;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
 
-/* === フォームコンテナ (前画面と共通) === */
+/* フォームコンテナ */
 .form-container {
     background-color: var(--back-color);
     border-radius: 30px 30px 0px 0px;
-    padding: 4rem 25px;
+    padding: 4rem 15px;
     margin-top: 2rem;
 }
 
-/* === ▼▼▼ ここから確認画面専用スタイル ▼▼▼ === */
+/* 背景白 */
 
-/* 案内テキスト */
-.intro-text {
-    /* ▼ positionやwidthを削除し、中央揃えに ▼ */
-    font-size: 1.1rem;
-    /* 画像に合わせて調整 */
-    color: var(--font-normal);
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 35px;
-    font-weight: bold;
-    /* 下のリストとの間隔 */
-}
-
-.details-list {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    /* 各項目の間隔 */
-    /* ▼ ▼ ▼ 左右にマージンを追加して狭くする ▼ ▼ ▼ */
-    margin-left: 20px;
-    margin-top: 3rem;
-    margin-right: 20px;
+.info-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 25px;
+    border: 1.5px #F4F4F4 solid;
 }
 
 .detail-item {
     width: 100%;
 }
 
+/* 登録完了のヘッダー */
 .detail-item label {
     display: block;
     font-size: 1.2rem;
@@ -78,77 +52,241 @@ body {
     color: var(--font-normal);
 }
 
+/* check img */
+.check-img-div {
+    display: flex;
+    justify-content: center;
+}
 
-/* 値の表示 (下線付き) */
-.value-display {
-    font-size: 1.4rem;
+.check-img {
+    width: 100px;
+    height: auto;
+}
+
+/* 登録完了しました全体 */
+.complete-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--font-normal);
+    font-weight: bold;
+}
+
+/* テキスト */
+.intro-text {
+    /* ▼ positionやwidthを削除し、中央揃えに ▼ */
+    font-size: 1rem;
+    /* 画像に合わせて調整 */
     color: var(--font-normal);
     text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #535353;
+    margin: 0;
+    margin-bottom: 3px;
+    font-weight: 400;
 }
 
-/* 居住地用 (インライン表示) */
-.value-display.inline-values span {
-    margin-right: 15px;
-    /* 岩手県と盛岡市の間隔 */
+/* 今後の書評の流れの下のアンダーライン */
+.container {
+    text-align: center;
 }
 
-/* 生年・性別の横並び用 */
-.inline-group {
+h3 {
+    color: --var(font-normal);
+    margin-bottom: 10px;
+}
+
+/* 下線 */
+.underline {
+    width: 35%;
+    height: 3px;
+    background-color: var(--main-color);
+    margin: 0 auto;
+}
+
+
+/* ステップフロー */
+.timeline-container {
+    margin: 20px auto;
+    color: --var(font-normal);
+}
+
+/* 各ステップのブロック */
+.timeline-step {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    /* 項目間のマージン */
+    margin-bottom: 0;
 }
 
-.detail-item.half-width {
-    width: 50%;
-    /* 2つの項目を均等に配置 */
-    flex-grow: 1;
+/* ステップフローの部分 */
+.step-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    /* 左カラムの幅固定 */
+    flex-shrink: 0;
+    /* 幅を縮めさせない */
+    margin-right: 20px;
 }
 
-/* 自己紹介 (下線なし) */
-.value-display-bio {
+/* 丸のデザイン */
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
     font-size: 1.2rem;
-    line-height: 1.7;
-    color: var(--font-normal);
-    padding-top: 5px;
-    padding-left: 1rem;
-    /* var(--text-white-color);-space: pre-wrap; (HTMLの<br>で改行) */
+    position: relative;
+    z-index: 1;
 }
 
+/* 緑色の丸（アクティブ/ステップ1） */
+.circle.green {
+    background-color: var(--main-color);
+    box-shadow: 0 0 0 5px rgba(60, 179, 113, 0.2);
+}
 
-/* アカウント作成ボタン */
-.btn-create-account {
-    display: block;
+/* 灰色の丸（その他のステップ） */
+.circle.gray {
+    background-color: #ccc;
+    box-shadow: 0 0 0 5px rgba(204, 204, 204, 0.3);
+    /* 外側の薄いリング表現 */
+}
+
+/* 縦線のデザイン */
+.line {
+    width: 1px;
+    background-color: #ccc;
+    flex-grow: 1;
+    /* 上下の隙間を埋めるように伸びる */
+    margin: 10px 0;
+    /* 丸との間に少し隙間を作る */
+    min-height: 40px;
+    /* テキストが短い場合でも最低限の高さを確保 */
+}
+
+/* 最後のステップの線は消す */
+.timeline-step:last-child .line {
+    display: none;
+}
+
+/* --- 右側：テキストエリア --- */
+.step-content {
+    padding-bottom: 40px;
+    /* 下の余白 */
+}
+
+/* 最後のステップの下余白はなし */
+.timeline-step:last-child .step-content {
+    padding-bottom: 0;
+}
+
+/* 見出し */
+.step-content h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.25rem;
+    color: #464646;
+    /* 丸の高さの中央に見出しが来るように調整（お好みで） */
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+/* 本文 */
+.step-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: --var(font-normal);
+    line-height: 1.6;
+}
+
+/* 強調文字（文庫Xの部分） */
+.step-content strong {
+    color: --var(font-normal);
+    font-weight: bold;
+}
+
+/* === 検索ボタン === */
+.btn {
+    display: flex;
+    justify-content: center;
+    /* テキストを水平方向の中央に配置 */
+    align-items: center;
+    /* テキストを垂直方向の中央に配置 */
     width: 100%;
-    padding: 15px;
-    border-radius: 30px;
+    height: 50px;
+    border-radius: 5px;
     text-align: center;
     text-decoration: none;
-    font-size: 1rem;
     font-weight: bold;
+    font-size: 1.1rem;
     box-sizing: border-box;
     cursor: pointer;
-    border: none;
-    background-color: var(--main-color);
-    /* 画像のピンク色 */
-    color: var(--text-white-color);;
-    margin-top: 40px;
-    /* リストとの間隔 */
+    border: 1.5px solid var(--main-color);
 }
+
+.btn-next-step {
+    background-color: var(--main-color);
+    color: var(--text-white-color);
+    font-size: 1.1rem;
+    margin-top: 6rem;
+}
+
+/* 時間の表示 */
+
+.countdown-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.label-text {
+    color: var(font-normal);
+    margin-bottom: 10px;
+}
+
+.timer-display {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.time-group {
+    display: flex;
+    align-items: baseline;
+}
+
+.number {
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: var(--main-color);
+    line-height: 1;
+    margin-right: 4px;
+}
+
+.unit {
+    font-size: 16px;
+    color: var(--font-normal);
+    margin-right: 15px;
+}
+
+.time-group:last-child .unit {
+    margin-right: 0;
+}
+
+
 
 /* フッター */
 footer {
-    background-color: #FFFCF9;
-    /* コンテナと同じ色 */
+    background-color: --var(back-color);
     padding: 20px 0;
+    text-align: center;
+    margin-top: 2rem;
 }
 
 .copyright {
     text-align: center;
     font-size: 0.8rem;
-    color: #aaa;
+    color: --var(font-normal);
     margin: 0;
 }
