@@ -231,6 +231,7 @@
         .event-info {
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
 
         .event-title {
@@ -456,8 +457,9 @@
         }
 
         .book-card {
+            margin: 0 auto;
             background-color: #FAFAFA;
-            width: 320px;
+            width: 95%;
             border-radius: 16px;
             padding: 20px 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
