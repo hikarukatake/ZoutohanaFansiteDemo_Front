@@ -1,0 +1,571 @@
+        /* --- 基本設定（前回と同じ） --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--back-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--back-color);
+            min-height: 100vh;
+            padding-bottom: 40px;
+            position: relative;
+            /* オーバーレイのために必要 */
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px 5px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-placeholder {
+            font-weight: bold;
+            color: var(--font-normal);
+            font-size: 14px;
+        }
+
+        /* ハンバーガーボタン */
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--main-color);
+            border-radius: 50%;
+            cursor: pointer;
+            /* 中の線を中央に寄せる設定 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ハンバーガーボタン */
+        /* 上の部分 */
+        .span-top {
+            display: block;
+            width: 25px;
+            height: 1.5px;
+            background-color: #fff;
+            margin-bottom: 4px;
+        }
+
+        /*  中間 */
+        .span-middle {
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background-color: #fff;
+        }
+
+        /* 下の部分 */
+        .span-bottom {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background-color: #fff;
+            margin-top: 4px;
+        }
+
+        .menu-icon-box {
+            display: block;
+            align-items: center;
+            margin: 0 auto;
+            width: 50%;
+            height: 10px;
+        }
+
+        /* --- パンくずリスト --- */
+        .breadcrumb {
+            padding: 0.8rem 0;
+            margin-left: 1.2rem;
+            font-size: 0.7rem;
+            color: var(--font-normal);
+        }
+
+        .breadcrumb-middle {
+            margin-left: 1.2rem;
+            padding: 0.8rem 0;
+            font-size: 0.7rem;
+            color: var(--font-normal);
+        }
+
+
+        .breadcrumb-box {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        /* --- カードスタイル --- */
+        .card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            color: var(--font-normal);
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .profile-box {
+            padding: 3px;
+        }
+
+        .profile-name {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .profile-id {
+            font-size: 12px;
+            color: var(--font-normal);
+        }
+
+
+        .divider-green {
+            height: 2px;
+            background-color: var(--main-color);
+            width: 100%;
+            border: none;
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+
+        .profile-text {
+            padding-left: 1rem;
+            letter-spacing: 0.12rem;
+            font-size: 14px;
+            line-height: 1.8;
+            /* 行間を広めに */
+            color: var(--font-normal);
+            margin: 0;
+        }
+
+        /* --- 企画セクション --- */
+
+        .active-event {
+            margin-top: 10px;
+        }
+
+        .my-image-box {
+            margin-bottom: 20px;
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            background-image: url("../../img/back-img.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            position: relative;
+            /* ← 追加！ */
+        }
+
+        .card-event {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title-area {
+            display: block;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--font-normal);
+            white-space: nowrap;
+        }
+
+        .seciton-green {
+            height: 2px;
+            background-color: var(--main-color);
+            width: 70%;
+            border: none;
+            border-radius: 2px;
+        }
+
+        .title-line {
+            height: 2px;
+            background-color: var(--main-color);
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .event-content {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .event-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--font-normal);
+            display: inline-block;
+        }
+
+        .event-green {
+            height: 2px;
+            background-color: var(--main-color);
+            width: 100%;
+            border: none;
+            margin-top: -5px;
+            border-radius: 2px;
+        }
+
+        .event-countdown {
+            font-size: 13px;
+            color: var(--font-normal);
+        }
+
+        .count-number-box {
+            display: flex;
+            margin-left: 0.5rem;
+            align-items: baseline;
+        }
+
+        .count-number {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--main-color);
+            margin-left: 3px;
+        }
+
+        .count-unit {
+            font-size: 25px;
+            font-weight: bold;
+            color: var(--main-color);
+        }
+
+        .action-button {
+            display: block;
+            width: 100%;
+            background-color: var(--main-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            position: relative;
+        }
+
+        .btn-main-text {
+            font-size: 15px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .btn-sub-text {
+            font-size: 10px;
+            opacity: 0.9;
+            display: block;
+        }
+
+        .btn-plus {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .overlay-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--main-color);
+            /* 画像のようなピンク色 */
+            z-index: 9999;
+            /* 最前面に */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+
+            /* 初期状態は非表示 */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        /* メニューが開いている時のクラス */
+        .overlay-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 閉じるボタン (×) */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        /* メニューリスト */
+        .menu-list {
+            list-style: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .menu-item {
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        /* 白い短い横線 */
+        .menu-separator {
+            width: 40px;
+            height: 2px;
+            background-color: white;
+            margin: 20px auto;
+            /* 上下の余白 */
+        }
+
+        /* ▼▼▼ モーダル用CSS ▼▼▼ */
+        .settings-overlay {
+            position: absolute;
+            top: 200px;
+            left: 5rem;
+            width: 17rem;
+            height: 7.5rem;
+            border-radius: 12px;
+            background: #F3F2F2;
+            z-index: 9999;
+            display: none;
+            /* ここ重要：最初は非表示 */
+            justify-content: center;
+            align-items: center;
+            border: solid 1px #E2E2E2;
+        }
+
+        /* activeクラスがついたら表示する */
+        .settings-overlay.active {
+            display: flex;
+        }
+
+        /* 白い箱 */
+        .settings-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 93%;
+        }
+
+        /* 各メニューの行 */
+        .settings-row {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--font-normal);
+            font-size: 11px;
+            gap: 10px;
+        }
+
+        .settings-row:hover {
+            background: #f9f9f9;
+        }
+
+        /* アイコン・文字・矢印の配置 */
+        .settings-icon {
+            margin-right: 10px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .settings-text {
+            flex: 1;
+            width: 70%;
+            color: var(--font-normal);
+        }
+
+        .settings-arrow {
+            color: #ccc;
+        }
+
+        /* 真ん中の線 */
+        .settings-line {
+            height: 1px;
+            background: #eee;
+            margin: 0 20px;
+        }
+
+        .all-box {
+            padding: 0 15px;
+        }
+
+
+        /* マイページの投稿した書評 */
+        .book-card-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            margin-top: 10px;
+        }
+
+        .book-card-block {
+            display: block;
+        }
+
+        .book-card {
+            background-color: #FAFAFA;
+            width: 320px;
+            border-radius: 16px;
+            padding: 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            /* うっすらとした影 */
+            box-sizing: border-box;
+            border: solid 1px #E5E5E5;
+            color: var(--font-normal);
+            margin-bottom: 3rem;
+            /* 全体の文字色 */
+        }
+
+        /* ヘッダー部分（タイトルと票数） */
+        .card-header {
+            margin-bottom: 24px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--font-normal);
+            /* タイトルの濃いグレー */
+            margin: 0;
+            letter-spacing: 0.2rem;
+        }
+
+        .vote-count {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--font-normal);
+        }
+
+        .author-name-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-name {
+            padding-left: 3px;
+            font-size: 12px;
+            color: var(--font-normal);
+            margin: 0;
+        }
+
+        /* 本文（説明文） */
+        .card-body {
+            margin-bottom: 24px;
+        }
+
+        .description {
+            padding-left: 1rem;
+            letter-spacing: 0.15rem;
+            font-size: 14px;
+            line-height: 1.8;
+            /* 行間を広めに */
+            color: var(--font-normal);
+            margin: 0;
+        }
+
+        /* フッター部分（区切り線とリンク） */
+        .card-footer {
+            border-top: 1px solid #DDDDDD;
+            /* 薄い区切り線 */
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--main-color);
+            /* 緑色 */
+        }
+
+        .details-link {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--main-color);
+            /* 緑色 */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: opacity 0.2s;
+        }
+
+        .details-link:hover {
+            opacity: 0.7;
+        }
+
+        /* フッター */
+        footer {
+            background-color:  var(--back-color);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 2rem;
+            color: #777777;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            margin: 0;
+        }

@@ -314,6 +314,7 @@ body {
     justify-content: center;
     width: 100%;
 }
+
 .btn-review-box {
     display: flex;
     justify-content: center;
@@ -324,9 +325,11 @@ body {
 
 .btn-review {
     display: flex;
-    justify-content: center; /* テキストを水平方向の中央に配置 */
-    align-items: center;   /* テキストを垂直方向の中央に配置 */
-    width:  100%;
+    justify-content: center;
+    /* テキストを水平方向の中央に配置 */
+    align-items: center;
+    /* テキストを垂直方向の中央に配置 */
+    width: 100%;
     height: 50px;
     border-radius: 5px;
     text-align: center;
@@ -354,15 +357,15 @@ body {
 
 /* フッター */
 footer {
-    background-color: --var(back-color);
+    background-color: var(--back-color);
     padding: 20px 0;
     text-align: center;
     margin-top: 2rem;
+    color: #777777;
 }
 
 .copyright {
     text-align: center;
     font-size: 0.8rem;
-    color: --var(font-normal);
     margin: 0;
 }

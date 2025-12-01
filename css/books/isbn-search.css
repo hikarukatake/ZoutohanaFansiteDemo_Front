@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     background-color: var(--main-color);
@@ -126,7 +125,7 @@ body {
 }
 
 .info-box {
-    background-color:white;
+    background-color: white;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 25px;
@@ -264,8 +263,10 @@ body {
 /* === 検索ボタン === */
 .btn {
     display: flex;
-    justify-content: center; /* テキストを水平方向の中央に配置 */
-    align-items: center;   /* テキストを垂直方向の中央に配置 */
+    justify-content: center;
+    /* テキストを水平方向の中央に配置 */
+    align-items: center;
+    /* テキストを垂直方向の中央に配置 */
     width: 100%;
     height: 50px;
     border-radius: 5px;
@@ -389,7 +390,7 @@ body {
 #scanner-close-btn {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color:var(--main-color);
+    background-color: var(--main-color);
     color: var(--text-white-color);
     border: none;
     border-radius: 5px;
@@ -433,15 +434,15 @@ body {
 
 /* フッター */
 footer {
-    background-color: --var(back-color);
+    background-color: var(--back-color);
     padding: 20px 0;
     text-align: center;
     margin-top: 2rem;
+    color: #777777;
 }
 
 .copyright {
     text-align: center;
     font-size: 0.8rem;
-    color: --var(font-normal);
     margin: 0;
 }
