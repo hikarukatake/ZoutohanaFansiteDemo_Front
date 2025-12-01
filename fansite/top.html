@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ再現（メニュー付き）</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/fansite/top.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-placeholder"><img src="../img/象と花実物.png" style="width: 3rem;" alt=""></div>
+            <div class="btn-shadow">
+                <a href="review-form.html" class="btn btn-register btn-color">お問合わせ<span
+                        class="contact-text">></span></a>
+            </div>
+            <div class="menu-icon" id="menuOpen">
+                <div class="menu-icon-box">
+                    <span class="span-top"></span>
+                    <span class="span-middle"></span>
+                    <span class="span-bottom"></span>
+                </div>
+            </div>
+        </header>
+        <div class="slider-box">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide active"><img src="..//img/img.png" alt=""></div>
+                    <div class="slide"><img src="..//img/img.png" alt=""></div>
+                    <div class="slide"><img src="..//img/img.png" alt=""></div>
+                </div>
+
+                <div class="dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="overlay-menu" id="overlayMenu">
+            <div class="close-btn" id="menuClose">×</div>
+
+            <ul class="menu-list">
+                <li class="menu-item">企画情報</li>
+                <div class="menu-separator"></div>
+
+                <li class="menu-item">寄贈情報</li>
+                <div class="menu-separator"></div>
+
+                <li class="menu-item">その他情報</li>
+                <div class="menu-separator"></div>
+
+                <li class="menu-item">企画一覧</li>
+                <div class="menu-separator"></div>
+
+                <a href="../auth/login.html" class="menu-item">ログイン</a>
+            </ul>
+        </div>
+        <footer>@copylite</footer>
+    </div>
+
+    <script>
+        // ▼▼▼ 要素を取得 ▼▼▼
+        const menuOpen = document.getElementById('menuOpen');   // ハンバーガーメニューのアイコン
+        const menuClose = document.getElementById('menuClose'); // ハンバーガーメニューの閉じるボタン
+        const overlayMenu = document.getElementById('overlayMenu'); // ハンバーガーメニュー本体
+
+        const gearButton = document.querySelector('.settings-icon'); // 歯車アイコン
+        const settingsModal = document.getElementById('settingsModal'); // 設定モーダル本体
+
+        // ▼▼▼ ハンバーガーメニューの動作（既存のまま） ▼▼▼
+        menuOpen.addEventListener('click', () => {
+            overlayMenu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            overlayMenu.classList.remove('active');
+        });
+    </script>
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const slidesWrapper = document.querySelector('.slides');
+
+        function showSlide(index) {
+            currentIndex = index;
+            slidesWrapper.style.transform = `translateX(-${index * 100}%)`;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        // ドットを押した時
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(Number(dot.dataset.index));
+            });
+        });
+
+        // 自動スライド
+        setInterval(() => {
+            let next = (currentIndex + 1) % slides.length;
+            showSlide(next);
+        }, 4000);  // 4秒ごとに切り替え
+    </script>
+
+</body>
