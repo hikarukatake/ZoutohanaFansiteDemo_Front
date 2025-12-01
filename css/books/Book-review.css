@@ -315,14 +315,6 @@ body {
     width: 100%;
 }
 
-.btn-review-box {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 5rem;
-    width: 100%;
-}
-
 .btn-review {
     display: flex;
     justify-content: center;
