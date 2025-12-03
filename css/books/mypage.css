@@ -162,6 +162,31 @@
             margin: 0;
         }
 
+        /* 下書きあり */
+        .draft {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: #D2EEE1;
+            color: var(--sub-color);
+            padding: 7px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .draft-img {
+            width: 1.4rem;
+            height: 1.6rem;
+            margin-left: 2rem;
+            font-weight: 600;
+        }
+
+        .draft-text {
+            font-size: 17px;
+            font-weight: 600;
+            margin-left: 1.5rem;
+        }
+
         /* --- 企画セクション --- */
 
         .active-event {
@@ -171,7 +196,7 @@
         .my-image-box {
             margin-bottom: 20px;
             width: 100%;
-            height: 200px;
+            height: 250px;
             border-radius: 10px;
             background-image: url("../../img/back-img.png");
             background-size: cover;
@@ -558,7 +583,7 @@
 
         /* フッター */
         footer {
-            background-color:  var(--back-color);
+            background-color: var(--back-color);
             padding: 20px 0;
             text-align: center;
             margin-top: 2rem;
