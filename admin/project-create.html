@@ -6,7 +6,7 @@
     <title>企画作成 | 管理者</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/admin/admin.css">
+    <link rel="stylesheet" href="../css/admin/project-create.css">
 </head>
 <body id="admin-projectCreate">
     <header>管理者用ヘッダー</header>
@@ -17,49 +17,49 @@
           <table>
             <tr>
               <th>企画名 : </th>
-              <td><input type="text" name="name"></td>
+              <td><input type="text" name="name" value="企画作成テスト"></td>
             </tr>
             <tr>
               <th>企画URL<span class="material-symbols-outlined gray-text" title="企画ページのURLの末尾につく文字列です。">help</span> : </th>
               <td>
-                <input type="text" name="urlKey" id="urlKey-input">
+                <input type="text" name="urlKey" id="urlKey-input" value="project-create-test">
                 <span class="gray-text">https://zoutohana-fansite.com/project/</span><span id="urlKey-preview" class="gray-text">_____</span>
               </td>
             </tr>
             <tr>
               <th>説明 : </th>
-              <td><textarea rows="10" name="introduction"></textarea></td>
+              <td><textarea rows="10" name="introduction">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</textarea></td>
             </tr>
             <tr>
               <th>企画期間 : </th>
               <td>
-                <input type="datetime-local" name="project-start-at">
+                <input type="datetime-local" name="projectStartAt" value="2025-12-01T12:00">
                 <span class="wave-dash">～</span>
-                <input type="datetime-local" name="project-end-at">
+                <input type="datetime-local" name="projectEndAt" value="2025-12-31T12:00">
               </td>
             </tr>
             <tr>
               <th>書評投稿期間 : </th>
               <td>
-                <input type="datetime-local" name="submission-start-at">
+                <input type="datetime-local" name="submissionStartAt" value="2025-12-01T12:00">
                 <span class="wave-dash">～</span>
-                <input type="datetime-local" name="submission-end-at">
+                <input type="datetime-local" name="submissionEndAt" value="2025-12-10T12:00">
               </td>
             </tr>
             <tr>
               <th>書評投票期間 : </th>
               <td>
-                <input type="datetime-local" name="voting-start-at">
+                <input type="datetime-local" name="votingStartAt" value="2025-12-11T12:00">
                 <span class="wave-dash">～</span>
-                <input type="datetime-local" name="voting-end-at">
+                <input type="datetime-local" name="votingEndAt" value="2025-12-20T12:00">
               </td>
             </tr>
             <tr>
               <th>書籍タイトル : </th>
               <td>
                 <div class="radio-wrap">
-                  <label><input type="radio" name="book-title" value="HIDE" checked="checked">表示しない</label>
-                  <label><input type="radio" name="book-title" value="SHOW">表示する</label>
+                  <label><input type="radio" name="bookTitle" value="FALSE" checked="checked">表示しない</label>
+                  <label><input type="radio" name="bookTitle" value="TRUE">表示する</label>
                 </div>
               </td>
             </tr>
@@ -67,8 +67,8 @@
               <th>書評タイトル : </th>
               <td>
                 <div class="radio-wrap">
-                  <label><input type="radio" name="review-title" value="HIDE" checked="checked">表示しない</label>
-                  <label><input type="radio" name="review-title" value="SHOW">表示する</label>
+                  <label><input type="radio" name="reviewTitle" value="FALSE" checked="checked">表示しない</label>
+                  <label><input type="radio" name="reviewTitle" value="TRUE">表示する</label>
                 </div>
               </td>
             </tr>
@@ -76,8 +76,8 @@
               <th>投稿者情報 : </th>
               <td>
                 <div class="radio-wrap">
-                  <label><input type="radio" name="user-info" value="HIDE" checked="checked">表示しない</label>
-                  <label><input type="radio" name="user-info" value="SHOW">表示する</label>
+                  <label><input type="radio" name="user-info" value="FALSE" checked="checked">表示しない</label>
+                  <label><input type="radio" name="user-info" value="TRUE">表示する</label>
                 </div>
               </td>
             </tr>
@@ -86,15 +86,15 @@
               <td>
                 <div class="themeColor-wrap">
                   <label>
-                    <input type="radio" name="theme-color" value="RED">
-                    <span class="color-dot" style="background:var(--theme-red);">
+                    <input type="radio" name="theme-color" value="GREEN" checked="checked">
+                    <span class="color-dot" style="background:var(--theme-green);">
                       <span class="material-symbols-outlined">check</span>
                     </span>
                   </label>
 
                   <label>
-                    <input type="radio" name="theme-color" value="ORANGE">
-                    <span class="color-dot" style="background:var(--theme-orange);">
+                    <input type="radio" name="theme-color" value="PINK">
+                    <span class="color-dot" style="background:var(--theme-pink);">
                       <span class="material-symbols-outlined">check</span>
                     </span>
                   </label>
@@ -107,34 +107,6 @@
                   </label>
 
                   <label>
-                    <input type="radio" name="theme-color" value="LIME">
-                    <span class="color-dot" style="background:var(--theme-lime);">
-                      <span class="material-symbols-outlined">check</span>
-                    </span>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="theme-color" value="GREEN">
-                    <span class="color-dot" style="background:var(--theme-green);">
-                      <span class="material-symbols-outlined">check</span>
-                    </span>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="theme-color" value="TURQUOISE">
-                    <span class="color-dot" style="background:var(--theme-turquoise);">
-                      <span class="material-symbols-outlined">check</span>
-                    </span>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="theme-color" value="LIGHTBLUE">
-                    <span class="color-dot" style="background:var(--theme-lightblue);">
-                      <span class="material-symbols-outlined">check</span>
-                    </span>
-                  </label>
-
-                  <label>
                     <input type="radio" name="theme-color" value="BLUE">
                     <span class="color-dot" style="background:var(--theme-blue);">
                       <span class="material-symbols-outlined">check</span>
@@ -142,15 +114,8 @@
                   </label>
 
                   <label>
-                    <input type="radio" name="theme-color" value="DARKBLUE">
-                    <span class="color-dot" style="background:var(--theme-darkblue);">
-                      <span class="material-symbols-outlined">check</span>
-                    </span>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="theme-color" value="PURPLE">
-                    <span class="color-dot" style="background:var(--theme-purple);">
+                    <input type="radio" name="theme-color" value="BLACK">
+                    <span class="color-dot" style="background:var(--theme-black);">
                       <span class="material-symbols-outlined">check</span>
                     </span>
                   </label>
@@ -161,13 +126,6 @@
                       <span class="material-symbols-outlined">check</span>
                     </span>
                   </label>
-
-                  <label>
-                    <input type="radio" name="theme-color" value="ELEPHANT" checked="checked">
-                    <span class="color-dot" style="background:var(--theme-elephant);">
-                      <span class="material-symbols-outlined">check</span>
-                    </span>
-                  </label>
                 </div>
               </td>
             </tr>
@@ -175,8 +133,8 @@
               <th>ロゴ画像 : </th>
               <td id="projectInput-td">
                 <div>
-                  <input type="file" accept="image/*" name="logo-img" id="logoImg-input">
-                  <img id="logoImg-preview">
+                  <input type="file" accept="image/*" name="mainImg" id="mainImg-input">
+                  <img id="mainImg-preview">
                 </div>
               </td>
             </tr>
@@ -198,6 +156,6 @@
       </div>
     </main>
     <footer></footer>
-    <script src="../js/admin/admin.js"></script>
+    <script src="../js/admin/project-create.js"></script>
 </body>
 </html>
