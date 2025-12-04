@@ -1,0 +1,243 @@
+body {
+    margin: 0;
+    background-color: var(--back-color);
+    color: var(--font-normal);
+}
+
+/*  ヘッダー*/
+.signup-header {
+    color: var(--text-white-color);
+    ;
+    text-align: center;
+}
+
+.signup-header h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 3rem;
+}
+
+
+/* フォームコンテナ */
+.form-container {
+    background-color: var(--back-color);
+    border-radius: 30px 30px 0px 0px;
+    padding: 4rem 15px;
+    margin-top: 2rem;
+}
+
+/* 背景白 */
+
+.info-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 25px;
+    border: 1.5px #F4F4F4 solid;
+}
+
+.detail-item {
+    width: 100%;
+}
+
+/* 登録完了のヘッダー */
+.detail-item label {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--font-normal);
+}
+
+/* check img */
+.check-img-div {
+    display: flex;
+    justify-content: center;
+}
+
+.check-img {
+    width: 100px;
+    height: auto;
+}
+
+/* 登録完了しました全体 */
+.complete-text {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--font-normal);
+    font-weight: bold;
+}
+
+/* テキスト */
+.intro-text {
+    /* ▼ positionやwidthを削除し、中央揃えに ▼ */
+    font-size: 1rem;
+    /* 画像に合わせて調整 */
+    color: var(--font-normal);
+    text-align: center;
+    margin: 0;
+    margin-bottom: 3px;
+    font-weight: 400;
+}
+
+/* 今後の書評の流れの下のアンダーライン */
+.container {
+    text-align: center;
+}
+
+h3 {
+    color: --var(font-normal);
+    margin-bottom: 10px;
+}
+
+/* 下線 */
+.underline {
+    width: 35%;
+    height: 3px;
+    background-color: var(--main-color);
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+
+
+/* 本文 */
+.step-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: --var(font-normal);
+    line-height: 1.6;
+}
+
+/* 強調文字（文庫Xの部分） */
+.step-content strong {
+    color: --var(font-normal);
+    font-weight: bold;
+}
+
+.key-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.key-box a {
+    align-items: center;
+}
+
+.key-img {
+    padding-top: 1.5vh;
+    width: 2rem;
+    height: 2rem;
+}
+
+/* セキュリティコード */
+.security-img{
+    width:1.5rem;
+    height: 4vh;
+}
+.security-code{
+    display: flex;
+    background-color: #F8FAFC;
+    border-radius: 10px;
+    border: 1px #E8E8E8 solid;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10vh;
+}
+.security-code-text{
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.space{
+    padding: 0px 30px;
+}
+.copy-box{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-left: 1rem;
+}
+.copy-box p{
+    font-size: 1.2rem;
+}
+
+.copy-box p{
+    color: #34C759;
+}
+.text-gap{
+    margin-bottom: 10vh;
+}
+/* securityコードの下の線 */
+.border-security{
+    border-bottom: 1px solid var(--font-normal);
+}
+
+/* !マーク */
+.squea-box{
+    display: flex;
+}
+.maku-security{
+    width: 2.5rem;
+    padding: 1.2rem;
+}
+.maku-box{
+    display: flex;
+    flex-direction: column;
+}
+.maku-text p{
+    margin:  0;
+    padding: 1.2rem;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* ★ 2行で切る */
+    overflow: hidden;
+}
+
+.btn-next-step {
+    background-color: var(--main-color);
+    color: var(--text-white-color);
+    font-size: 1.1rem;
+    margin-top: 6rem;
+}
+
+/* === 検索ボタン === */
+.btn {
+    display: flex;
+    justify-content: center;
+    /* テキストを水平方向の中央に配置 */
+    align-items: center;
+    /* テキストを垂直方向の中央に配置 */
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1.5px solid var(--main-color);
+}
+
+/* フッター */
+footer {
+    background-color: var(--back-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 2rem;
+    color: #777777;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0;
+}

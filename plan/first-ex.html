@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>top</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/plan/first-ex.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-placeholder"><img src="../img/象と花実物.png" style="width: 3rem;" alt=""></div>
+            <div class="menu-icon" id="menuOpen">
+                <div class="menu-icon-box">
+                    <span class="span-top"></span>
+                    <span class="span-middle"></span>
+                    <span class="span-bottom"></span>
+                </div>
+            </div>
+        </header>
+        <div class="slider-box">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide active"><img src="..//img/book-img.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+        <section class="about-section">
+            <div class="about-wrapper">
+                <h2 class="about-title">文庫X 2.0とは？</h2>
+                <p class="about-subtitle">ABOUT US</p>
+                <div class="about-line"></div>
+
+                <div class="about-text-box">
+                    <p class="about-text">文庫X 2.0とは</p>
+                    <p class="about-text">子供たちがもっと本と出会える環境を</p>
+                    <p class="about-text">作ることを目的とした</p>
+                    <p class="about-text">象と花プロジェクトのファンサイトです。</p>
+                </div>
+                <div class="about-text-box">
+                    <p class="about-text">あなたに知識や感動を与えてくれた本を</p>
+                    <p class="about-text">循環させ、病気とたたかう子供たちの</p>
+                    <p class="about-text">ための本に替えて贈ります。</p>
+                    <p class="about-text">身近な人に贈り物を手渡すような気持ちで</p>
+                    <p class="about-text">子供たちと読書のよろこびを分かち合える</p>
+                    <p class="about-text">取り組みです。</p>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section-info">
+            <div class="section-title-area">
+                <div class="section-square"></div>
+                <h2 class="section-title">参加の流れ</h2>
+            </div>
+            <div class="step-book">
+                <div class="circle">
+                    <p class="circle-step">STEP</p>
+                    <p class="circle-1">01</p>
+                </div>
+                <div class="book-section-img">
+                    <img src="../img/book-giri.png" class="book-section" alt="">
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+
+    <!-- フッター -->
+    <footer class="footer-all">
+        <div class="footer-menu">
+            <div class="footer-top">
+                <img src="../img/象と花-白.png" style="width: 4.5rem;" alt="">
+                <p class="footer-white-text">A BOOK PROJECT</p>
+            </div>
+            <a href="#" class="footer-menu-item-top">
+                <p>お知らせ</p>
+                <p>></p>
+            </a>
+            <a href="#" class="footer-menu-item">
+                <p>企画</p>
+                <p>></p>
+            </a>
+            <a href="#" class="footer-menu-item">
+                <p>象と花プロジェクト</p>
+                <p>></p>
+            </a>
+            <a href="#" class="footer-menu-item">
+                <p>お問い合わせ</p>
+                <p>></p>
+            </a>
+            <a href="#" class="footer-menu-item">
+                <p>サイトのご利用について</p>
+                <p>></p>
+            </a>
+        </div>
+
+
+        <!-- SNSブロック -->
+        <div class="footer-sns">
+            <div class="sns-box">
+                <div class="footer-sns-title">SNS</div>
+                <div class="sns-box-icons">
+                    <div class="sns-icons">
+                        <img src="../img/instagram.png" class="sns-icon" alt="">
+                        <img src="../img/facebook.png" class="sns-icon-facebook" alt="">
+                        <img src="../img/x.png" class="sns-icon-x" alt="">
+                    </div>
+
+                    <div class="sns-labels">
+                        <span>Instagram</span>
+                        <span>Facebook</span>
+                        <span>X（旧Twitter）</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-line"></div>
+
+            <div class="footer-copy">©Copylight</div>
+        </div>
+    </footer>
+
+
+    <!-- ヘッダーモーダル -->
+    <div class="overlay-menu" id="overlayMenu">
+        <div class="close-btn" id="menuClose">×</div>
+
+        <ul class="menu-list">
+            <li class="menu-item">企画情報</li>
+            <div class="menu-separator"></div>
+
+            <li class="menu-item">寄贈情報</li>
+            <div class="menu-separator"></div>
+
+            <li class="menu-item">その他情報</li>
+            <div class="menu-separator"></div>
+
+            <li class="menu-item">企画一覧</li>
+            <div class="menu-separator"></div>
+
+            <a href="../auth/login.html" class="menu-item">ログイン</a>
+        </ul>
+    </div>
+    </div>
+
+    <script>
+        // ▼▼▼ 要素を取得 ▼▼▼
+        const menuOpen = document.getElementById('menuOpen');   // ハンバーガーメニューのアイコン
+        const menuClose = document.getElementById('menuClose'); // ハンバーガーメニューの閉じるボタン
+        const overlayMenu = document.getElementById('overlayMenu'); // ハンバーガーメニュー本体
+
+        const gearButton = document.querySelector('.settings-icon'); // 歯車アイコン
+        const settingsModal = document.getElementById('settingsModal'); // 設定モーダル本体
+
+        // ▼▼▼ ハンバーガーメニューの動作（既存のまま） ▼▼▼
+        menuOpen.addEventListener('click', () => {
+            overlayMenu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            overlayMenu.classList.remove('active');
+        });
+    </script>
+    <script>
+        // 企画一覧のタブメニュー
+        const tabs = document.querySelectorAll('.tab');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                // 全てのタブからactiveクラスとmarkerを削除
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                    const marker = t.querySelector('.marker');
+                    if (marker) marker.remove();
+                });
+
+                // クリックされたタブにactiveクラスを追加
+                this.classList.add('active');
+
+                // マーカーを追加
+                const marker = document.createElement('span');
+                marker.classList.add('marker');
+                this.appendChild(marker);
+            });
+        });
+    </script>
+
+</body>
