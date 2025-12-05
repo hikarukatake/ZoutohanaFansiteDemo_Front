@@ -470,7 +470,7 @@
 
         /* マイページの投稿した書評 */
         .book-card-box {
-            display: flex;
+            /* display: flex; */
             justify-content: center;
             margin-bottom: 40px;
             margin-top: 10px;
@@ -579,6 +579,44 @@
 
         .details-link:hover {
             opacity: 0.7;
+        }
+
+        /* ペジネーション */
+        .pagination {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page-btn,
+        .page-number {
+            height: 35px;
+            width: 35px;
+            border: 1px solid var(--font-normal);
+            border-radius: 3px;
+            font-size: 1rem;
+            color: var(--font-normal);
+            background: white;
+            cursor: pointer;
+        }
+
+        .page-btn:disabled {
+            background: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        .page-number.active {
+            background: var(--main-color);
+            border-color: var(--main-color);
+            color: #fff;
+        }
+
+        .page-dots {
+            height: 35px;
+            width: 35px;
+            text-align: center;
+            color: var(--font-normal);
         }
 
         /* フッター */
