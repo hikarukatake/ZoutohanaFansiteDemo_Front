@@ -24,8 +24,8 @@ body {
 .form-container {
     background-color: var(--back-color);
     border-radius: 30px 30px 0px 0px;
-    padding: 4rem 15px;
-    margin-top: 2rem;
+    padding: 2rem 15px;
+    margin-top: 1rem;
 }
 
 /* 背景白 */
@@ -34,7 +34,6 @@ body {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
-    margin-top: 1.5rem;
     margin-bottom: 25px;
     border: 1.5px #F4F4F4 solid;
 }
@@ -65,7 +64,6 @@ body {
 
 /* 登録完了しました全体 */
 .complete-text {
-    margin-bottom: 30px;
     text-align: center;
     font-size: 1rem;
     color: var(--font-normal);
@@ -138,7 +136,7 @@ h3 {
 
 /* セキュリティコード */
 .security-img{
-    width:1.5rem;
+    width:20px;
     height: 4vh;
 }
 .security-code{
@@ -172,7 +170,7 @@ h3 {
     color: #34C759;
 }
 .text-gap{
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
 }
 /* securityコードの下の線 */
 .border-security{
@@ -185,7 +183,7 @@ h3 {
 }
 .maku-security{
     width: 2.5rem;
-    padding: 1.2rem;
+    padding: 20px;
 }
 .maku-box{
     display: flex;
@@ -193,12 +191,9 @@ h3 {
 }
 .maku-text p{
     margin:  0;
-    padding: 1.2rem;
+    padding: 20px;
     font-size: 0.8rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /* ★ 2行で切る */
-    overflow: hidden;
+
 }
 
 .btn-next-step {
