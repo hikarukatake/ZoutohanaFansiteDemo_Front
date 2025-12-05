@@ -17,7 +17,7 @@ function trimText(original, LIMIT = 100) {  // 200文字だとちょっと表示
     return original.length > LIMIT ? original.substring(0, LIMIT) + "......" : original;
 };
 
-async function loadPage(page) {
+async function loadPage(page, paginationAnchor = false) {
   try {
       const response = await fetch(`${apiUrl}?page=${page}`, {
       method: 'GET',
@@ -38,8 +38,10 @@ async function loadPage(page) {
       renderPagination(currentPage, totalPage);
       displayMypage(data);
 
-      const anchor = document.getElementById("MypageReviewTop");
-      anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (paginationAnchor) {
+        const anchor = document.getElementById("MypageReviewTop");
+        anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
 
     } else {
       // 失敗レスポンス (401 Unauthorized など)
@@ -133,7 +135,7 @@ function renderPagination(current, total) {
   }
 
   prev.onclick = function() {
-      loadPage(current - 1);
+      loadPage(current - 1, true);
   };
   container.appendChild(prev);
 
@@ -155,7 +157,7 @@ function renderPagination(current, total) {
         btn.classList.add("active");
       }
       btn.onclick = function() {
-        loadPage(p);
+        loadPage(p, true);
       };
       container.appendChild(btn);
     }
@@ -169,7 +171,7 @@ function renderPagination(current, total) {
     next.disabled = true;
   }
   next.onclick = function() {
-    loadPage(current + 1);
+    loadPage(current + 1, true);
   };
   container.appendChild(next);
 }
@@ -213,20 +215,6 @@ function getPageNumbers(current, total) {
   return pages;
 }
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   loadPage(currentPage);
-
-  document.getElementById('prevBtn')?.addEventListener('click', () => {
-    if (currentPage > 1) {
-      loadPage(currentPage - 1);
-    }
-  });
-
-  document.getElementById('nextBtn')?.addEventListener('click', () => {
-    if (currentPage < totalPage) {
-      loadPage(currentPage + 1);
-    }
-  });
 });
