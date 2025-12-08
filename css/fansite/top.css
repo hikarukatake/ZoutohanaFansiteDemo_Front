@@ -357,6 +357,7 @@
             margin-left: 20px;
         }
 
+        /* ニュース欄 */
         .news-list {
             margin-top: 20px;
             width: 85%;
@@ -371,7 +372,6 @@
             justify-content: space-between;
             align-items: center;
             text-decoration: none;
-            /* リンクの下線を消す */
             padding: 20px 0;
             border-bottom: 1px solid #e0e0e0;
             color: inherit;
@@ -396,7 +396,6 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            /* 日付とタグの間隔 */
             font-size: 14px;
         }
 
@@ -407,12 +406,12 @@
         }
 
         .news-date {
-            color: #666;
+            color: var(--font-normal);
             /* 日付の色 */
         }
 
         .news-tag {
-            color: #4A6A5A;
+            color: var(--sub-color);
             /* 緑色の文字 */
             font-weight: normal;
         }

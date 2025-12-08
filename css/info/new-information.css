@@ -1,0 +1,528 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--back-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--back-color);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px 5px 15px;
+            border-bottom: 1px solid #9F9F9F;
+        }
+
+        .logo-placeholder {
+            font-weight: bold;
+            color: var(--font-normal);
+            font-size: 14px;
+        }
+
+        /* ハンバーガーボタン */
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--main-color);
+            border-radius: 50%;
+            cursor: pointer;
+            /* 中の線を中央に寄せる設定 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ハンバーガーボタン */
+        /* 上の部分 */
+        .span-top {
+            display: block;
+            width: 25px;
+            height: 1.5px;
+            background-color: #fff;
+            margin-bottom: 4px;
+        }
+
+        /*  中間 */
+        .span-middle {
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background-color: #fff;
+        }
+
+        /* 下の部分 */
+        .span-bottom {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background-color: #fff;
+            margin-top: 4px;
+        }
+
+        .menu-icon-box {
+            display: block;
+            align-items: center;
+            margin: 0 auto;
+            width: 50%;
+            height: 10px;
+        }
+
+        .overlay-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--main-color);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        /* メニューが開いている時のクラス */
+        .overlay-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 閉じるボタン (×) */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        /* メニューリスト */
+        .menu-list {
+            list-style: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .menu-item {
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        /* 白い短い横線 */
+        .menu-separator {
+            width: 40px;
+            height: 2px;
+            background-color: white;
+            margin: 20px auto;
+            /* ハンバーガーボタン最後 */
+        }
+
+        /* --- パンくずリスト --- */
+        .breadcrumb {
+            padding: 0.8rem 0;
+            margin-left: 1.2rem;
+            font-size: 0.7rem;
+            color: var(--font-normal);
+        }
+
+        .breadcrumb-middle {
+            margin-left: 1.2rem;
+            padding: 0.8rem 0;
+            font-size: 0.7rem;
+            color: var(--font-normal);
+        }
+
+
+        .breadcrumb-box {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        /* News 新着情報 */
+        .list-box {
+            padding: 1rem 3rem;
+            color: var(--font-normal);
+        }
+
+        .list-title {
+            font-size: 1.5rem;
+        }
+
+        .list-border {
+            border: 1.5px solid var(--main-color);
+            width: 50%;
+        }
+
+        .list-box p {
+            padding: 5px 0;
+        }
+
+        /* 情報一覧 */
+        .news-block {
+            background-color: white;
+            padding: 10px;
+
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        /* 検索 */
+        .search_container {
+            box-sizing: border-box;
+            position: relative;
+            width: 90%;
+            margin: 0 auto;
+            color: var(--font-normal);
+        }
+
+        /* 虫眼鏡アイコン（SVG）のスタイル */
+        .search_icon {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            stroke: var(--sub-color);
+            pointer-events: none;
+        }
+
+        /* 入力フィールドのスタイル */
+        .search_container input[type="text"] {
+            width: 100%;
+            border: 1px solid var(--sub-color);
+            padding: 15px 15px 15px 45px;
+            border-radius: 50px;
+            outline: none;
+            box-sizing: border-box;
+            color: inherit;
+            font-size: 16px;
+            background: transparent;
+        }
+
+        /* プレースホルダーの色設定 */
+        .search_container input::placeholder {
+            color: var(--sub-color);
+            opacity: 0.7;
+        }
+
+
+
+        /* タブ */
+        .tab-box {
+            margin: 50px 0;
+        }
+
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 各タブアイテム */
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            color: #ACACAC;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* ドット（丸）の作成 */
+        .tab-item::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 50%;
+            margin-top: 5px;
+        }
+
+        .tab-item.active {
+            color: var(--font-normal);
+        }
+
+        .tab-item.active::after {
+            background-color: var(--main-color);
+        }
+
+        /* ニュース */
+        .news-list {
+            margin-top: 20px;
+            width: 85%;
+            /* 必要に応じて調整してください */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .news-item+.news-item {
+            border-top: none;
+        }
+
+        .news-item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            /* リンクの下線を消す */
+            padding: 20px 0;
+            border-top: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
+            border-collapse: collapse;
+            color: inherit;
+            transition: background-color 0.3s;
+        }
+
+
+        /* 記事の中身（左側） */
+        .news-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        /* 日付とタグの行 */
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            /* 日付とタグの間隔 */
+            font-size: 14px;
+        }
+
+        .news-box {
+            width: 100%;
+            display: block;
+            justify-content: space-between;
+            background-color: white;
+            padding: 50px 0 ;
+        }
+
+        .news-date {
+            color: #666;
+            /* 日付の色 */
+        }
+
+        .news-tag {
+            color: #4A6A5A;
+            /* 緑色の文字 */
+            font-weight: normal;
+        }
+
+        /* タイトルテキスト */
+        .news-title {
+            display: flex;
+            align-items: end;
+            margin: 0;
+            font-size: 16px;
+            color: var(--font-normal);
+            font-weight: normal;
+        }
+
+
+        /* 右側の矢印 */
+        .news-arrow {
+            font-size: var(--back-color);
+            color: #999;
+            font-size: 18px;
+            margin-left: 10px;
+            font-family: sans-serif;
+        }
+
+
+
+        /* フッター */
+        /* ===== フッター全体 ===== */
+        .footer-all {
+            width: 100%;
+            background: #fff;
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .footer-top {
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .footer-white-text {
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        /* ===== 緑ブロック ===== */
+        .footer-menu {
+            background: #3b8f6f;
+            padding: 0;
+        }
+
+        .footer-menu-item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 30px;
+            border-top: 1px solid var(--back-color);
+            border-bottom: 1px solid var(--back-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+
+        .footer-menu-item-top p {
+            padding: 10px;
+        }
+
+        .footer-menu-item p {
+            padding: 10px;
+        }
+
+        .footer-menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 30px;
+            border-bottom: 1px solid var(--back-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+
+        .footer-menu-item i {
+            font-size: 0.8rem;
+        }
+
+        /* ===== SNS部分 ===== */
+        .footer-sns {
+            padding: 30px 20px 40px;
+            text-align: center;
+        }
+
+        .sns-box {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .sns-box-icons {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+
+        .sns-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .sns-labels {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.7rem;
+
+        }
+
+        .sns-icon {
+            width: 2rem;
+
+        }
+
+        .sns-icon-facebook {
+            width: 1.7rem;
+        }
+
+        .sns-icon-x {
+            width: 1.4rem;
+        }
+
+        .footer-sns-title {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--font-normal);
+            letter-spacing: 0.1em;
+            margin-bottom: 18px;
+            height: 30px;
+        }
+
+        .sns-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .sns-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #555;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .sns-item i {
+            font-size: 1.3rem;
+        }
+
+        .footer-line {
+            width: 80%;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px auto;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            margin: 0;
+        }
