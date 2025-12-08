@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企画作成 | 管理者</title>
+    <title>企画編集・情報 | 管理者</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin/project-create.css">
@@ -11,54 +11,93 @@
 <body id="admin-projectCreate">
     <header>管理者用ヘッダー</header>
     <main>
-      <h1>企画作成</h1>
+      <h1>企画編集・情報</h1>
       <div class="admin-page-content">
         <form id="projectForm">
           <table>
             <tr>
+              <th>公開/非公開 : </th>
+              <td>
+                <select name="published">
+                  <option value="FALSE">非公開</option>
+                  <option value="TRUE">公開</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>ステータス : </th>
+              <td>
+                <select name="status">
+                  <option value="BEFORE_SUBMISSION">書評投稿期間前</option>
+                  <option value="DURING_SUBMISSION">書評作成・投稿期間中</option>
+                  <option value="FIRST_PHASE">一次審査中</option>
+                  <option value="SECOND_PHASE_VOTING">二次審査(投票)中</option>
+                  <option value="SECOND_PHASE_VERIFY">二次審査(確認)中</option>
+                  <option value="SECOND_PHASE_RESULT">二次審査結果発表</option>
+                  <option value="AWARD_ANNOUNCEMENT">大賞発表</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <!-- 後で実装 -->
+              <th>QRコード : </th>
+              <td>
+                <button>表示する</button>
+                <button>ダウンロードする</button>
+              </td>
+            </tr>
+            <tr>
+              <!-- 後で実装 -->
+              <th>削除</th>
+              <td><button class="danger-button">このプロジェクトを削除する</button></td>
+            </tr>
+          </table>
+
+          <table>
+            <tr>
               <th>企画名 : </th>
-              <td><input type="text" name="name" value="企画作成テスト"></td>
+              <td><input type="text" name="name"></td>
             </tr>
             <tr>
               <th>企画URL<span class="material-symbols-outlined gray-text hoverToHelp" title="企画ページのURLの末尾につく文字列です。">help</span> : </th>
               <td>
-                <input type="text" name="urlKey" id="urlKey-input" value="project-create-test">
+                <input type="text" name="urlKey" id="urlKey-input">
                 <span class="gray-text">https://zoutohana-fansite.com/project/</span><span id="urlKey-preview" class="gray-text">_____</span>
               </td>
             </tr>
             <tr>
               <th>説明 : </th>
-              <td><textarea rows="10" name="introduction">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</textarea></td>
+              <td><textarea rows="10" name="introduction"></textarea></td>
             </tr>
             <tr>
               <th>企画期間 : </th>
               <td>
-                <input type="datetime-local" name="projectStartAt" value="2025-12-01T12:00">
+                <input type="datetime-local" name="projectStartAt">
                 <span class="wave-dash">～</span>
-                <input type="datetime-local" name="projectEndAt" value="2025-12-31T12:00">
+                <input type="datetime-local" name="projectEndAt">
               </td>
             </tr>
             <tr>
               <th>書評作成・投稿期間 : </th>
               <td>
-                <input type="datetime-local" name="submissionStartAt" value="2025-12-01T12:00">
+                <input type="datetime-local" name="submissionStartAt">
                 <span class="wave-dash">～</span>
-                <input type="datetime-local" name="submissionEndAt" value="2025-12-10T12:00">
+                <input type="datetime-local" name="submissionEndAt">
               </td>
             </tr>
             <tr>
               <th>書評投票(二次審査)期間 : </th>
               <td>
-                <input type="datetime-local" name="votingStartAt" value="2025-12-11T12:00">
+                <input type="datetime-local" name="votingStartAt">
                 <span class="wave-dash">～</span>
-                <input type="datetime-local" name="votingEndAt" value="2025-12-20T12:00">
+                <input type="datetime-local" name="votingEndAt">
               </td>
             </tr>
             <tr>
               <th>書籍タイトル : </th>
               <td>
                 <div class="radio-wrap">
-                  <label><input type="radio" name="enableVisibleBookTitle" value="FALSE" checked="checked">表示しない</label>
+                  <label><input type="radio" name="enableVisibleBookTitle" value="FALSE">表示しない</label>
                   <label><input type="radio" name="enableVisibleBookTitle" value="TRUE">表示する</label>
                 </div>
               </td>
@@ -68,7 +107,7 @@
               <td>
                 <div class="radio-wrap">
                   <label><input type="radio" name="enableVisibleReviewTitle" value="FALSE">表示しない</label>
-                  <label><input type="radio" name="enableVisibleReviewTitle" value="TRUE" checked="checked">表示する</label>
+                  <label><input type="radio" name="enableVisibleReviewTitle" value="TRUE">表示する</label>
                 </div>
               </td>
             </tr>
@@ -77,7 +116,7 @@
               <td>
                 <div class="radio-wrap">
                   <label><input type="radio" name="enableVisibleUserInfo" value="FALSE">表示しない</label>
-                  <label><input type="radio" name="enableVisibleUserInfo" value="TRUE" checked="checked">表示する</label>
+                  <label><input type="radio" name="enableVisibleUserInfo" value="TRUE">表示する</label>
                 </div>
               </td>
             </tr>
@@ -107,7 +146,7 @@
                   </label>
 
                   <label>
-                    <input type="radio" name="themeColor" value="BLUE" checked="checked">
+                    <input type="radio" name="themeColor" value="BLUE">
                     <span class="color-dot" style="background:var(--theme-blue);" title="BLUE : あお">
                       <span class="material-symbols-outlined">check</span>
                     </span>
@@ -156,6 +195,6 @@
       </div>
     </main>
     <footer></footer>
-    <script src="../js/admin/project-create.js"></script>
+    <script src="../js/admin/project-detail.js"></script>
 </body>
 </html>
