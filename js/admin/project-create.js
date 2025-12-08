@@ -1,17 +1,21 @@
-const apiUrl = 'http://localhost:8080/api/projects/new';
+const newApiUrl = 'http://localhost:8080/api/projects/new';
+const detailPageUrl = 'http://localhost:8080/admin/project-detail.html';
 
 // ==========企画URLのプレビュー==========
 const urlKeyInput = document.getElementById('urlKey-input');
 const urlKeyPreview = document.getElementById('urlKey-preview');
 
-if(urlKeyInput) {
-  urlKeyInput.addEventListener('input',()=>{
-    if(urlKeyInput.value === ''){
-      urlKeyPreview.textContent = '_____'
-    } else {
-      urlKeyPreview.textContent = urlKeyInput.value
-    }
-  })
+function updateUrlKeyPreview() {
+  if(urlKeyInput.value === ''){
+    urlKeyPreview.textContent = '_____'
+  } else {
+    urlKeyPreview.textContent = urlKeyInput.value
+  }
+}
+
+if (urlKeyInput) {
+  urlKeyInput.addEventListener('input', updateUrlKeyPreview);
+  updateUrlKeyPreview();
 }
 
 // ==========ロゴ画像のプレビュー==========
@@ -113,7 +117,7 @@ document.getElementById("projectForm").addEventListener("submit", async function
 
 
     try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch(newApiUrl, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + getCookie('authToken')
@@ -126,6 +130,7 @@ document.getElementById("projectForm").addEventListener("submit", async function
       if (response.ok) {
         const data = await response.json();
         console.log(data)
+        window.location.href = `${detailPageUrl}?id=${data.id}`;
 
       } else {
         // 失敗レスポンス (401 Unauthorized など)
