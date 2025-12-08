@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big 3x3 Book Rain</title>
+<style>
+    /* --- ベース設定 --- */
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #2c3e50; /* 背景色 */
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* --- 3x3の本棚エリア（枠線） --- */
+    .shelf-grid {
+        position: relative;
+        width: 360px;  /* 1冊100px + 余白 */
+        height: 400px; /* 少し縦長に */
+        border: 8px solid #8e44ad; /* 外枠 */
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        /* 内部の棚板の線（装飾） */
+        background-image: linear-gradient(#8e44ad 2px, transparent 2px);
+        background-size: 100% 120px; /* 棚の高さに合わせて線を引く */
+        background-position: 0 118px; /* 線の位置調整 */
+        z-index: 10;
+    }
+
+    /* --- 本のスタイル（特大） --- */
+    .book {
+        position: fixed; /* 画面全体を基準に配置 */
+        font-size: 6rem; /* ★ここで大きさを指定（約96px） */
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+        text-align: center;
+        user-select: none;
+        z-index: 20;
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* ドスンと着地するバネっぽい動き */
+    }
+
+    /* 雨として落ちるアニメーション */
+    @keyframes fallThrough {
+        0% { transform: translateY(-150px) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+    <div class="shelf-grid" id="shelf"></div>
+
+<script>
+    const bookEmojis = ['📕', '📗', '📘', '📙', '📓', '📒', '📚', '📖'];
+    const shelf = document.getElementById('shelf');
+
+    // 設定
+    const MAX_BOOKS = 9;   // 3 x 3
+    const COLS = 3;        // 3列
+    
+    // 本の配置サイズ設定 (px)
+    const CELL_WIDTH = 120;  // 横幅スペース
+    const CELL_HEIGHT = 120; // 縦幅スペース
+    
+    let booksOnShelf = 0;
+
+    function createBook() {
+        const book = document.createElement('div');
+        book.classList.add('book');
+        book.innerText = bookEmojis[Math.floor(Math.random() * bookEmojis.length)];
+
+        // 1. スタート位置（画面上空のランダムな位置）
+        const startX = Math.random() * window.innerWidth;
+        const startY = -150; // 画面の少し上
+        
+        // 初期配置
+        book.style.left = startX + 'px';
+        book.style.top = startY + 'px';
+        document.body.appendChild(book);
+
+        // 2. 棚がいっぱいかどうかチェック
+        if (booksOnShelf < MAX_BOOKS) {
+            
+            // 3. 3x3のどこに置くか計算（下から埋める）
+            // 0~2冊目: 最下段, 3~5冊目: 中段, 6~8冊目: 最上段
+            
+            // 行の計算: 全体が3行。0冊目は「下の段(インデックス2)」になるように計算
+            // Math.floor(0 / 3) = 0段目(論理)。これを描画上の「下から」に変換したい。
+            // 描画上の行 = (総行数 - 1) - Math.floor(現在の数 / 列数)
+            const currentRow = (3 - 1) - Math.floor(booksOnShelf / COLS);
+            
+            // 列の計算
+            const currentCol = booksOnShelf % COLS;
+
+            // 4. 目標座標（Target）の計算
+            const shelfRect = shelf.getBoundingClientRect();
+            
+            // 棚の左上 + (列 * 幅)
+            const targetX = shelfRect.left + (currentCol * CELL_WIDTH);
+            
+            // 棚の上 + (行 * 高さ) + 微調整(枠線の分など)
+            const targetY = shelfRect.top + (currentRow * CELL_HEIGHT) + 10;
+
+            booksOnShelf++;
+
+            // 5. アニメーション実行
+            requestAnimationFrame(() => {
+                // startX, startY からの移動量を計算
+                const moveX = targetX - startX;
+                const moveY = targetY - startY;
+
+                // 少し傾けて配置（リアリティ）
+                const tilt = (Math.random() * 10) - 5; 
+
+                book.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${tilt}deg)`;
+            });
+
+        } else {
+            // いっぱいなら落ちる
+            const duration = Math.random() * 2 + 1.5;
+            book.style.animation = `fallThrough ${duration}s linear`;
+            book.addEventListener('animationend', () => book.remove());
+        }
+    }
+
+    // 本を生成するペース (0.4秒に1冊)
+    setInterval(createBook, 400);
+
+    // クリックでリセット
+    document.body.addEventListener('click', () => {
+        const books = document.querySelectorAll('.book');
+        books.forEach(b => {
+            // まだアニメーションしていない（棚にある）本を飛ばす
+            if (!b.style.animationName) {
+                b.style.transition = 'transform 0.5s ease-in, opacity 0.5s';
+                b.style.transform += ' translateY(500px) rotate(90deg)'; // 下に落とす
+                b.style.opacity = '0';
+                setTimeout(() => b.remove(), 500);
+            }
+        });
+        booksOnShelf = 0;
+    });
+
+</script>
+</body>
+</html>
