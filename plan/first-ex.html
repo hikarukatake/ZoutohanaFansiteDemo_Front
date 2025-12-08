@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>top</title>
+    <title>企画ページtop</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/plan/first-ex.css">
 </head>
@@ -50,6 +50,26 @@
                 </div>
             </div>
         </section>
+
+        <div class="flow">
+            <div class="flow-situation">
+                <h2>現在</h2>
+                <p id="status-text">投稿受付前</p>
+                <h2>です</h2>
+            </div>
+            <div class="flow-text">
+                <p>一次審査を通過した書評は、現在第二次審査の開始前となっております。</p>
+                <p>二次審査では、読者のみなさまからの“いいね”数により最終候補となる上位10作品が決定いたします。</p>
+                <p>皆さまの一票が、作品が店頭に並ぶ大きな力となります。</p>
+                <p>投稿受付開始まで、今しばらくお待ちください。</p>
+            </div>
+                <div id="info-link" style="display:none;">
+        <a href="new-info.html" class="btn btn-next-step" id="btn-next-step">
+            書評の投稿をする
+        </a>
+    </div>
+        </div>
+
         <div class="section-title-area">
             <div class="section-square"></div>
             <h2 class="section-title">参加の流れ</h2>
@@ -272,7 +292,8 @@
             <a href="../auth/login.html" class="menu-item">ログイン</a>
         </ul>
     </div>
-    </div>
+
+
 
     <script>
         // ▼▼▼ 要素を取得 ▼▼▼
@@ -315,5 +336,27 @@
             });
         });
     </script>
+    <script>
+        // jsonから取得してきたデータで流れ、一次審査中とかの切り替え
+        const json = {
+            status: 3
+        };
+
+        // ステータスごとの表示テキスト
+        const textMap = {
+            1: "投稿受付前",
+            2: "投稿受付中",
+            3: "一次審査中"
+        };
+
+        // pタグを書き換えている
+        document.getElementById("status-text").textContent = textMap[json.status];
+
+        // 2の時だけボタン出す
+        if (json.status === 2) {
+            document.getElementById("info-link").style.display = 'block';
+        }
+    </script>
+
 
 </body>

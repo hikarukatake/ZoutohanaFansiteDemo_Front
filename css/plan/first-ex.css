@@ -262,6 +262,69 @@
             text-align: left;
         }
 
+        /* 現在の流れ状況*/
+
+        .flow {
+            padding: 2rem;
+            color: var(--font-normal);
+            background-color: white;
+        }
+
+        .flow-situation {
+            border-bottom: 3px solid var(--main-color);
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+
+        .flow-situation h2{
+            text-align: center;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        
+        .flow-situation p{
+            font-size: 32px;
+            font-weight:bold;
+        }
+
+        .flow-text{
+            width: 95%;
+            margin:  0 auto;
+            letter-spacing: 1px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        /* === 検索ボタン === */
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 90%;
+            height: 50px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            cursor: pointer;
+            border: 1.5px solid var(--sub-color);
+        }
+
+        .btn-next-step {
+            background-color: white;
+            color: var(--font-normal);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 50px;
+        }
+
+
 
         /* 参加の流れ */
         .section-info {
@@ -436,7 +499,7 @@
         }
 
         .Award-circle-box {
-            padding-right: 10px;
+            padding-right: 13px;
             margin-top: 60px;
         }
 
@@ -458,7 +521,7 @@
         }
 
         /* お問い合わせ */
-        .contact-box{
+        .contact-box {
             padding: 1rem;
         }
 
@@ -480,7 +543,8 @@
             margin-bottom: 10px;
             letter-spacing: 0.05em;
         }
-        .contact-desc-box{
+
+        .contact-desc-box {
             margin-bottom: 30px;
         }
 
