@@ -643,9 +643,8 @@
             margin-top: 1rem;
         }
 
-        /* ===== 緑ブロック ===== */
         .footer-menu {
-            background: #3b8f6f;
+            background: var(--sub-color);
             padding: 0;
         }
 
