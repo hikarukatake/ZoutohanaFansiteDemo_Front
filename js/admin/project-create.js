@@ -1,5 +1,5 @@
 const newApiUrl = 'http://localhost:8080/api/projects/new';
-const detailPageUrl = 'http://localhost:8080/admin/project-detail.html';
+const detailPageUrl = 'http://127.0.0.1:5500/admin/project-detail.html';
 
 // ==========企画URLのプレビュー==========
 const urlKeyInput = document.getElementById('urlKey-input');
