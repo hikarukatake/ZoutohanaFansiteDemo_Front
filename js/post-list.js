@@ -6,6 +6,7 @@ let category = 'new';
 if (params.get('category')) {
   category = params.get('category');
 }
+const detailPageUrl = 'http://127.0.0.1:5500/info/post-detail.html';
 
 const categoryMapping = {
   'NEW': '新着情報',
@@ -81,7 +82,7 @@ function displayPage(data) {
 
   const newsList = document.getElementById('news-list');
   newsList.innerHTML = data.postViews.map(post => `
-    <a href="#" class="news-item">
+    <a href="${detailPageUrl}?id=${post.id}" class="news-item">
       <div class="news-body">
         <div class="news-meta">
           <span class="news-date">${formatDate(post.postedAt)}</span>
