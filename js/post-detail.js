@@ -57,21 +57,52 @@ async function loadPage() {
 };
 
 function displayPage(data) {
-  document.title = `${data[1].title} | お知らせ詳細`
+  let prevData;
+  let currentData;
+  let nextData;
 
-  document.getElementById('breadcrumb-category').innerHTML = `<a href="${listPageUrl}?category=${data[1].category.toLowerCase()}">${categoryMapping[data[1].category.toUpperCase()]}</a>`;
-  document.getElementById('breadcrumb-here').textContent = data[1].title;
-  document.getElementById('list-category').textContent = categoryMapping[data[1].category.toUpperCase()];
-  document.getElementById('post-title').textContent = data[1].title;
-  document.getElementById('post-data-date').textContent = formatDate(data[1].postedAt);
-  document.getElementById('post-data-category').textContent = '#' + categoryMapping[data[1].category.toUpperCase()];
-  document.getElementById('post-content').textContent = data[1].content;
-  document.getElementById('back-to-list').href = listPageUrl + '?category=' + data[1].category.toLowerCase();
+  if (data.length == 3) {
+    prevData = data[0];
+    currentData = data[1];
+    nextData = data[2];
+    document.getElementById('prev-post-button').classList.remove('hidden');
+    document.getElementById('prev-post-button').href = detailPageUrl + '?id=' + prevData.id;
+    document.getElementById('next-post-button').classList.remove('hidden');
+    document.getElementById('next-post-button').href = detailPageUrl + '?id=' + nextData.id;
 
-  document.getElementById('prev-post-button').href = detailPageUrl + '?id=' + data[0].id;
-  document.getElementById('prev-post-button').classList.remove = 'hidden';
-  document.getElementById('next-post-button').href = detailPageUrl + '?id=' + data[2].id;
-  document.getElementById('next-post-button').classList.remove = 'hidden';
+  } else if (data.length == 2) {
+    if(data[0].id == id) {
+      prevData = null;
+      currentData = data[0];
+      nextData = data[1];
+      document.getElementById('next-post-button').classList.remove('hidden');
+      document.getElementById('next-post-button').href = detailPageUrl + '?id=' + nextData.id;
+
+    } else if (data[1].id == id) {
+      prevData = data[0];
+      currentData = data[1];
+      nextData = null;
+      document.getElementById('prev-post-button').classList.remove('hidden');
+      document.getElementById('prev-post-button').href = detailPageUrl + '?id=' + prevData.id;
+
+    }
+  } else {
+    prevData = null;
+    currentData = data[0];
+    nextData = null;
+  }
+
+  document.title = `${currentData.title} | お知らせ詳細`
+
+  document.getElementById('breadcrumb-category').innerHTML = `<a href="${listPageUrl}?category=${currentData.category.toLowerCase()}">${categoryMapping[currentData.category.toUpperCase()]}</a>`;
+  document.getElementById('breadcrumb-here').textContent = currentData.title;
+  document.getElementById('list-category').textContent = categoryMapping[currentData.category.toUpperCase()];
+  document.getElementById('post-title').textContent = currentData.title;
+  document.getElementById('post-data-date').textContent = formatDate(currentData.postedAt);
+  document.getElementById('post-data-category').textContent = '#' + categoryMapping[currentData.category.toUpperCase()];
+  document.getElementById('post-content').textContent = currentData.content;
+  document.getElementById('back-to-list').href = listPageUrl + '?category=' + currentData.category.toLowerCase();
+
 };
 
 document.addEventListener('DOMContentLoaded', () => {
