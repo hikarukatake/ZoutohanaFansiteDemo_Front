@@ -2,6 +2,7 @@ const apiUrl = 'http://localhost:8080/api/posts/view';
 const params = new URLSearchParams(window.location.search);
 let id = params.get('id');
 const listPageUrl = 'http://127.0.0.1:5500/info/post-list.html';
+const detailPageUrl = 'http://127.0.0.1:5500/info/post-detail.html';
 
 const categoryMapping = {
   'NEW': '新着情報',
@@ -56,15 +57,21 @@ async function loadPage() {
 };
 
 function displayPage(data) {
-  document.title = `${data.title} | お知らせ詳細`
-  document.getElementById('breadcrumb-category').innerHTML = `<a href="${listPageUrl}?category=${data.category.toLowerCase()}">${categoryMapping[data.category.toUpperCase()]}</a>`;
-  document.getElementById('breadcrumb-here').textContent = data.title;
-  document.getElementById('list-category').textContent = categoryMapping[data.category.toUpperCase()];
-  document.getElementById('post-title').textContent = data.title;
-  document.getElementById('post-data-date').textContent = formatDate(data.postedAt);
-  document.getElementById('post-data-category').textContent = '#' + categoryMapping[data.category.toUpperCase()];
-  document.getElementById('post-content').textContent = data.content;
-  document.getElementById('back-to-list').href = listPageUrl + '?category=' + data.category.toLowerCase();
+  document.title = `${data[1].title} | お知らせ詳細`
+
+  document.getElementById('breadcrumb-category').innerHTML = `<a href="${listPageUrl}?category=${data[1].category.toLowerCase()}">${categoryMapping[data[1].category.toUpperCase()]}</a>`;
+  document.getElementById('breadcrumb-here').textContent = data[1].title;
+  document.getElementById('list-category').textContent = categoryMapping[data[1].category.toUpperCase()];
+  document.getElementById('post-title').textContent = data[1].title;
+  document.getElementById('post-data-date').textContent = formatDate(data[1].postedAt);
+  document.getElementById('post-data-category').textContent = '#' + categoryMapping[data[1].category.toUpperCase()];
+  document.getElementById('post-content').textContent = data[1].content;
+  document.getElementById('back-to-list').href = listPageUrl + '?category=' + data[1].category.toLowerCase();
+
+  document.getElementById('prev-post-button').href = detailPageUrl + '?id=' + data[0].id;
+  document.getElementById('prev-post-button').classList.remove = 'hidden';
+  document.getElementById('next-post-button').href = detailPageUrl + '?id=' + data[2].id;
+  document.getElementById('next-post-button').classList.remove = 'hidden';
 };
 
 document.addEventListener('DOMContentLoaded', () => {
