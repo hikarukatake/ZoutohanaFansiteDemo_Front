@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/plan/first-review.css">
+</head>
+
+<body class="no-scroll">
+    <div class="img-box" id="tapTarget">
+        <div class="book-text" id="bookText">
+            <div>
+                <h1>あなたの</h1>
+                <h1>“読みたい”が</h1>
+                <h1>次に並ぶ本を決めます</h1>
+            </div>
+            <div class="text-top">
+                <p>一次審査へのたくさんの書評投稿</p>
+                <p>ありがとうございました。</p>
+            </div>
+            <div class="text-box">
+                <p>投稿された作品は二次審査へと進み、</p>
+                <p>ここからは読者のみなさんの“いい</p>
+                <p>ね”が力になります</p>
+            </div>
+            <div class="text-box">
+                <p>“いいね”が多かった 上位10作品 が、</p>
+                <p>次のステップへ進むことができます</p>
+                <p> 気になった作品に、あなたの一票を</p>
+                <p>ぜひ届けてください。</p>
+            </div>
+        </div>
+    </div>
+    <div class="next-section" id="nextStep">
+        <div class="shelf-grid" id="shelf"></div>
+        <div class="button-area">
+            <button id="nextBtn" class="next-btn" disabled>次の作品へ</button>
+        </div>
+    </div>
+</body>
+<script>
+    // 要素を取得
+    const tapTarget = document.getElementById('tapTarget');
+    const bookText = document.getElementById('bookText');
+    const nextStep = document.getElementById('nextStep');
+
+    let isActivated = false;
+
+    if (tapTarget) {
+        tapTarget.addEventListener('click', function () {
+
+            // 【1】一度実行したら、二度とアニメーションは実行しない
+            if (isActivated) return;
+            isActivated = true;
+
+            console.log("ステップ1：すぐにフェードアウト開始");
+            tapTarget.classList.add('fade-out');
+
+            // 【2】3秒後に下にスクロール
+            setTimeout(function () {
+                // スクロール禁止を解除
+                document.body.classList.remove('no-scroll');
+                bookText.classList.add('release-fixed');
+
+                // 下のエリアへ「スルッ」とスクロール
+                nextStep.scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // 【3】下に移動完了した頃（2秒後）に一瞬でトップへ戻す
+                setTimeout(function () {
+                    console.log("ステップ3：画像を表示状態に戻す");
+
+                    // A. 一瞬でトップに戻る（アニメーションなし）
+                    window.scrollTo({
+                        behavior: 'auto'
+                    });
+
+                    // B. 画像を見える状態に戻す（fade-outクラスを削除）
+                    // これで「上のimg」がまた表示されます
+                    tapTarget.classList.remove('fade-out');
+
+                    // ※ isActivated は true のままなので、
+                    //   もう一度画像をクリックしても最初のアニメーションは起きません。
+                    //   ただの画像としてそこに存在することになります。
+
+                }, 2000); // 下に移動してから2秒待機
+
+            }, 3000); // フェード開始から3秒待機
+        });
+    }
+</script>
+<!-- 3*3の配置 -->
+<script>
+    const shelf = document.getElementById('shelf');
+    const nextBtn = document.getElementById('nextBtn');
+    const btnArea = document.querySelector('.button-area');
+
+    /* 1. 画像URLリスト */
+    const imageList = [
+        '../img/book1.png', '../img/book2.png', '../img/book3.png',
+        '../img/book4.png', '../img/book1.png', '../img/book3.png',
+        '../img/book4.png', '../img/book2.png', '../img/book4.png'
+    ];
+
+    /* 2. 定着時の位置データ */
+    const angles = [-2, 3, -1, 2, -3, 1, -1, 2, -2];
+    const offsets = [
+        [-5, 0], [0, 30], [5, 60],
+        [-3, 30], [2, 60], [3, 90],
+        [-5, 60], [0, 90], [5, 120]
+    ];
+
+    const MAX_BOOKS = 9;
+    let booksOnShelf = 0;
+    let bookInterval; 
+    let isAnimating = false; // ボタン連打防止用
+    let hasStartedInitial = false; // 初回スタート済みかどうかの判定用
+
+    // ■ 本を1冊生成する関数
+    function createBook() {
+        if (booksOnShelf >= MAX_BOOKS) {
+            clearInterval(bookInterval);
+            if(nextBtn) nextBtn.disabled = false;
+            if(btnArea) btnArea.classList.add('show');
+            isAnimating = false;
+            return;
+        }
+
+        const index = booksOnShelf;
+        const book = document.createElement('div');
+        book.classList.add('book');
+        book.style.backgroundImage = `url('${imageList[index]}')`;
+
+        // 落下開始時のランダム角度
+        const fallAngle = (Math.random() * 60) - 30;
+        book.style.setProperty('--fall-angle', fallAngle + 'deg');
+
+        shelf.appendChild(book);
+        booksOnShelf++;
+
+        // アニメーション実行
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                book.classList.add('landed');
+                const angle = angles[index] || 0;
+                const offsetX = offsets[index] ? offsets[index][0] : 0;
+                const offsetY = offsets[index] ? offsets[index][1] : 0;
+                book.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${angle}deg)`;
+            });
+        });
+    }
+
+    // ■ 落下ループ開始
+    function startFallingBooks() {
+        if (bookInterval) clearInterval(bookInterval);
+        bookInterval = setInterval(createBook, 500);
+    }
+
+    // ■ 「次へ」ボタンで「ストン」と落とす処理
+    nextBtn.addEventListener('click', function(e) {
+        // ボタンのクリックが documentのクリックイベントに伝播しないように止める（念のため）
+        e.stopPropagation();
+
+        if (isAnimating) return; 
+        isAnimating = true;
+        nextBtn.disabled = true;
+
+        const existingBooks = document.querySelectorAll('.book');
+        
+        existingBooks.forEach((book, i) => {
+            const currentOffsetX = offsets[i] ? offsets[i][0] : 0;
+            const currentAngle = angles[i] || 0;
+
+            // 加速しながら下にストンと落とす
+            book.style.transition = 'transform 0.6s ease-in, opacity 0.6s ease-in';
+            book.style.transform = `translate(${currentOffsetX}px, 150vh) rotate(${currentAngle}deg)`;
+            book.style.opacity = '0.5';
+        });
+
+        // 落ちきったらリセットして再開
+        setTimeout(() => {
+            shelf.innerHTML = '';
+            booksOnShelf = 0;
+            startFallingBooks();
+        }, 700);
+    });
+
+    // ▼▼▼ 今回の修正箇所 ▼▼▼
+
+    // ■ 画面のどこかをクリックしたら、10秒後にスタート
+    document.addEventListener('click', function() {
+        // すでにスタート待機中、またはスタート済みなら何もしない
+        if (hasStartedInitial) return;
+        
+        hasStartedInitial = true;
+        console.log("クリック検知：10秒後に本が降り始めます");
+
+        setTimeout(function () {
+            startFallingBooks();
+        }, 4000); // 10秒待機
+    });
+
+</script>
+
+</html>

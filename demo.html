@@ -1,154 +1,179 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Big 3x3 Book Rain</title>
-<style>
-    /* --- ベース設定 --- */
-    body {
-        margin: 0;
-        overflow: hidden;
-        background-color: #2c3e50; /* 背景色 */
-        font-family: sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9 Images XY-Offset Book Rain</title>
+    <style>
+        /* --- ベース設定 --- */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f2f5;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    /* --- 3x3の本棚エリア（枠線） --- */
-    .shelf-grid {
-        position: relative;
-        width: 360px;  /* 1冊100px + 余白 */
-        height: 400px; /* 少し縦長に */
-        border: 8px solid #8e44ad; /* 外枠 */
-        background-color: rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        /* 内部の棚板の線（装飾） */
-        background-image: linear-gradient(#8e44ad 2px, transparent 2px);
-        background-size: 100% 120px; /* 棚の高さに合わせて線を引く */
-        background-position: 0 118px; /* 線の位置調整 */
-        z-index: 10;
-    }
+        /* --- 本棚エリア --- */
+        .shelf-grid {
+            position: relative;
+            width: 340px;
+            height: 450px;
+            /* 必要であれば背景の線などをここに追加 */
+            z-index: 10;
+        }
 
-    /* --- 本のスタイル（特大） --- */
-    .book {
-        position: fixed; /* 画面全体を基準に配置 */
-        font-size: 6rem; /* ★ここで大きさを指定（約96px） */
-        width: 120px;
-        height: 120px;
-        line-height: 120px;
-        text-align: center;
-        user-select: none;
-        z-index: 20;
-        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* ドスンと着地するバネっぽい動き */
-    }
+        /* --- 本のスタイル --- */
+        .book {
+            position: fixed;
+            width: 110px;
+            height: 140px;
 
-    /* 雨として落ちるアニメーション */
-    @keyframes fallThrough {
-        0% { transform: translateY(-150px) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
-    }
-</style>
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+
+            user-select: none;
+            z-index: 20;
+            transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+            transform: rotate(var(--initial-rotate, 0deg));
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="shelf-grid" id="shelf"></div>
 
-<script>
-    const bookEmojis = ['📕', '📗', '📘', '📙', '📓', '📒', '📚', '📖'];
-    const shelf = document.getElementById('shelf');
+    <script>
+        const shelf = document.getElementById('shelf');
 
-    // 設定
-    const MAX_BOOKS = 9;   // 3 x 3
-    const COLS = 3;        // 3列
-    
-    // 本の配置サイズ設定 (px)
-    const CELL_WIDTH = 120;  // 横幅スペース
-    const CELL_HEIGHT = 120; // 縦幅スペース
-    
-    let booksOnShelf = 0;
+        /* 1. 画像URLリスト (9枚) */
+        const imageList = [
+            '../',
+            'https://placehold.co/110x140/e67e22/white?text=2',
+            'https://placehold.co/110x140/f1c40f/white?text=3',
+            'https://placehold.co/110x140/2ecc71/white?text=4',
+            'https://placehold.co/110x140/1abc9c/white?text=5',
+            'https://placehold.co/110x140/3498db/white?text=6',
+            'https://placehold.co/110x140/9b59b6/white?text=7',
+            'https://placehold.co/110x140/34495e/white?text=8',
+            'https://placehold.co/110x140/95a5a6/white?text=9'
+        ];
 
-    function createBook() {
-        const book = document.createElement('div');
-        book.classList.add('book');
-        book.innerText = bookEmojis[Math.floor(Math.random() * bookEmojis.length)];
+        /* 2. 回転角度 */
+        const angles = [
+            0, 0, 0, // 上段
+            0, 0, 0, // 中段
+            0, 0, 0  // 下段
+        ];
 
-        // 1. スタート位置（画面上空のランダムな位置）
-        const startX = Math.random() * window.innerWidth;
-        const startY = -150; // 画面の少し上
-        
-        // 初期配置
-        book.style.left = startX + 'px';
-        book.style.top = startY + 'px';
-        document.body.appendChild(book);
+        /* 3. ★各位置の「横のズレ」（ピクセル） */
+        /* マイナス＝左へ、プラス＝右へズレる */
+        const xOffsets = [
+            -10, 0, 10,  // 上段: [1]左へ, [2]真ん中, [3]右へ
+            -10, 0, 10,  // 中段: [4]右へ, [5]左へ, [6]真ん中
+            -10, 0, 10  // 下段: [7]大きく左へ...など
+        ];
 
-        // 2. 棚がいっぱいかどうかチェック
-        if (booksOnShelf < MAX_BOOKS) {
-            
-            // 3. 3x3のどこに置くか計算（下から埋める）
-            // 0~2冊目: 最下段, 3~5冊目: 中段, 6~8冊目: 最上段
-            
-            // 行の計算: 全体が3行。0冊目は「下の段(インデックス2)」になるように計算
-            // Math.floor(0 / 3) = 0段目(論理)。これを描画上の「下から」に変換したい。
-            // 描画上の行 = (総行数 - 1) - Math.floor(現在の数 / 列数)
-            const currentRow = (3 - 1) - Math.floor(booksOnShelf / COLS);
-            
-            // 列の計算
-            const currentCol = booksOnShelf % COLS;
+        /* 4. ★各位置の「縦のズレ」（ピクセル） */
+        /* マイナス＝上へ、プラス＝下へズレる */
+        const yOffsets = [
+            0, 50, 100,  // 上段
+            50, 100, 150,  // 中段
+            100, 150, 200   // 下段
+        ];
 
-            // 4. 目標座標（Target）の計算
-            const shelfRect = shelf.getBoundingClientRect();
-            
-            // 棚の左上 + (列 * 幅)
-            const targetX = shelfRect.left + (currentCol * CELL_WIDTH);
-            
-            // 棚の上 + (行 * 高さ) + 微調整(枠線の分など)
-            const targetY = shelfRect.top + (currentRow * CELL_HEIGHT) + 10;
+        // 設定
+        const MAX_BOOKS = 9;
+        const COLS = 3;
+        const CELL_WIDTH = 110;
+        const CELL_HEIGHT = 140;
 
-            booksOnShelf++;
+        let booksOnShelf = 0;
 
-            // 5. アニメーション実行
-            requestAnimationFrame(() => {
-                // startX, startY からの移動量を計算
-                const moveX = targetX - startX;
-                const moveY = targetY - startY;
+        function createBook() {
+            const book = document.createElement('div');
+            book.classList.add('book');
 
-                // 少し傾けて配置（リアリティ）
-                const tilt = (Math.random() * 10) - 5; 
+            // スタート位置
+            const startX = Math.random() * (window.innerWidth - CELL_WIDTH);
+            const startY = -250;
+            const initialRotate = (Math.random() * 30) - 15;
+            book.style.setProperty('--initial-rotate', initialRotate + 'deg');
 
-                book.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${tilt}deg)`;
-            });
+            book.style.left = startX + 'px';
+            book.style.top = startY + 'px';
+            document.body.appendChild(book);
 
-        } else {
-            // いっぱいなら落ちる
-            const duration = Math.random() * 2 + 1.5;
-            book.style.animation = `fallThrough ${duration}s linear`;
-            book.addEventListener('animationend', () => book.remove());
-        }
-    }
+            // 配置処理
+            if (booksOnShelf < MAX_BOOKS) {
 
-    // 本を生成するペース (0.4秒に1冊)
-    setInterval(createBook, 400);
+                // 下から積む計算
+                const gridRowFromBottom = Math.floor(booksOnShelf / COLS);
+                const visualRow = (3 - 1) - gridRowFromBottom; // 上からの行番号(2,1,0)
+                const visualCol = booksOnShelf % COLS;         // 左からの列番号
 
-    // クリックでリセット
-    document.body.addEventListener('click', () => {
-        const books = document.querySelectorAll('.book');
-        books.forEach(b => {
-            // まだアニメーションしていない（棚にある）本を飛ばす
-            if (!b.style.animationName) {
-                b.style.transition = 'transform 0.5s ease-in, opacity 0.5s';
-                b.style.transform += ' translateY(500px) rotate(90deg)'; // 下に落とす
-                b.style.opacity = '0';
-                setTimeout(() => b.remove(), 500);
+                // インデックス算出 (上から0~8)
+                const index = (visualRow * 3) + visualCol;
+
+                // 各種パラメータ取得
+                book.style.backgroundImage = `url('${imageList[index]}')`;
+                const targetAngle = angles[index];
+                const heightOffset = yOffsets[index]; // 縦ズレ
+                const widthOffset = xOffsets[index];  // ★横ズレ
+
+                // 目標座標の計算
+                const shelfRect = shelf.getBoundingClientRect();
+
+                // ★横の位置 = 基準 + 横ズレ
+                const targetX = shelfRect.left + (visualCol * CELL_WIDTH) + 10 + widthOffset;
+
+                // ★縦の位置 = 基準 + 縦ズレ
+                const targetY = shelfRect.top + (visualRow * CELL_HEIGHT) + heightOffset;
+
+                booksOnShelf++;
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        const moveX = targetX - startX;
+                        const moveY = targetY - startY;
+                        book.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${targetAngle}deg)`;
+                    });
+                });
+
+            } else {
+                // 落下
+                const randomImg = imageList[Math.floor(Math.random() * imageList.length)];
+                book.style.backgroundImage = `url('${randomImg}')`;
+                const duration = Math.random() * 2 + 1.5;
+                book.style.animation = `fallThrough ${duration}s linear`;
+                book.addEventListener('animationend', () => book.remove());
             }
-        });
-        booksOnShelf = 0;
-    });
+        }
 
-</script>
+        setInterval(createBook, 500);
+
+        document.body.addEventListener('click', () => {
+            const books = document.querySelectorAll('.book');
+            books.forEach(b => {
+                if (!b.style.animationName) {
+                    const currentTransform = getComputedStyle(b).transform;
+                    b.style.transition = 'transform 0.6s ease-in, opacity 0.6s';
+                    b.style.transform = `${currentTransform} translateY(600px) rotate(90deg)`;
+                    b.style.opacity = '0';
+                    setTimeout(() => b.remove(), 600);
+                }
+            });
+            booksOnShelf = 0;
+        });
+    </script>
 </body>
+
 </html>
