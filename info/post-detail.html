@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企画情報詳細</title>
+    <title>お知らせ詳細</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/info/plan-detail.css">
+    <link rel="stylesheet" href="../css/info/post-detail.css">
 </head>
 
 <body>
@@ -23,30 +23,33 @@
         </header>
 
         <div class="breadcrumb-box">
-            <div class="breadcrumb">ホーム</div>
+            <div class="breadcrumb"><a href="../fansite/top.html">ホーム</a></div>
             <div class="breadcrumb-middle">></div>
-            <div class="breadcrumb">企画情報</div>
+            <div class="breadcrumb" id="breadcrumb-category">お知らせカテゴリー</div>
             <div class="breadcrumb-middle">></div>
-            <div class="breadcrumb">【書評コンテスト】結果発表！</div>
+            <div class="breadcrumb" id="breadcrumb-here">お知らせタイトル</div>
         </div>
         <div class="list-box">
             <div class="list-title">
                 <h2>News</h2>
                 <div class="list-border"></div>
             </div>
-            <p>その他情報</p>
+            <p id="list-category">お知らせカテゴリー</p>
         </div>
         <section class="plans-box">
             <div>
                 <div class="box-text">
-                    <h2>【書評コンテスト】結果発表！</h2>
+                    <h2 id="post-title">お知らせが取得できませんでした</h2>
                 </div>
                 <div class="deta-box">
-                    <p>2025.01.01</p>
-                    <p class="deta-box-plan">#企画情報</p>
+                    <p id="post-data-date">2025.01.01</p>
+                    <p class="deta-box-plan" id="post-data-category">#お知らせカテゴリ</p>
                 </div>
             </div>
-            <div class="news-plan">
+            <div class="news-plan" id="post-content">
+                <p>お知らせが取得できませんでした</p>
+            </div>
+            <!-- <div class="news-plan">
                 <h3 class="heading-style">第1次選考の結果を発表しました！</h3>
                 <p>書評コンテストにたくさんのご応募をいただき、誠にありがとうございました。どの作品にも作者の想いや読書への情熱が込められており、選考委員一同、 非常に熱心に審査を行いました。</p>
                 <p>第1次選考では、以下の点を中心に審査を実施しました。</p>
@@ -56,13 +59,13 @@
                 <h3 class="heading-style">結果を確認しましょう</h3>
                 <p>本日、第1次選考の結果を公開しました。マイページ内の「選考結果」から、あなたの作品の結果をご確認いただけます。結果は応募作品ごとに表示され、第2次選考に進まれる方には次のステップに関する詳細な案内も併せてご覧いただけます。
                 </p>
-            </div>
+            </div> -->
         </section>
 
         <div class="navigation-container">
             <a href="#" class="nav-link circle-button">&lt;</a>
 
-            <a href="post-list.html?category=new" class="nav-link rectangle-button">一覧に戻る</a>
+            <a href="post-list.html?category=new" class="nav-link rectangle-button" id="back-to-list">一覧に戻る</a>
 
             <a href="#" class="nav-link circle-button">&gt;</a>
         </div>
@@ -188,6 +191,6 @@
                 });
             });
         </script>
-
+        <script src="../js/post-detail.js"></script>
 
 </body>
