@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企画ページtop</title>
+    <title>お知らせ</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/info/new-information.css">
+    <link rel="stylesheet" href="../css/info/post-list.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <div class="breadcrumb-box">
             <div class="breadcrumb">ホーム</div>
             <div class="breadcrumb-middle">></div>
-            <div class="breadcrumb">新着情報</div>
+            <div class="breadcrumb" id="breadcrumb-here">お知らせ</div>
         </div>
         <div class="list-box">
             <div class="list-title">
@@ -45,67 +45,18 @@
                     <input type="text" placeholder="キーワードで検索" name="info">
                 </form>
             </div>
-            <div>
+            <div id="PostTop">
                 <div class="tab-box">
                     <ul class="tab-menu">
-                        <li class="tab-item active">新着情報</li>
-                        <li class="tab-item">企画情報</li>
-                        <li class="tab-item">寄贈情報</li>
-                        <li class="tab-item">その他情報</li>
+                        <a href="http://127.0.0.1:5500/info/post-list.html?category=new"><li class="tab-item">新着情報</li></a>
+                        <a href="http://127.0.0.1:5500/info/post-list.html?category=project"><li class="tab-item">企画情報</li></a>
+                        <a href="http://127.0.0.1:5500/info/post-list.html?category=donation"><li class="tab-item">寄贈情報</li></a>
+                        <a href="http://127.0.0.1:5500/info/post-list.html?category=else"><li class="tab-item">その他情報</li></a>
                     </ul>
                 </div>
             </div>
-            <div class="news-list">
-                <a href="#" class="news-item">
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-date">2025.01.01</span>
-                            <span class="news-tag">#企画情報</span>
-                        </div>
-                        <div class="news-block">
-                            <p class="news-title">「文庫X 2.0」開始</p>
-                            <span class="news-arrow">&gt;</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="news-item">
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-date">2025.01.01</span>
-                            <span class="news-tag">#寄贈情報</span>
-                        </div>
-                        <div class="news-block">
-                            <p class="news-title">新たに寄贈しました</p>
-                            <span class="news-arrow">&gt;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="news-item">
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-date">2025.01.01</span>
-                            <span class="news-tag">#企画情報</span>
-                        </div>
-                        <div class="news-block">
-                            <p class="news-title">「文庫X 1.0」終了のお知らせ</p>
-                            <span class="news-arrow">&gt;</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="news-item">
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-date">2025.01.01</span>
-                            <span class="news-tag">#その他情報</span>
-                        </div>
-                        <div class="news-block">
-                            <p class="news-title">サイトのメンテナンスについて</p>
-                            <span class="news-arrow">&gt;</span>
-                        </div>
-                    </div>
-                </a>
+            <div class="news-list" id="news-list">
+                <p>お知らせはありません</p>
             </div>
         </section>
 
@@ -205,7 +156,7 @@
                 overlayMenu.classList.remove('active');
             });
         </script>
-
+        <script src="../js/post-list.js"></script>
 
 
 </body>

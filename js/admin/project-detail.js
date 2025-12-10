@@ -5,6 +5,21 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
 // ====================API関係ない系====================
+// ==========QRコード画像のプレビュー==========
+let currentUrlKey = null;
+
+document.getElementById("qrImg-showButton").addEventListener("click", function () {
+  document.getElementById("qrImg-preview").classList.toggle("hidden");
+});
+
+document.getElementById("qrImg-downloadButton").addEventListener("click", function () {
+  const link = document.createElement('a');
+  link.href = currentQrImageUrl;
+  link.download = `${currentUrlKey}_QR.png`;
+  link.target = '_blank';
+  link.click();
+});
+
 // ==========企画URLのプレビュー==========
 const urlKeyInput = document.getElementById('urlKey-input');
 const urlKeyPreview = document.getElementById('urlKey-preview');
@@ -111,7 +126,7 @@ function getCookie(name) {
 // ==========情報取得・表示==========
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-      const response = await fetch(`${viewApiUrl}/${id}`, {
+    const response = await fetch(`${viewApiUrl}/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -131,25 +146,52 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // サーバーから詳細なエラーメッセージが返されている場合
       try {
-          const errorJson = JSON.parse(errorText);
-          errorMessage = errorJson.message || errorMessage;
+        const errorJson = JSON.parse(errorText);
+        errorMessage = errorJson.message || errorMessage;
       } catch (e) {
-          // JSONとしてパースできない場合は無視
+        // JSONとしてパースできない場合は無視
       }
 
       throw new Error(errorMessage);
     }
 
   } catch (error) {
-      console.error('情報取得エラー:', error.message);
+    console.error('情報取得エラー:', error.message);
   }
 });
+
+const qrImgPreview = document.getElementById('qrImg-preview');
 
 async function displayProject(data) {
   console.log(data);
 
   document.querySelector('select[name="published"]').value = String(data.published).toUpperCase();
   document.querySelector('select[name="status"]').value = data.status;
+
+  if (data.qrImgUrl) {
+    try {
+      const qrImgResponse = await fetch(`${imageApiUrl}/${data.qrImgUrl}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + getCookie('authToken')
+        }
+      });
+
+      if (qrImgResponse.ok) {
+        const blob = await qrImgResponse.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        qrImgPreview.src = objectUrl;
+        qrImgPreview.classList.toggle("hidden");
+
+        currentQrImageUrl = objectUrl;
+        currentUrlKey = data.urlKey;
+      }
+
+    } catch (error) {
+      console.error('QRコード画像取得エラー:', error.message);
+    }
+  }
+
   document.querySelector('input[name="name"]').value = data.name;
   document.querySelector('input[name="urlKey"]').value = data.urlKey;
   updateUrlKeyPreview();
@@ -188,8 +230,8 @@ async function displayProject(data) {
 };
 
 // // ==========フォーム送信==========
-// document.getElementById("projectForm").addEventListener("submit", async function(e) {
-//     e.preventDefault(); // 本当の送信を止める
+document.getElementById("projectForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // 本当の送信を止める
 
 //     const formData = new FormData(e.target);
 //     console.log("mainImg value = ", formData.get("mainImg"));
@@ -229,4 +271,4 @@ async function displayProject(data) {
 //     } catch (error) {
 //         console.error('情報取得エラー:', error.message);
 //     }
-// });
+});

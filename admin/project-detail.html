@@ -6,7 +6,7 @@
     <title>企画編集・情報 | 管理者</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/admin/project-create.css">
+    <link rel="stylesheet" href="../css/admin/project-createAndDetail.css">
 </head>
 <body id="admin-projectCreate">
     <header>管理者用ヘッダー</header>
@@ -39,11 +39,11 @@
               </td>
             </tr>
             <tr>
-              <!-- 後で実装 -->
               <th>QRコード : </th>
               <td>
-                <button>表示する</button>
-                <button>ダウンロードする</button>
+                <button id="qrImg-showButton">表示する</button>
+                <button id="qrImg-downloadButton">ダウンロードする</button>
+                <img id="qrImg-preview">
               </td>
             </tr>
             <tr>
