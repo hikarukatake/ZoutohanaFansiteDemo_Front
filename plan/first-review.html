@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/plan/first-review.css">
 </head>
 
@@ -34,7 +35,14 @@
         </div>
     </div>
     <div class="next-section" id="nextStep">
-        <div class="shelf-grid" id="shelf"></div>
+        <div class="totalling-box">
+            <p class="totalling-text">集まった書評を</p>
+        </div>
+        <div class="looking-box">
+            <p class="totalling-text">見てみましょう</p>
+        </div>
+        <div class="shelf-grid" id="shelf">
+        </div>
         <div class="button-area">
             <button id="nextBtn" class="next-btn" disabled>次の作品へ</button>
         </div>
@@ -100,9 +108,9 @@
 
     /* 1. 画像URLリスト */
     const imageList = [
-        '../img/book1.png', '../img/book2.png', '../img/book3.png',
-        '../img/book4.png', '../img/book1.png', '../img/book3.png',
-        '../img/book4.png', '../img/book2.png', '../img/book4.png'
+        '../img/book1.png', '../img/book1.png', '../img/book1.png',
+        '../img/book1.png', '../img/book1.png', '../img/book1.png',
+        '../img/book1.png', '../img/book1.png', '../img/book1.png'
     ];
 
     /* 2. 定着時の位置データ */
@@ -115,7 +123,7 @@
 
     const MAX_BOOKS = 9;
     let booksOnShelf = 0;
-    let bookInterval; 
+    let bookInterval;
     let isAnimating = false; // ボタン連打防止用
     let hasStartedInitial = false; // 初回スタート済みかどうかの判定用
 
@@ -123,8 +131,8 @@
     function createBook() {
         if (booksOnShelf >= MAX_BOOKS) {
             clearInterval(bookInterval);
-            if(nextBtn) nextBtn.disabled = false;
-            if(btnArea) btnArea.classList.add('show');
+            if (nextBtn) nextBtn.disabled = false;
+            if (btnArea) btnArea.classList.add('show');
             isAnimating = false;
             return;
         }
@@ -133,6 +141,12 @@
         const book = document.createElement('div');
         book.classList.add('book');
         book.style.backgroundImage = `url('${imageList[index]}')`;
+
+        // 文字用の div を追加
+        const textDiv = document.createElement('div');
+        textDiv.classList.add('book-text-overlay');
+        textDiv.innerText = `君と僕との出会いは唐揚げと肉まんから開始${index + 1}`; // 表示したい文字に変更可能
+        book.appendChild(textDiv);
 
         // 落下開始時のランダム角度
         const fallAngle = (Math.random() * 60) - 30;
@@ -153,6 +167,7 @@
         });
     }
 
+
     // ■ 落下ループ開始
     function startFallingBooks() {
         if (bookInterval) clearInterval(bookInterval);
@@ -160,16 +175,16 @@
     }
 
     // ■ 「次へ」ボタンで「ストン」と落とす処理
-    nextBtn.addEventListener('click', function(e) {
+    nextBtn.addEventListener('click', function (e) {
         // ボタンのクリックが documentのクリックイベントに伝播しないように止める（念のため）
         e.stopPropagation();
 
-        if (isAnimating) return; 
+        if (isAnimating) return;
         isAnimating = true;
         nextBtn.disabled = true;
 
         const existingBooks = document.querySelectorAll('.book');
-        
+
         existingBooks.forEach((book, i) => {
             const currentOffsetX = offsets[i] ? offsets[i][0] : 0;
             const currentAngle = angles[i] || 0;
@@ -188,13 +203,12 @@
         }, 700);
     });
 
-    // ▼▼▼ 今回の修正箇所 ▼▼▼
 
     // ■ 画面のどこかをクリックしたら、10秒後にスタート
-    document.addEventListener('click', function() {
+    document.addEventListener('click', function () {
         // すでにスタート待機中、またはスタート済みなら何もしない
         if (hasStartedInitial) return;
-        
+
         hasStartedInitial = true;
         console.log("クリック検知：10秒後に本が降り始めます");
 

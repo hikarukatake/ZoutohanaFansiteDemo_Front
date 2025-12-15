@@ -420,8 +420,10 @@
         }
 
         // (スキャナ検出時のイベントリスナー)
+
         Quagga.onDetected(function (result) {
             const code = result.codeResult.code;
+            // ISBNコードは978か979からしか始まらないのでISBNだけ通過できるようにしている
             if (code.length === 13 && (code.startsWith('978') || code.startsWith('979'))) {
                 console.log("ISBNコード検出:", code);
                 document.getElementById("isbn-input").value = code; // IDを修正

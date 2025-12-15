@@ -83,7 +83,7 @@ p {
 
 /* 動作確認用に下にコンテンツがないとスクロールできないのでダミーを追加 */
 .next-section {
-    padding-top: 200px;
+
     width: 100%;
     height: 160vh;
     background-image: url(../../img/book-flow.png);
@@ -108,15 +108,9 @@ p {
 .shelf-grid {
     display: grid;
     grid-template-columns: repeat(3, 110px);
-    /* 3列 */
-    grid-template-rows: repeat(3, 140px);
-    /* 3行 */
     gap: 15px;
-    /* 本と本の間隔 */
     justify-content: center;
-    /* 画面中央に寄せる */
     position: relative;
-    /* 基準位置にする */
 }
 
 /* 新規追加 */
@@ -142,22 +136,61 @@ p {
 
 /* --- 本のスタイル --- */
 .book {
-    width: 105px;
-    height: 145px;
+    width: 100px;
+    height: 140px;
     position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
+    border: 2px solid rgb(160, 160, 160);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
     /* アニメーション用設定 */
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
-
+    z-index: 10;
     /* 初期状態：画面のはるか上(-150vh)に待機させ、少し回転させておく */
     transform: translate(0, -150vh) rotate(var(--fall-angle, 0deg));
     opacity: 0;
+    overflow: visible;
+    /* ← 重要（影が切れない） */
 }
 
+/* 📌 この疑似要素が「影用のもう１枚」 */
+.book::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* 画像と同じサイズに広げる */
+    background-image: inherit;
+    /* 親の画像をコピー */
+    background-size: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    border: 2px solid rgb(160, 160, 160);
+    border-radius: 4px;
+
+    z-index: 0;
+    transform: translate(-8px, -8px);
+}
+
+.book-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--font-normal);
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+    font-size: 10px;
+    z-index: 100;
+}
+
+
+
 .book.landed {
+
     /* 定着位置：ズレ(offset)と角度(angle)はJSで個別に指定 */
     opacity: 1;
     /* transformはJSで上書きされます */
@@ -210,4 +243,29 @@ p {
        ここでは transition の設定のみ確認しておきます */
     transition: transform 0.8s ease-in !important;
     opacity: 0;
+}
+
+.totalling-box {
+    width: 75%;
+    padding-top: 100px;
+    margin-bottom: 5px;
+}
+
+.looking-box {
+    width: 75%;
+    display: flex;
+    justify-content:flex-end;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.totalling-text {
+    border-bottom: 2px solid #808C91;
+    color: var(--font-normal);
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.7;
+    font-weight: bold;
+    font-size: 26px;
 }

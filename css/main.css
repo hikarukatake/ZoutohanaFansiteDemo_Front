@@ -6,3 +6,7 @@
   --font-bold: #464646;/* 太字カラー*/
   --text-white-color: #F8F8F8; /* ホワイトテキストカラー*/
 }
+body{
+  min-width: 375px;
+  min-height:812px;
+}
