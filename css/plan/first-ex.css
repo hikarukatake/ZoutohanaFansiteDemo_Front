@@ -473,6 +473,7 @@
         .Award-text p {
             color: var(--font-normal);
             letter-spacing: 1px;
+            line-height: 2;
         }
 
         .Award-circle {
