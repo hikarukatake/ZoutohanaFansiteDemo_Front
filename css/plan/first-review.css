@@ -25,6 +25,7 @@ p {
 }
 
 .book-text {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 100px;
     left: 13%;
@@ -84,7 +85,7 @@ p {
 /* 動作確認用に下にコンテンツがないとスクロールできないのでダミーを追加 */
 .next-section {
     width: 100%;
-    height: 120vh;
+    height: 140vh;
     background-image: url(../../img/book-flow.png);
     display: block;
     justify-content: center;
@@ -495,6 +496,53 @@ p {
     margin: 30px;
 }
 
+/* チュートリアル用の暗い背景 */
+#tutorialOverlay {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* 背景を黒くして透過 */
+    z-index: 1000;
+    display: none;
+    /* 最初は隠しておく */
+    pointer-events: auto;
+}
+
+/* 1冊目の本を浮かび上がらせる（黄色い光） */
+.highlight {
+    position: relative;
+    z-index: 1001 !important;
+    /* 背景より上に表示 */
+    box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.6);
+    /* 黄色い光 */
+    transform: scale(1.05) !important;
+    /* 少し大きくして強調 */
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* チュートリアルメッセージ */
+.tutorial-msg {
+    position: absolute;
+    top: 200%;
+    left: 30%;
+    background: #fff;
+    color: var(--font-normal);
+    font-size: 20px;
+    padding: 18px 23px;
+    border-radius: 35px;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 1002;
+    border: 3px solid white;
+    box-shadow: inset 0 0 0 2px var(--sub-color);
+}
+
+
+
 /* pen */
 .pen-box {
     display: flex;
@@ -785,259 +833,4 @@ p {
 
 .Award-bottom {
     margin-bottom: 50px;
-}
-
-/* お問い合わせ */
-.contact-box {
-    padding: 1rem;
-}
-
-.contact-card {
-    background-color: #F1F0E8;
-    width: 100%;
-    padding: 30px 40px;
-    border-radius: 20px;
-    text-align: center;
-    box-sizing: border-box;
-    color: var(--font-normal);
-}
-
-/* タイトル「お問い合わせ」 */
-.contact-title {
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: var(--font-bold);
-    margin-bottom: 10px;
-    letter-spacing: 0.05em;
-}
-
-.contact-desc-box {
-    margin-bottom: 30px;
-}
-
-/* 説明文 */
-.contact-desc {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--font-normal);
-}
-
-/* お問い合わせフォームボタン */
-.contact-btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #4d4d4d;
-    color: var(--back-color);
-    text-decoration: none;
-    padding: 20px 30px;
-    border-radius: 50px;
-    margin-bottom: 25px;
-    transition: opacity 0.3s;
-}
-
-.btn-text {
-    font-size: 16px;
-    font-weight: 500;
-    flex-grow: 1;
-    text-align: center;
-    padding-left: 10px;
-    color: var(--back-color);
-}
-
-.btn-arrow {
-    font-size: 16px;
-}
-
-/* 電話番号エリア（白い箱） */
-.tel-box {
-    background-color: #ffffff;
-    border-radius: 30px;
-    padding: 25px 20px;
-    color: var(--font-normal);
-}
-
-/* 電話番号の行 */
-.tel-main {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 15px;
-    margin-bottom: 8px;
-}
-
-.tel-label {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-}
-
-.tel-number {
-    font-size: 26px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-/* 受付時間 */
-.tel-hours {
-    font-size: 13px;
-    color: var(--font-normal);
-}
-
-/* フッター */
-/* ===== フッター全体 ===== */
-.footer-all {
-    width: 100%;
-    background: #fff;
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-}
-
-.footer-top {
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.footer-white-text {
-    color: white;
-    font-weight: 700;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.footer-menu {
-    background: var(--sub-color);
-    padding: 0;
-}
-
-.footer-menu-item-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 30px;
-    border-top: 1px solid var(--back-color);
-    border-bottom: 1px solid var(--back-color);
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.92rem;
-}
-
-.footer-menu-item-top p {
-    padding: 10px;
-}
-
-.footer-menu-item p {
-    padding: 10px;
-}
-
-.footer-menu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 30px;
-    border-bottom: 1px solid var(--back-color);
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.92rem;
-}
-
-.footer-menu-item i {
-    font-size: 0.8rem;
-}
-
-/* ===== SNS部分 ===== */
-.footer-sns {
-    padding: 30px 20px 40px;
-    text-align: center;
-}
-
-.sns-box {
-    display: flex;
-    justify-content: space-around;
-}
-
-.sns-box-icons {
-    display: flex;
-    justify-content: space-around;
-    gap: 2rem;
-}
-
-.sns-icons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.sns-labels {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.7rem;
-
-}
-
-.sns-icon {
-    width: 2rem;
-
-}
-
-.sns-icon-facebook {
-    width: 1.7rem;
-}
-
-.sns-icon-x {
-    width: 1.4rem;
-}
-
-.footer-sns-title {
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: var(--font-normal);
-    letter-spacing: 0.1em;
-    margin-bottom: 18px;
-    height: 30px;
-}
-
-.sns-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-bottom: 25px;
-}
-
-.sns-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #555;
-    font-size: 0.95rem;
-    text-decoration: none;
-}
-
-.sns-item i {
-    font-size: 1.3rem;
-}
-
-.footer-line {
-    width: 80%;
-    height: 1px;
-    background: #e0e0e0;
-    margin: 20px auto;
-}
-
-.footer-copy {
-    font-size: 0.75rem;
-    color: #777;
-}
-
-.copyright {
-    text-align: center;
-    font-size: 0.8rem;
-    margin: 0;
 }

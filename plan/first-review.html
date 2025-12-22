@@ -7,6 +7,173 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/plan/first-review.css">
+    <style>
+        /* モーダル全体の背景 */
+        .modal-overlay {
+            display: none;
+            /* 最初は隠す */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            justify-content: center;
+        }
+
+        /* モーダルの箱 */
+        .modal-content {
+            margin-top: 100px;
+            width: 90%;
+            position: relative;
+            animation: modalOpen 0.3s ease-out;
+        }
+
+        .modal-box {
+            width: 100%;
+            background-color: #e8f5fd;
+
+            border-radius: 6px;
+
+        }
+
+        .modal-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-textFirst-box,
+        .modal-textSecond-box {
+            width: 90%;
+            margin: 0 auto;
+            padding: 16px;
+
+            /* 内側の線 */
+            border: 1px solid #1aa3ff;
+
+            /* 外側の線 */
+            outline: 1px solid #1aa3ff;
+            outline-offset: 2px;
+            /* ← ★ここが「二重線の間隔」 */
+            position: relative;
+            margin-bottom: 32px;
+            border-radius: 6px;
+
+            box-shadow: 6px 6px 10px -4px rgba(0, 0, 0, 0.25);
+        }
+
+
+
+        .modal-textSecond-box {
+            border-bottom: none;
+        }
+
+
+        .modal-textFirst,
+        .modal-textSecond {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+            color: var(--font-normal);
+        }
+
+        .modal-box::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+
+        .modal-box>div:not(:last-child)::after {
+            content: "";
+            display: block;
+            margin: 20px 0;
+            border-bottom: 1px dashed #aaa;
+        }
+
+
+
+        @keyframes modalOpen {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 閉じるボタン */
+        .close-button {
+            position: fixed;
+            top: 20px;
+            left: 40px;
+            font-size: 40px;
+            z-index: 10;
+            color: var(--font-bold);
+        }
+
+        .modal-body {
+            text-align: center;
+            color: var(--font-normal);
+        }
+
+        .one-book-shinto-set-modal {
+            position: relative;
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .one-book-text-overlay-modal {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            /* font-size: clamp(18px, 2vw, 50px); */
+            font-size: 30px;
+            line-height: 2;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            color: var(--font-normal);
+            z-index: 2;
+            max-height: 80%;
+            white-space: nowrap;
+        }
+
+
+
+        .modal-textFirst-box::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -12px;
+            width: 100%;
+            border-bottom: 1px dashed #aaa;
+            /* ★破線 */
+        }
+
+
+        .modal-textFirst {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: left;
+            color: var(--font-normal);
+        }
+
+        .modal-textSecond {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: left;
+            color: var(--font-normal);
+        }
+    </style>
 </head>
 
 <body class="no-scroll">
@@ -274,8 +441,30 @@
             </div>
         </div>
     </div>
-    </div>
+       <!-- オーバーレイ -->
 
+        <div id="tutorialOverlay"></div>
+
+        <!-- モーダル -->
+        <div id="bookDetailModal" class="modal-overlay">
+            <span id="closeModal" class="close-button">&times;</span>
+            <div class="modal-content">
+                <div class="modal-box">
+                    <div class="modal-textFirst-box">
+                        <p id="textFirst" class="modal-textFirst">最近の読書の中でも特に心に残った一冊でした。
+                            読み進めるほど登場人物の気持ちに寄り添えるようになり、自分の日常を見つめ直すきっかけにもなりました。
+                            読み終えたあとは温かい余韻が残り、しばらくその世界に浸っていたくなる作品でした。読み進めるほど共感する場面が増え、自分の経験と重ね合わせながら楽しめました。静かで優しい雰囲気の中に、少しずつ変わっていく気持ちが繊細に表されていて、読んでいて胸が温かくなる作品でした。
+                        </p>
+                    </div>
+                    <div class="modal-textSecond-box">
+                        <p id="textSecond" class="modal-textSecond">最近の読書の中でも特に心に残った一冊でした。
+                            読み進めるほど登場人物の気持ちに寄り添えるようになり、自分の日常を見つめ直すきっかけにもなりました。
+                            読み終えたあとは温かい余韻が残り、しばらくその世界に浸っていたくなる作品でした。読み進めるほど共感する場面が増え、自分の経験と重ね合わせながら楽しめました。静かで優しい雰囲気の中に、少しずつ変わっていく気持ちが繊細に表されていて、読んでいて胸が温かくなる作品でした。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -307,8 +496,7 @@
                 <p>></p>
             </a>
         </div>
-
-
+        
         <!-- SNSブロック -->
         <div class="footer-sns">
             <div class="sns-box">
@@ -363,7 +551,7 @@
             // 【2】3秒後に下にスクロール
             setTimeout(function () {
                 // スクロール禁止を解除
-                document.body.classList.remove('no-scroll');
+                // document.body.classList.remove('no-scroll');
                 bookText.classList.add('release-fixed');
 
                 // 下のエリアへ「スルッ」とスクロール
@@ -428,29 +616,56 @@
             if (nextBtn) nextBtn.disabled = false;
             if (btnArea) btnArea.classList.add('show');
             isAnimating = false;
+
+            // 9冊目が着地してから少し待ってチュートリアル開始
+            setTimeout(startTutorial, 800);
             return;
         }
 
         const index = booksOnShelf;
         const book = document.createElement('div');
         book.classList.add('book');
+        if (index === 0) book.id = "firstBook"; // 1冊目を特定
         book.style.backgroundImage = `url('${imageList[index]}')`;
 
-        // 文字用の div を追加
         const textDiv = document.createElement('div');
         textDiv.classList.add('book-text-overlay');
-        textDiv.innerText = `君と僕との出会いは唐揚げと肉ま`; // 表示したい文字に変更可能
-
+        textDiv.innerText = `君と僕との出会いは唐揚げと肉ま`;
         book.appendChild(textDiv);
 
-        // 落下開始時のランダム角度
+        // --- ★ここからクリックイベントの追加 ---
+        book.addEventListener('click', function () {
+            const modal = document.getElementById('bookDetailModal');
+            const overlay = document.getElementById('tutorialOverlay');
+
+            // 【初回のチュートリアル中のみ実行する処理】
+            // オーバーレイが表示されている時にクリックされた場合
+            if (overlay.style.display === 'block') {
+                overlay.style.display = 'none'; // 暗い背景を消す
+                const firstBook = document.getElementById('firstBook');
+                if (firstBook) {
+                    firstBook.classList.remove('highlight'); // 光る演出を消す
+                    const msg = firstBook.querySelector('.tutorial-msg');
+                    if (msg) msg.remove(); // メッセージを消す
+                }
+                document.body.classList.remove('no-scroll'); // 一旦解除
+                console.log("チュートリアル演出を終了しました");
+            }
+
+            // 【共通の処理】モーダルを表示
+            // どの本を押しても、初回でも、2回目以降でも実行されます
+            modal.style.display = 'flex';
+            document.body.classList.add('no-scroll');
+
+            // （応用）クリックした本の情報をモーダルに入れる場合
+            document.getElementById('modalTitle').innerText = `作品 No.${index + 1}`;
+        });
         const fallAngle = (Math.random() * 60) - 30;
         book.style.setProperty('--fall-angle', fallAngle + 'deg');
 
         shelf.appendChild(book);
         booksOnShelf++;
 
-        // アニメーション実行
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 book.classList.add('landed');
@@ -462,7 +677,47 @@
         });
     }
 
+    // ■ チュートリアル：本を光らせてメッセージを出す
+    function startTutorial() {
+        const overlay = document.getElementById('tutorialOverlay');
+        const firstBook = document.getElementById('firstBook');
 
+        if (!firstBook) return;
+
+        // スクロールを禁止し、チュートリアル画面（オーバーレイ）を出す
+        document.body.classList.add('no-scroll');
+        overlay.style.display = 'block';
+
+        // 1冊目を強調
+        firstBook.classList.add('highlight');
+
+        // 「本を選んでみて！」というガイドを出す
+        const msg = document.createElement('div');
+        msg.classList.add('tutorial-msg');
+        msg.innerText = '本を選んでみましょう！';
+        firstBook.appendChild(msg);
+
+        console.log("チュートリアル開始");
+    }
+    // 変数を定義（スクリプトの上のほうで定義してもOK）
+    const modal = document.getElementById('bookDetailModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    // モーダルを閉じるボタン（×印）をクリックした時
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // スクロール禁止を解除
+        });
+    }
+
+    // 背景（モーダルの外側の黒い部分）をクリックした時も閉じる
+    window.addEventListener('click', function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        }
+    });
     // ■ 落下ループ開始
     function startFallingBooks() {
         if (bookInterval) clearInterval(bookInterval);

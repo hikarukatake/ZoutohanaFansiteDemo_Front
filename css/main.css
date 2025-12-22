@@ -1,12 +1,414 @@
 :root {
-  --main-color: #2DB584; /* メインカラー*/
-  --sub-color: #449872; /* サブカラー*/
-  --back-color: #FFFCF9;
-  --font-normal: #535353; /* 文字カラー*/
-  --font-bold: #464646;/* 太字カラー*/
-  --text-white-color: #F8F8F8; /* ホワイトテキストカラー*/
+    --main-color: #338895;
+    /* メインカラー*/
+    --sub-color: #338895;
+    /* サブカラー*/
+    --back-color: #FFFCF9;
+    --font-normal: #535353;
+    /* 文字カラー*/
+    --font-bold: #464646;
+    /* 太字カラー*/
+    --text-white-color: #F8F8F8;
+    /* ホワイトテキストカラー*/
+    --text-shadow-color: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    /* テキストシャドウカラー*/
+    --box-shadow-color: 6px 0 12px rgba(0, 0, 0, 0.25);
+    /* ボックスシャドウカラー*/
 }
-body{
-  min-width: 375px;
-  min-height:812px;
+
+body {
+    min-width: 375px;
+    min-height: 812px;
+}
+
+
+/* --- ヘッダー --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px 5px 15px;
+    border-bottom: 1px solid #9F9F9F;
+}
+
+/* ハンバーガーボタン */
+.menu-icon {
+    /* 画面固定 */
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ハンバーガーボタン */
+/* 三つの線のボックス */
+.menu-icon-box {
+    display: block;
+    align-items: center;
+    margin: 0 auto;
+    width: 50%;
+    height: 10px;
+}
+
+/* 上の部分 */
+.span-top {
+    display: block;
+    width: 25px;
+    height: 1.5px;
+    background-color: #fff;
+    margin-bottom: 4px;
+}
+
+/*  中間 */
+.span-middle {
+    display: block;
+    width: 28px;
+    height: 1.5px;
+    background-color: #fff;
+}
+
+/* 下の部分 */
+.span-bottom {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background-color: #fff;
+    margin-top: 4px;
+}
+
+
+/* ヘッダーのモーダル */
+.overlay-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 閉じるボタン (×) */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1;
+}
+
+/* メニューリスト */
+.menu-list {
+    list-style: none;
+    text-align: center;
+    width: 100%;
+}
+
+.menu-item {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+/* 白い短い横線 */
+.menu-separator {
+    width: 40px;
+    height: 2px;
+    background-color: white;
+    margin: 20px auto;
+    /* 上下の余白 */
+}
+
+.overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+    /* 画像のようなピンク色 */
+    z-index: 9999;
+    /* 最前面に */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    /* 初期状態は非表示 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* お問い合わせ */
+.contact-box {
+    padding: 1rem;
+    background-color: var(--back-color);
+}
+
+.contact-card {
+    background-color: #F1F0E8;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    color: var(--font-normal);
+}
+
+/* タイトル「お問い合わせ」 */
+.contact-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--font-bold);
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+
+.contact-desc-box {
+    margin-bottom: 30px;
+}
+
+/* 説明文 */
+.contact-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--font-normal);
+}
+
+/* お問い合わせフォームボタン */
+.contact-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4e4e4e;
+    color: var(--back-color);
+    text-decoration: none;
+    padding: 20px 30px;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    transition: opacity 0.3s;
+}
+
+.btn-text {
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+    text-align: center;
+    padding-left: 10px;
+    color: var(--back-color);
+}
+
+.btn-arrow {
+    font-size: 16px;
+}
+
+/* 電話番号エリア（白い箱） */
+.tel-box {
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 25px 20px;
+    color: var(--font-normal);
+}
+
+/* 電話番号の行 */
+.tel-main {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.tel-label {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.tel-number {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* 受付時間 */
+.tel-hours {
+    font-size: 16px;
+    color: var(--font-normal);
+    margin: 0;
+}
+
+
+/* フッター */
+/* ===== フッター全体 ===== */
+.footer-all {
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+/* A BOOK PROJECT */
+.footer-top {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* A BOOK PROJECT の文字設定 */
+.footer-white-text {
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* フッターの背景色 */
+.footer-menu {
+    background: var(--sub-color);
+    padding: 0;
+}
+
+/* 最初のaタグメニュー */
+.footer-menu-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    border-top: 1px solid var(--back-color);
+    border-bottom: 1px solid var(--back-color);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.92rem;
+}
+
+.footer-menu-item-top p {
+    padding: 10px;
+}
+
+.footer-menu-item p {
+    padding: 10px;
+}
+
+/* 各aタグメニュー */
+.footer-menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    border-bottom: 1px solid var(--back-color);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.92rem;
+}
+
+.footer-menu-item i {
+    font-size: 0.8rem;
+}
+
+/* ===== SNS部分 ===== */
+.footer-sns {
+    padding: 30px 20px 40px;
+    text-align: center;
+}
+
+.sns-box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sns-box-icons {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.sns-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sns-labels {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.7rem;
+
+}
+
+.sns-icon {
+    width: 2rem;
+
+}
+
+.sns-icon-facebook {
+    width: 1.7rem;
+}
+
+.sns-icon-x {
+    width: 1.4rem;
+}
+
+.footer-sns-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--font-normal);
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+    height: 30px;
+}
+
+.sns-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.sns-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #555;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.sns-item i {
+    font-size: 1.3rem;
+}
+
+.footer-line {
+    width: 80%;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 20px auto;
+}
+
+.footer-copy {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0;
 }
