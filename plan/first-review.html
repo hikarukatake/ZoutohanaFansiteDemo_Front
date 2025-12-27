@@ -8,171 +8,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/plan/first-review.css">
     <style>
-        /* モーダル全体の背景 */
-        .modal-overlay {
-            display: none;
-            /* 最初は隠す */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
-            justify-content: center;
-        }
 
-        /* モーダルの箱 */
-        .modal-content {
-            margin-top: 100px;
-            width: 90%;
-            position: relative;
-            animation: modalOpen 0.3s ease-out;
-        }
-
-        .modal-box {
-            width: 100%;
-            background-color: #e8f5fd;
-
-            border-radius: 6px;
-
-        }
-
-        .modal-box::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .modal-textFirst-box,
-        .modal-textSecond-box {
-            width: 90%;
-            margin: 0 auto;
-            padding: 16px;
-
-            /* 内側の線 */
-            border: 1px solid #1aa3ff;
-
-            /* 外側の線 */
-            outline: 1px solid #1aa3ff;
-            outline-offset: 2px;
-            /* ← ★ここが「二重線の間隔」 */
-            position: relative;
-            margin-bottom: 32px;
-            border-radius: 6px;
-
-            box-shadow: 6px 6px 10px -4px rgba(0, 0, 0, 0.25);
-        }
-
-
-
-        .modal-textSecond-box {
-            border-bottom: none;
-        }
-
-
-        .modal-textFirst,
-        .modal-textSecond {
-            font-size: 18px;
-            line-height: 1.8;
-            text-align: left;
-            color: var(--font-normal);
-        }
-
-        .modal-box::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 3px;
-        }
-
-        .modal-box>div:not(:last-child)::after {
-            content: "";
-            display: block;
-            margin: 20px 0;
-            border-bottom: 1px dashed #aaa;
-        }
-
-
-
-        @keyframes modalOpen {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 閉じるボタン */
-        .close-button {
-            position: fixed;
-            top: 20px;
-            left: 40px;
-            font-size: 40px;
-            z-index: 10;
-            color: var(--font-bold);
-        }
-
-        .modal-body {
-            text-align: center;
-            color: var(--font-normal);
-        }
-
-        .one-book-shinto-set-modal {
-            position: relative;
-            width: 85%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .one-book-text-overlay-modal {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            /* font-size: clamp(18px, 2vw, 50px); */
-            font-size: 30px;
-            line-height: 2;
-            letter-spacing: 0.1em;
-            font-weight: bold;
-
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            color: var(--font-normal);
-            z-index: 2;
-            max-height: 80%;
-            white-space: nowrap;
-        }
-
-
-
-        .modal-textFirst-box::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -12px;
-            width: 100%;
-            border-bottom: 1px dashed #aaa;
-            /* ★破線 */
-        }
-
-
-        .modal-textFirst {
-            font-size: 18px;
-            line-height: 1.6;
-            text-align: left;
-            color: var(--font-normal);
-        }
-
-        .modal-textSecond {
-            font-size: 18px;
-            line-height: 1.6;
-            text-align: left;
-            color: var(--font-normal);
-        }
     </style>
 </head>
 
@@ -441,30 +277,65 @@
             </div>
         </div>
     </div>
-       <!-- オーバーレイ -->
 
-        <div id="tutorialOverlay"></div>
+    <!-- オーバーレイ -->
+    <div id="tutorialOverlay" style="margin-top: -30px;"></div>
 
-        <!-- モーダル -->
-        <div id="bookDetailModal" class="modal-overlay">
-            <span id="closeModal" class="close-button">&times;</span>
+    <!-- モーダル -->
+    <div id="bookDetailModal" class="modal-overlay">
+        <span id="closeModal" class="close-button">&times;</span>
+        <div style="width: 100%;">
             <div class="modal-content">
                 <div class="modal-box">
                     <div class="modal-textFirst-box">
-                        <p id="textFirst" class="modal-textFirst">最近の読書の中でも特に心に残った一冊でした。
-                            読み進めるほど登場人物の気持ちに寄り添えるようになり、自分の日常を見つめ直すきっかけにもなりました。
-                            読み終えたあとは温かい余韻が残り、しばらくその世界に浸っていたくなる作品でした。読み進めるほど共感する場面が増え、自分の経験と重ね合わせながら楽しめました。静かで優しい雰囲気の中に、少しずつ変わっていく気持ちが繊細に表されていて、読んでいて胸が温かくなる作品でした。
+                        <img src="../img/rose.png" class="modal-rose" alt="">
+                        <h3>心を奪われた作品</h3>
+                        <p id="textFirst" class="modal-textFirst">
+                            最近の読書の中でも特に心に残った一冊でした。読み進めるほど登場人物の気持ちに寄り添えるようになり、自分の日常を見つめ直すきっかけにもなりました。読み終えたあとは温かい余韻が残り、しばらくその世界に浸っていたくなる作品でした。読み進めるほど共感する場面が増え、自分の経験と重ね合わせながら楽しめました。静かで優しい雰囲気の中に、少しずつ変わっていく気持ちが繊細に表されていて、読んでいて胸が温かくなる作品でした。
                         </p>
                     </div>
                     <div class="modal-textSecond-box">
-                        <p id="textSecond" class="modal-textSecond">最近の読書の中でも特に心に残った一冊でした。
-                            読み進めるほど登場人物の気持ちに寄り添えるようになり、自分の日常を見つめ直すきっかけにもなりました。
-                            読み終えたあとは温かい余韻が残り、しばらくその世界に浸っていたくなる作品でした。読み進めるほど共感する場面が増え、自分の経験と重ね合わせながら楽しめました。静かで優しい雰囲気の中に、少しずつ変わっていく気持ちが繊細に表されていて、読んでいて胸が温かくなる作品でした。
+                        <img src="../img/rose.png" class="modal-rose" alt="">
+                        <p id="textSecond" class="modal-textSecond">
+                            最近の読書の中でも特に心に残った一冊でした。読み進めるほど登場人物の気持ちに寄り添えるようになり、自分の日常を見つめ直すきっかけにもなりました。読み終えたあとは温かい余韻が残り、しばらくその世界に浸っていたくなる作品でした。読み進めるほど共感する場面が増え、自分の経験と重ね合わせながら楽しめました。静かで優しい雰囲気の中に、少しずつ変わっていく気持ちが繊細に表されていて、読んでいて胸が温かくなる作品でした。
                         </p>
                     </div>
                 </div>
             </div>
+            <div class="modal-buttons">
+                <div class="modal-button"><img src="../img/vote.png" alt="" class="modal-img">投票</div>
+                <div class="modal-button"><img src="../img/tagu.png" alt="" class="modal-img-book">ブックマーク</div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-icon">
+                    </div>
+                    <h3 class="profile-name">もたーて</h3>
+                </div>
+
+                <div class="profile-tags">
+                    <span class="tag">40代</span>
+                    <div class="divider"></div>
+                    <span class="tag">男性</span>
+                </div>
+
+                <div class="profile-location">
+                    <img src="../img/address.png" alt="address icon" class="location-icon">
+                    <p class="location-text">岩手県 盛岡市 在住</p>
+                </div>
+
+                <hr class="profile-line">
+
+                <div class="profile-bio">
+                    <p>
+                        読んだ本の感想を気ままに投稿しています。<br>
+                        印象に残った言葉や心に響いたシーンなど、そのとき感じたことを綴っています。<br>
+                        同じ作品が好きな方と感想を語り合えたらうれしいです。
+                    </p>
+                </div>
+            </div>
         </div>
+    </div>
 
 
 
@@ -496,7 +367,7 @@
                 <p>></p>
             </a>
         </div>
-        
+
         <!-- SNSブロック -->
         <div class="footer-sns">
             <div class="sns-box">
@@ -625,6 +496,9 @@
         const index = booksOnShelf;
         const book = document.createElement('div');
         book.classList.add('book');
+
+        book.style.pointerEvents = 'none'; 
+
         if (index === 0) book.id = "firstBook"; // 1冊目を特定
         book.style.backgroundImage = `url('${imageList[index]}')`;
 
@@ -637,7 +511,7 @@
         book.addEventListener('click', function () {
             const modal = document.getElementById('bookDetailModal');
             const overlay = document.getElementById('tutorialOverlay');
-
+            
             // 【初回のチュートリアル中のみ実行する処理】
             // オーバーレイが表示されている時にクリックされた場合
             if (overlay.style.display === 'block') {
@@ -682,6 +556,10 @@
         const overlay = document.getElementById('tutorialOverlay');
         const firstBook = document.getElementById('firstBook');
 
+        const allBooks = document.querySelectorAll('.book');
+        allBooks.forEach(b => {
+            b.style.pointerEvents = 'auto';
+        });
         if (!firstBook) return;
 
         // スクロールを禁止し、チュートリアル画面（オーバーレイ）を出す
@@ -790,6 +668,46 @@
             this.appendChild(marker);
         });
     });
+</script>
+<script>
+    // モーダル内のテキストを20文字ごとに改行して表示する
+    document.addEventListener("DOMContentLoaded", () => {
+
+        splitTextToParagraphs("textFirst", "modal-textFirst", 18);
+        splitTextToParagraphs("textSecond", "modal-textSecond", 18);
+
+    });
+
+    function splitTextToParagraphs(textId, className, maxLength) {
+        const originalP = document.getElementById(textId);
+        if (!originalP) return;
+
+        const container = originalP.parentElement;
+        const text = originalP.textContent.trim();
+        const title = container.querySelector("h3");
+        const img = container.querySelector("img");
+
+        const lines = [];
+        for (let i = 0; i < text.length; i += maxLength) {
+            lines.push(text.slice(i, i + maxLength));
+        }
+
+        // 元のp削除
+        container.innerHTML = "";
+
+        if (img) container.appendChild(img);
+        if (title) container.appendChild(title);
+
+        // 新しいpを追加
+        lines.forEach(line => {
+            const p = document.createElement("p");
+            p.className = className;
+            p.textContent = line;
+            container.appendChild(p);
+        });
+    }
+
+
 </script>
 
 </html>
